@@ -1,0 +1,921 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="crontab," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文介绍一下linux下的定时任务crontab的安装和使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下定时自动备份和删除">
+<meta property="og:url" content="https://aiolos123.github.io/2016/09/05/how-to-use-crontab-on-linux/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="本文介绍一下linux下的定时任务crontab的安装和使用">
+<meta property="og:updated_time" content="2016-09-05T07:17:02.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux下定时自动备份和删除">
+<meta name="twitter:description" content="本文介绍一下linux下的定时任务crontab的安装和使用">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/09/05/how-to-use-crontab-on-linux/"/>
+
+  <title> linux下定时自动备份和删除 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux下定时自动备份和删除
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T12:32:04+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/05/how-to-use-crontab-on-linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/how-to-use-crontab-on-linux/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/05/how-to-use-crontab-on-linux/" class="leancloud_visitors" data-flag-title="linux下定时自动备份和删除">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍一下linux下的定时任务crontab的安装和使用<br><a id="more"></a></p>
+<h2 id="安装和使用crontab"><a href="#安装和使用crontab" class="headerlink" title="安装和使用crontab"></a>安装和使用crontab</h2><h3 id="安装crontab"><a href="#安装crontab" class="headerlink" title="安装crontab"></a>安装crontab</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># yum install crontabs</span></div></pre></td></tr></table></figure>
+<h3 id="crontab服务常用命令"><a href="#crontab服务常用命令" class="headerlink" title="crontab服务常用命令"></a>crontab服务常用命令</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># service crond start <span class="comment">//启动服务</span></span></div><div class="line"><span class="meta"># service crond stop <span class="comment">//关闭服务</span></span></div><div class="line"><span class="meta"># service crond restart <span class="comment">//重启服务</span></span></div><div class="line"><span class="meta"># service crond reload <span class="comment">//重新载入配置</span></span></div><div class="line"><span class="meta"># service crond status  <span class="comment">//查看crontab服务状态</span></span></div><div class="line"></div><div class="line"><span class="meta"># ntsysv <span class="comment">//查看crontab服务是否已设置为开机启动</span></span></div><div class="line"></div><div class="line"><span class="meta"># chkconfig –level 35 crond on <span class="comment">//加入开机自动启动</span></span></div></pre></td></tr></table></figure>
+<h2 id="查看crontab日志"><a href="#查看crontab日志" class="headerlink" title="查看crontab日志"></a>查看crontab日志</h2><p>crontab的执行日志位置一般位于/var/log/cron，利用下面的语句即可查看日志。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail <span class="_">-f</span> /var/<span class="built_in">log</span>/cron</div></pre></td></tr></table></figure></p>
+<p>上面的/var/log/cron只会记录是否执行了某些计划的脚本，但是具体执行是否正确以及脚本执行过程中的一些信息linux会通过邮件形式发送到给该用户。<br>对于root用户该邮件记录位于/var/spool/mail/root，通过以下命令可以查看最近的crontab执行情况。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail -f <span class="regexp">/var/</span>spool<span class="regexp">/mail/</span>root</div></pre></td></tr></table></figure></p>
+<p>mail邮件一般只会记录脚本执行成功与否，如果执行失败，无法给出进一步的错误信息，这时需要我们将语句执行的错误信息重定向至文件中，这样可以很方便的查看错误信息。下面就给出了一个简单的例子<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">0 </span><span class="number">6</span> * * * /root/script/ss.sh &gt;&gt; /root/crontab/mylog.<span class="keyword">log</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>上述语句表示把错误输出和标准输出都输出到mylog.log中，<br>在执行的时候会将命令执行的相关信息记录至mylog.log文件中。</p>
+<h2 id="linux下定时自动备份oracle数据库"><a href="#linux下定时自动备份oracle数据库" class="headerlink" title="linux下定时自动备份oracle数据库"></a>linux下定时自动备份oracle数据库</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># mkdir -p /home/expdp  #以root用户新建Oracle数据库备份目录</span></div><div class="line"><span class="meta"># chown -R  oracle:oinstall /home/expdp -R  #设置目录权限为oinstall用户组的oracle用户（用户oracle与用户组oinstall是在安装Oracle数据库时设置的）</span></div></pre></td></tr></table></figure>
+<p>新建备份脚本文件<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># vi /home/expdp/ordbak.sh</span></div></pre></td></tr></table></figure></p>
+<p>输入以下代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">export</span> ORACLE_BASE=/home/oracle</div><div class="line"><span class="built_in">export</span> ORACLE_HOME=<span class="variable">$ORACLE_BASE</span>/112</div><div class="line"><span class="built_in">export</span> ORACLE_SID=orcl</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$ORACLE_HOME</span>/bin:<span class="variable">$HOME</span>/bin</div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$ORACLE_HOME</span>/lib:/lib:/usr/lib</div><div class="line"><span class="built_in">export</span> NLS_LANG=’Simplified Chinese_CHINA.AL32UTF8’</div><div class="line"><span class="comment">#以上代码为Oracle数据库运行账号oracle的系统环境变量设置，必须添加，否则crontab任务计划不能执行</span></div><div class="line">date=`date +%Y_%m_%d`   <span class="comment">#获取系统当前日期时间</span></div><div class="line">days=7  <span class="comment">#设置删除7天之前的备份文件</span></div><div class="line">orsid=`127.0.0.0:1521/orcl`  <span class="comment">#Oracle数据库服务器IP、端口、SID</span></div><div class="line"><span class="comment">#orsid=`orcl`</span></div><div class="line"><span class="comment">#备份user数据库</span></div><div class="line">orowner=user  <span class="comment">#备份此用户下面的数据</span></div><div class="line">bakuser=user  <span class="comment">#用此用户来执行备份，必须要有备份操作的权限</span></div><div class="line">bakpass=<span class="built_in">pwd</span>  <span class="comment">#执行备注的用户密码</span></div><div class="line">bakdir=/home/expdp/  <span class="comment">#备份文件路径，需要提前创建好</span></div><div class="line">bakdata=<span class="variable">$orowner</span><span class="variable">$date</span>.dmp <span class="comment">#备份数据库名称</span></div><div class="line">baklog=<span class="variable">$orowner</span><span class="variable">$date</span>.log <span class="comment">#备份执行时候生成的日志文件名称</span></div><div class="line">ordatabak=<span class="variable">$orowner</span><span class="variable">$date</span>.tar.gz <span class="comment">#最后保存的Oracle数据库备份文件</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$bakdir</span> <span class="comment">#进入备份目录</span></div><div class="line"><span class="comment">#mkdir -p $orowner #按需要备份的Oracle用户创建目录</span></div><div class="line"><span class="comment">#cd $orowner #进入目录</span></div><div class="line">expdp <span class="variable">$bakuser</span>/<span class="variable">$bakpass</span>@<span class="variable">$orsid</span> schemas=<span class="variable">$bakuser</span> dumpfile=<span class="variable">$bakdata</span> directory=expdp_dir logfile=<span class="variable">$baklog</span> <span class="comment">#执行备份</span></div><div class="line">tar -zcvf <span class="variable">$ordatabak</span> <span class="variable">$bakdata</span>  <span class="variable">$baklog</span>  <span class="comment">#压缩备份文件和日志文件</span></div><div class="line"> <span class="comment">#删除备份文件</span></div><div class="line">find <span class="variable">$bakdir</span>  -type f -name <span class="variable">$baklog</span> -exec rm &#123;&#125; \;</div><div class="line"><span class="comment">#删除日志文件</span></div><div class="line">find <span class="variable">$bakdir</span>  -type f -name <span class="variable">$bakdata</span> -exec rm &#123;&#125; \; </div><div class="line"><span class="comment">#删除7天前的备份（注意：&#123;&#125; \中间有空格）</span></div><div class="line">find <span class="variable">$bakdir</span>  -type f -name <span class="string">"<span class="variable">$orowner</span><span class="variable">$date</span>.tar.gz"</span> -mtime +<span class="variable">$days</span> -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<p>:wq! #保存退出<br>为ordbak.sh脚本添加执行权限<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># chmod +x <span class="regexp">/home/</span>oracle<span class="regexp">/expdp_dir/</span>ordatabak.sh</div></pre></td></tr></table></figure></p>
+<p>编辑任务计划<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#crontab</span> -e</div></pre></td></tr></table></figure></p>
+<p>将下列代码加止末尾<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#每天凌晨<span class="number">2</span>点<span class="number">45</span>分，以oracle用户执行ordbak.sh备份文件</div><div class="line"><span class="number">45</span> <span class="number">2</span> * * * oracle  /home/expdp/ordbak.sh  &gt;&gt; /home/expdp/crontablog.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>:wq! #保存退出<br>通过如下命令查看定时任务执行情况<br><figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># tail -f /<span class="built_in">var</span>/<span class="built_in">log</span>/cron</div></pre></td></tr></table></figure></p>
+<h2 id="linux下定时自动删除"><a href="#linux下定时自动删除" class="headerlink" title="linux下定时自动删除"></a>linux下定时自动删除</h2><h3 id="删除文件命令"><a href="#删除文件命令" class="headerlink" title="删除文件命令"></a>删除文件命令</h3><p>引用自：<a href="http://www.cnblogs.com/peida/archive/2013/03/25/2980121.html" target="_blank" rel="external">http://www.cnblogs.com/peida/archive/2013/03/25/2980121.html</a><br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">find</span> 对应目录 -mtime +天数 -<span class="built_in">name</span> <span class="string">"文件名"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<p>实例命令：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">find</span> /opt/soft/<span class="built_in">log</span>/ -mtime +<span class="number">30</span> -<span class="built_in">name</span> <span class="string">"*.log"</span> -<span class="built_in">exec</span> rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<p>本例实现了将/opt/soft/log/目录下所有30天前带”.log”的文件删除。具体参数说明如下：</p>
+<pre><code>find：linux的查找命令，用户查找指定条件的文件；
+/opt/soft/log/：想要进行清理的任意目录；
+-mtime：标准语句写法；
++30：查找30天前的文件，这里用数字代表天数；
+&quot;*.log&quot;：希望查找的数据类型，&quot;*.jpg&quot;表示查找扩展名为jpg的所有文件，&quot;*&quot;表示查找所有文件，这个可以灵活运用，举一反三；
+-exec：固定写法；
+rm -rf：强制删除文件，包括目录；
+{} \; ：固定写法，一对大括号+空格+\+; 
+</code></pre><h3 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h3><p>若嫌每次手动执行语句太麻烦，可以将这小语句写到一个可执行shell脚本文件中，再设置cron调度执行，那就可以让系统自动去清理相关文件。</p>
+<h4 id="创建shell文件"><a href="#创建shell文件" class="headerlink" title="创建shell文件"></a>创建shell文件</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch /<span class="keyword">opt</span>/soft/bin/auto-del-<span class="number">30</span>-days-ago-<span class="built_in">log</span>.<span class="keyword">sh</span></div><div class="line">chmod +<span class="keyword">x</span> auto-del-<span class="number">30</span>-days-ago-<span class="built_in">log</span>.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+<p>新建一个可执行文件auto-del-30-days-ago-log.sh，并分配可运行权限</p>
+<h4 id="编辑shell脚本"><a href="#编辑shell脚本" class="headerlink" title="编辑shell脚本"></a>编辑shell脚本</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># <span class="keyword">vi</span> auto-del-<span class="number">30</span>-days-ago-<span class="built_in">log</span>.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+<p>编辑auto-del-30-days-ago-log.sh文件如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line">find /opt/soft/<span class="built_in">log</span>/ -mtime +30 -name <span class="string">"*.log"</span> -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<p>ok，保存退出(:wq)。</p>
+<h4 id="执行计划任务"><a href="#执行计划任务" class="headerlink" title="执行计划任务"></a>执行计划任务</h4><p>crontab -l   //列出所有定时任务<br>crontab -e   //编辑定时任务,如果不存在,则创建一个新的crontab文件<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#crontab</span> -e</div></pre></td></tr></table></figure></p>
+<p>将auto-del-30-days-ago-log.sh执行脚本加入到系统计划任务，到点自动执行<br>输入：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">10 </span><span class="number">0</span> * * * /opt/soft/<span class="keyword">log</span>/<span class="keyword">auto</span>-del-<span class="number">7</span>-days-ago-<span class="keyword">log</span>.sh &gt;/home/del.<span class="keyword">log</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>这里的设置是每天凌晨0点10分执行auto-del-7-days-ago-log.sh文件进行数据清理任务了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/crontab/" rel="tag">#crontab</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/24/liunx-common-commands/" rel="next" title="liunx常用命令">
+                <i class="fa fa-chevron-left"></i> liunx常用命令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/06/learn-android-step-by-step-two/" rel="prev" title="android入门二">
+                android入门二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/05/how-to-use-crontab-on-linux/"
+           data-title="linux下定时自动备份和删除" data-url="https://aiolos123.github.io/2016/09/05/how-to-use-crontab-on-linux/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和使用crontab"><span class="nav-number">1.</span> <span class="nav-text">安装和使用crontab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装crontab"><span class="nav-number">1.1.</span> <span class="nav-text">安装crontab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crontab服务常用命令"><span class="nav-number">1.2.</span> <span class="nav-text">crontab服务常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看crontab日志"><span class="nav-number">2.</span> <span class="nav-text">查看crontab日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux下定时自动备份oracle数据库"><span class="nav-number">3.</span> <span class="nav-text">linux下定时自动备份oracle数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux下定时自动删除"><span class="nav-number">4.</span> <span class="nav-text">linux下定时自动删除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件命令"><span class="nav-number">4.1.</span> <span class="nav-text">删除文件命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计划任务"><span class="nav-number">4.2.</span> <span class="nav-text">计划任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建shell文件"><span class="nav-number">4.2.1.</span> <span class="nav-text">创建shell文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编辑shell脚本"><span class="nav-number">4.2.2.</span> <span class="nav-text">编辑shell脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行计划任务"><span class="nav-number">4.2.3.</span> <span class="nav-text">执行计划任务</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,946 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文为android入门的第三课，学习了Android开发中常用的调试方式，对话框、提示菜单、动画效果的相关知识。学习来源：http://www.imooc.com/learn/142">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android入门四">
+<meta property="og:url" content="https://aiolos123.github.io/2016/09/14/learn-android-step-by-step-four/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="本文为android入门的第三课，学习了Android开发中常用的调试方式，对话框、提示菜单、动画效果的相关知识。学习来源：http://www.imooc.com/learn/142">
+<meta property="og:updated_time" content="2016-09-18T08:03:15.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android入门四">
+<meta name="twitter:description" content="本文为android入门的第三课，学习了Android开发中常用的调试方式，对话框、提示菜单、动画效果的相关知识。学习来源：http://www.imooc.com/learn/142">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/09/14/learn-android-step-by-step-four/"/>
+
+  <title> android入门四 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                android入门四
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-14T13:31:25+08:00" content="2016-09-14">
+              2016-09-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/14/learn-android-step-by-step-four/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/14/learn-android-step-by-step-four/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/14/learn-android-step-by-step-four/" class="leancloud_visitors" data-flag-title="android入门四">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文为android入门的第三课，学习了Android开发中常用的调试方式，对话框、提示菜单、动画效果的相关知识。<br>学习来源：<a href="http://www.imooc.com/learn/142" target="_blank" rel="external">http://www.imooc.com/learn/142</a><br><a id="more"></a></p>
+<h2 id="使用Debug方式调试程序"><a href="#使用Debug方式调试程序" class="headerlink" title="使用Debug方式调试程序"></a>使用Debug方式调试程序</h2><p>Debug调试作用：可以快速准确定位到错误问题的位置，以及它的调用关系。</p>
+<p>Debug调试过程：<br>1、双击行号添加断点<br>2、开始Debug程序，通过Debug As运行程序<br>3、程序运行到断点位置会自动停止到断点代码处<br>    Debug界面：<br>        1、程序调用栈————后进先出<br>        2、变量值窗口————查看变量的当前值<br>        3、程序窗口————鼠标放到变量上可显示该变量的当前值<br>4、开始追踪程序</p>
+<pre><code>F6：逐行追踪
+F5：进入方法
+F7：跳出方法
+F8：下一个断点或结束Debug
+</code></pre><p>5、退出Debug模式<br>    点击IDE菜单图标Disconnect，可退出Debug模式</p>
+<h2 id="使用LogCat方式调试程序"><a href="#使用LogCat方式调试程序" class="headerlink" title="使用LogCat方式调试程序"></a>使用LogCat方式调试程序</h2><p>LogCat是用来获取系统日志信息的工具，可以得到的信息包括：<br>Dalvik虚拟机信息、进程信息、Android运行时信息，以及应用程序信息。</p>
+<p>与Debug调试的区别：<br>1、Debug一般用于相对比较复杂的问题；LogCat用于相对容易追踪的问题；<br>2、Debug是重量级调试方式；LogCat是轻便简洁的调试方式。</p>
+<p>LogCat窗口介绍：<br>    左侧————日志的过滤器，默认仅有all messages一个过滤器，输出所有日志信息；但可以点击绿色的”+”来添加自定义的过滤器。<br>        Filter Name:  随意命名<br>        by Log Tag:   根据Tag名称过滤，一般都是通过tag过滤<br>        by Log Message:  根据日志信息过滤<br>        by PID:   根据PID过滤<br>        by Application Name:  根据应用程序包名过滤，也使用的较多<br>        by Log Level:  根据日志级别过滤<br>    右侧————是输出的log信息,包括Level(日志级别)、Time(日志输出时间)、PID(进程ID)、TID(线程ID)、Application(日志所属的应用程序包名)、Tag(日志标签)、Text(日志信息内容)<br>        右侧窗口的下拉菜单————筛选显示日志的级别，只显示比其级别高的日志</p>
+<p>Log日志级别:<br>    Log.v(tag,msg);  //verbose模式，打印最详细的日志，输出颜色为黑色<br>    Log.d(tag,msg);  //debug级别的日志，颜色为蓝色<br>    Log.i(tag,msg);  //info级别的日志，颜色为绿色<br>    Log.w(tag,msg);  //warn级别的日志，颜色为橙色————需要查看原因了<br>    Log.e(tag,msg);  //error级别的日志，颜色为红色————需要查看原因了</p>
+<p>错误信息的级别最高，其次是警告信息，然后是通知信息及Debug信息，最低是详细信息<br>从日志的输出数量来算：error、warn、info、debug、verbose数量从少到多</p>
+<pre><code>tag是用来标记Log信息的源头；msg是这条Log的内容
+</code></pre><p>LogCat调试过程：<br>    1、显示LogCat窗口<br>    Window菜单–&gt;Show View–&gt;Other –&gt;Android–&gt;LogCat，点击OK<br>    2、如果日志的级别是warn或者error时，就需要查看错误原因了。其他级别的日志可忽略。<br>双击log日志的特定信息，即可定位到程序的对应行上。<br><strong>查看log日志，从上向下看</strong></p>
+<p>3、在程序中添加程序日志方法，来对程序进行简单的追踪。<br>    Log.v(“标签”,”log日志信息”)<br>    Log.d(“标签”,”log日志信息”)<br>    Log.i(“标签”,”log日志信息”)<br>    Log.w(“标签”,”log日志信息”)<br>    Log.e(“标签”,”log日志信息”)</p>
+<p>4、筛选log日志<br>在LogCat窗口的左侧，可以添加自定义筛选日志的过滤器，然后选中该过滤器，即可查看到相关过滤后的日志信息</p>
+<h2 id="使用Toast动态显示信息"><a href="#使用Toast动态显示信息" class="headerlink" title="使用Toast动态显示信息"></a>使用Toast动态显示信息</h2><p>Toast是一种提供给用户简洁提示信息的视图。<br>作用：在不影响用户使用程序的基础上，向用户输出提示信息。<br>    Toast视图以浮于应用程序之上的形式呈现给用户，Toast提示界面不获取焦点，<br>    所以不影响用户的操作。Toast提示就是在不影响用户使用程序的同时，给用户提供<br>    某些提示信息。如删除成功、保存成功的提示框。</p>
+<h3 id="Toast的常规用法"><a href="#Toast的常规用法" class="headerlink" title="Toast的常规用法"></a>Toast的常规用法</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">MainActivity</span> <span class="selector-tag">extends</span> <span class="selector-tag">Activity</span> &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</div><div class="line">        setContentView(R<span class="selector-class">.layout</span><span class="selector-class">.main</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//Android提供了Toast类可以创建和显示Toast信息</span></div><div class="line"></div><div class="line">        <span class="comment">//通过Toast.makeText(context,text,duration)方法返回Toast对象</span></div><div class="line">        Toast toast = Toast<span class="selector-class">.makeText</span>(this, <span class="string">"显示默认Toast"</span>, Toast.LENGTH_SHORT);</div><div class="line">        </div><div class="line">        <span class="comment">//也可调用R.string中的内容为提示信息</span></div><div class="line">        <span class="comment">//Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show();</span></div><div class="line">        </div><div class="line">        <span class="comment">//设置toast的自定义位置</span></div><div class="line">        <span class="comment">//gravity参数表示位置</span></div><div class="line">        <span class="comment">//xOffset、yOffset为相对于当前位置的偏移量</span></div><div class="line">        toast<span class="selector-class">.setGravity</span>(Gravity.CENTER, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//设置提示内容</span></div><div class="line">        toast<span class="selector-class">.setText</span>(<span class="string">"改变提示内容"</span>);</div><div class="line">        <span class="comment">//设置持续时间</span></div><div class="line">        toast<span class="selector-class">.setDuration</span>(<span class="number">1000</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//设置带图片的Toast</span></div><div class="line">            <span class="comment">//a、通过toast.getView()获取toast的布局，并强制转换为LinearLayout类型</span></div><div class="line">        LinearLayout toast_layout = (LinearLayout)toast<span class="selector-class">.getView</span>();</div><div class="line">            <span class="comment">//b、定义ImageView对象添加到toast布局中</span></div><div class="line">        ImageView iv = new ImageView(this);</div><div class="line">        iv<span class="selector-class">.setImageResource</span>(R.drawable.ic_launcher);</div><div class="line">        toast_layout<span class="selector-class">.addView</span>(iv,<span class="number">0</span>);<span class="comment">//图片位于文字上方</span></div><div class="line">        </div><div class="line">        <span class="comment">//显示Toast</span></div><div class="line">        toast<span class="selector-class">.show</span>();</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="完全自定义Toast"><a href="#完全自定义Toast" class="headerlink" title="完全自定义Toast"></a>完全自定义Toast</h3><p>1、自定义Toast布局文件，如命名为tst_layout.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span>&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span> </span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"这是自定义的Toast"</span></div><div class="line">        /&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@drawable/ic_launcher"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span> </span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"内容部分，可以随便写"</span></div><div class="line">        /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2、在MainActivity中，使用自定义Toast<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(<span class="type">R</span>.layout.main);</div><div class="line">        </div><div class="line">        <span class="comment">//完全自定义的Toast的步骤</span></div><div class="line">        <span class="comment">//1、创建Toast对象</span></div><div class="line">        <span class="type">Toast</span> to = <span class="keyword">new</span> <span class="type">Toast</span>(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">//2、获取自定义的toast布局视图</span></div><div class="line">        <span class="type">LayoutInflater</span> infl = <span class="type">LayoutInflater</span>.from(<span class="keyword">this</span>);</div><div class="line">        <span class="type">View</span> tst_view = infl.inflate(<span class="type">R</span>.layout.tst_layout, <span class="literal">null</span>);</div><div class="line">        <span class="comment">//3、设置自定义的toast视图</span></div><div class="line">        to.setView(tst_view);</div><div class="line">        <span class="comment">//4、显示Toast</span></div><div class="line">        to.show();</div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用AlertDialog实现提示框"><a href="#使用AlertDialog实现提示框" class="headerlink" title="使用AlertDialog实现提示框"></a>使用AlertDialog实现提示框</h2><p>Dialog对话框是在当前界面弹出的一个小窗口，用于显示重要提示信息————提示用户输入信息，确认信息，或者显示某种状态，如下载进度，退出提示等等。一般情况下，用户要与对话框进行交互，然后返回到被遮盖的界面以继续运行当前的应用程序。</p>
+<p>5种常见的Dialog对话框<br>    1、确认对话框<br>    2、单项按钮对话框<br>    3、多选按钮对话框<br>    4、列表对话框<br>    5、自定义对话框</p>
+<p>AlertDialog.Builder的常用方法</p>
+<pre><code>要创建一个AlertDialog，就要用到AlertDialog.Builder对象的create()方法
+
+AlertDialog.Builder对象的其他常用方法：
+    setTitle   为对话框设置标题
+    setIcon    为对话框设置图标
+    setMessage  为对话框设置内容
+    setView     为对话框设置自定义布局视图
+    setItems    为对话框设置要显示的一个list，一般用于显示几个命令时
+    setMultiChoiceItems  为对话框设置显示一系列的复选框
+    setSingleChoiceItems  为对话框设置单选按钮
+
+    setNeutralButton   为对话框设置普通按钮
+    setPositiveButton  为对话框设置确认按钮
+    setNegativeButton  为对话框设置取消按钮
+</code></pre><h3 id="确认对话框"><a href="#确认对话框" class="headerlink" title="确认对话框"></a>确认对话框</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> Button showDialog;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        </div><div class="line">        showDialog = (Button)findViewById(R.id.showDialog);</div><div class="line">        </div><div class="line">        showDialog.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            </div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                <span class="comment">//调用创建并显示确认对话框方法</span></div><div class="line">                showConfirmDialog();</div><div class="line"></div><div class="line">                <span class="comment">//调用创建并显示单选对话框方法</span></div><div class="line">                <span class="comment">//showSingleChoiceDialog();</span></div><div class="line">                <span class="comment">//调用创建并显示多选对话框方法</span></div><div class="line">                <span class="comment">//showMultiChoicesDialog();</span></div><div class="line">                <span class="comment">//调用创建并显示列表对话框方法</span></div><div class="line">                <span class="comment">//showListDialog();</span></div><div class="line">                <span class="comment">//调用创建并显示自定义对话框方法</span></div><div class="line">                showCustomDialog();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//创建并显示确认对话框</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showConfirmDialog</span><span class="params">()</span> </span>&#123;</div><div class="line">        </div><div class="line">        <span class="comment">//1、创建对话框</span></div><div class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(MainActivity.<span class="keyword">this</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//2、设置对话框的样式和内容</span></div><div class="line">        <span class="comment">//设置标题</span></div><div class="line">        builder.setTitle(<span class="string">"确认对话框"</span>);</div><div class="line">        <span class="comment">//设置图标</span></div><div class="line">        builder.setIcon(R.drawable.ic_launcher);</div><div class="line">        <span class="comment">//设置提示内容</span></div><div class="line">        builder.setMessage(<span class="string">"确认对话框的提示内容"</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//4、设置取消按钮</span></div><div class="line">        builder.setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                    </div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"点击了取消按钮"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">//3、设置确认按钮</span></div><div class="line">        builder.setPositiveButton(<span class="string">"确定"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">            </div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"点击了确认按钮"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="comment">//5、获取确认对话框</span></div><div class="line">        AlertDialog dialog = builder.create();</div><div class="line">        <span class="comment">//6、显示确认对话框</span></div><div class="line">        dialog.show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="单选对话框"><a href="#单选对话框" class="headerlink" title="单选对话框"></a>单选对话框</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、全局变量---声明单选的项目</span></div><div class="line"><span class="keyword">private</span> String[] single_list = &#123;<span class="string">"男"</span>,<span class="string">"女"</span>,<span class="string">"女博士"</span>,<span class="string">"程序员"</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">//创建并显示单选对话框</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">showSingleChoiceDialog</span><span class="params">()</span></span>&#123;</div><div class="line">    AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//2、设置对话框的样式和内容</span></div><div class="line">    <span class="comment">//设置标题</span></div><div class="line">    builder.setTitle(<span class="string">"单选对话框-请选择性别"</span>);</div><div class="line">    <span class="comment">//设置图标</span></div><div class="line">    builder.setIcon(R.drawable.ic_launcher);</div><div class="line">    </div><div class="line">    <span class="comment">//3、设置单选对话框</span></div><div class="line">    builder.setSingleChoiceItems(single_list, <span class="number">0</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">            <span class="comment">//which 选中哪一项</span></div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"已选中"</span>+single_list[which],Toast.LENGTH_SHORT).show();</div><div class="line">        &#125;</div><div class="line">    &#125;);<span class="comment">//参数的0表示默认选中第一项</span></div><div class="line">    </div><div class="line">    <span class="comment">//4、获取对话框</span></div><div class="line">    AlertDialog dialog = builder.create();</div><div class="line">    </div><div class="line">    <span class="comment">//5、显示对话框</span></div><div class="line">    dialog.show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="多选按钮对话框"><a href="#多选按钮对话框" class="headerlink" title="多选按钮对话框"></a>多选按钮对话框</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、全局变量---声明多选项目</span></div><div class="line"><span class="keyword">private</span> String[] multi_list = &#123;<span class="string">"足球"</span>,<span class="string">"篮球"</span>,<span class="string">"乒乓球"</span>,<span class="string">"羽毛球"</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">//创建并显示多选对话框</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">showMultiChoicesDialog</span><span class="params">()</span></span>&#123;</div><div class="line">    AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//2、设置对话框的样式和内容</span></div><div class="line">    <span class="comment">//设置标题</span></div><div class="line">    builder.setTitle(<span class="string">"多选对话框-请选择爱好"</span>);</div><div class="line">    <span class="comment">//设置图标</span></div><div class="line">    builder.setIcon(R.drawable.ic_launcher);</div><div class="line">    </div><div class="line">    <span class="comment">//3、设置多选对话框</span></div><div class="line">    builder.setMultiChoiceItems(multi_list, <span class="keyword">null</span>, <span class="keyword">new</span> OnMultiChoiceClickListener() &#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which, <span class="keyword">boolean</span> isChecked)</span> </span>&#123;</div><div class="line">            <span class="comment">//which  数组下标</span></div><div class="line">            <span class="comment">//isChecked  是否选中</span></div><div class="line">            <span class="keyword">if</span>(isChecked)&#123;</div><div class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"喜欢"</span>+multi_list[which],Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"不喜欢"</span>+multi_list[which],Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;);<span class="comment">//参数null表示默认没有选中项</span></div><div class="line">    </div><div class="line">    <span class="comment">//4、设置取消按钮</span></div><div class="line">    builder.setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">            dialog.dismiss();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    <span class="comment">//5、获取对话框</span></div><div class="line">    AlertDialog dialog = builder.create();</div><div class="line">    </div><div class="line">    <span class="comment">//6、显示对话框</span></div><div class="line">    dialog.show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="列表对话框"><a href="#列表对话框" class="headerlink" title="列表对话框"></a>列表对话框</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//声明列表项</span></div><div class="line"><span class="keyword">private</span> String[] list_items = &#123;<span class="string">"项目经理"</span>,<span class="string">"美工"</span>,<span class="string">"策划"</span>,<span class="string">"程序员"</span>&#125;;</div><div class="line"></div><div class="line"><span class="comment">//创建并显示列表对话框</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">showListDialog</span><span class="params">()</span></span>&#123;</div><div class="line">    AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//2、设置对话框的样式和内容</span></div><div class="line">    <span class="comment">//设置标题</span></div><div class="line">    builder.setTitle(<span class="string">"列表对话框-请选择部门"</span>);</div><div class="line">    <span class="comment">//设置图标</span></div><div class="line">    builder.setIcon(R.drawable.ic_launcher);</div><div class="line">    </div><div class="line">    <span class="comment">//3、设置列表对话框</span></div><div class="line">    builder.setItems(list_items, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"我动了"</span>+list_items[which],Toast.LENGTH_SHORT).show();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    <span class="comment">//4、设置取消按钮</span></div><div class="line">    builder.setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">            dialog.dismiss();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    <span class="comment">//5、获取对话框</span></div><div class="line">    AlertDialog dialog = builder.create();</div><div class="line">    </div><div class="line">    <span class="comment">//6、显示对话框</span></div><div class="line">    dialog.show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="自定义对话框"><a href="#自定义对话框" class="headerlink" title="自定义对话框"></a>自定义对话框</h3><p>1、创建自定义对话框的布局<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span>&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> </span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span>&gt;</div><div class="line">        </div><div class="line">        <span class="tag">&lt;<span class="name">EditText</span> </span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"输入内容"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">Button</span> </span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"提交"</span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/custom"</span>/&gt;</div><div class="line">       </div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">    </div><div class="line">     <span class="tag">&lt;<span class="name">ImageView</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2、在MainActivity中使用自定义对话框<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建并显示自定义对话框</span></div><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">showCustomDialog</span><span class="params">()</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//1、通过LayoutInflater获取自定义对话框的布局</span></div><div class="line">    LayoutInflater inflater = LayoutInflater.from(<span class="keyword">this</span>);</div><div class="line">    View view = inflater.inflate(R.layout.custom_dialog, <span class="keyword">null</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//2、设置对话框的样式和内容</span></div><div class="line">    AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(<span class="keyword">this</span>);</div><div class="line">    <span class="comment">//设置标题</span></div><div class="line">    builder.setTitle(<span class="string">"自定义对话框"</span>);</div><div class="line">    <span class="comment">//设置图标</span></div><div class="line">    builder.setIcon(R.drawable.ic_launcher);</div><div class="line">    </div><div class="line">    <span class="comment">//3、设置自定义布局视图</span></div><div class="line">    builder.setView(view);</div><div class="line"></div><div class="line">    <span class="comment">//4、设置取消按钮</span></div><div class="line">    builder.setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">            <span class="comment">//关闭对话框</span></div><div class="line">            dialog.dismiss(); </div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    <span class="comment">//5、获取对话框</span></div><div class="line">    AlertDialog dialog = builder.create();</div><div class="line">    </div><div class="line">    <span class="comment">//6、显示对话框</span></div><div class="line">    dialog.show();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用Notification实现状态通知栏的通知"><a href="#使用Notification实现状态通知栏的通知" class="headerlink" title="使用Notification实现状态通知栏的通知"></a>使用Notification实现状态通知栏的通知</h2><p>1、Notification通知栏通知：<br>    Notification是显示在手机状态栏的消息(手机状态栏位于手机最顶端)，<br>代表一种全局效果的通知。</p>
+<p>2、通知栏的显示内容：<br>    图标<br>    标题<br>    内容<br>    时间<br>    点击后的响应</p>
+<p>3、如何实现通知栏通知<br>主要用到两个类：<br>    NotificationManager————管理通知，控制通知的显示与取消，主要有如下俩个方法<br>        显示通知栏  notify(id,notification)<br>        取消通知栏  cancle(id)<br>    Notification————设置通知的显示内容及点击后的响应、设置声音提示、指示灯、以及震动效果</p>
+<p>主要步骤：<br>    获取NotificationManager对象用于控制通知的显示与取消<br>    构造Notification对象并设置显示内容，还可以设置声音提示、指示灯、以及震动效果。</p>
+<p>4、具体代码示例<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span>&#123;</span></div><div class="line">    </div><div class="line">    <span class="comment">//10、声明通知控制类</span></div><div class="line">    <span class="keyword">private</span> NotificationManager manager;</div><div class="line">    <span class="comment">//声明notification的ID,默认为0</span></div><div class="line">    <span class="keyword">int</span> notification_id;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        </div><div class="line">        <span class="comment">//11、获取通知控制类，NotificationManager是系统常用服务</span></div><div class="line">        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);</div><div class="line">        <span class="comment">//为Button对象绑定事件监听器</span></div><div class="line">        findViewById(R.id.send).setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        findViewById(R.id.cancle).setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//实现事件监听器</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onClick(View v) &#123;</div><div class="line">        <span class="keyword">switch</span>(v.getId())&#123;</div><div class="line">            <span class="comment">//发送通知按钮被点击</span></div><div class="line">            <span class="keyword">case</span> R.id.<span class="string">send:</span>&#123;</div><div class="line">                sendNotification();</div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            &#125;</div><div class="line">            <span class="comment">//取消通知按钮被点击</span></div><div class="line">            <span class="keyword">case</span> R.id.<span class="string">cancle:</span>&#123;</div><div class="line">                <span class="comment">//13、通过NotificationManager取消已发送的通知</span></div><div class="line">                manager.cancel(notification_id);</div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">//构造Notification并发送到通知栏</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> sendNotification() &#123;</div><div class="line">        <span class="comment">//1、构造Notification对象</span></div><div class="line">        Builder builder = <span class="keyword">new</span> Notification.Builder(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">//2、设置在手机状态栏的图标</span></div><div class="line">        builder.setSmallIcon(R.drawable.ic_launcher);</div><div class="line">        <span class="comment">//3、设置在手机状态栏的提示</span></div><div class="line">        builder.setTicker(<span class="string">"hello"</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//4、设置在通知栏的通知时间</span></div><div class="line">        builder.setWhen(System.currentTimeMillis());</div><div class="line">        <span class="comment">//5、设置在通知栏的通知标题</span></div><div class="line">        builder.setContentTitle(<span class="string">"通知栏通知"</span>);</div><div class="line">        <span class="comment">//6、设置在通知栏的通知内容</span></div><div class="line">        builder.setContentText(<span class="string">"我来自火星"</span>);</div><div class="line">        <span class="comment">//7、设置在通知栏的点击响应intent</span></div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,MainActivity.<span class="keyword">class</span>);<span class="comment">//点击通知启动该MainActivity类</span></div><div class="line">        PendingIntent  pintent = PendingIntent.getActivity(<span class="keyword">this</span>, <span class="number">0</span>, intent, <span class="number">0</span>);</div><div class="line">        builder.setContentIntent(pintent);</div><div class="line">        <span class="comment">//8、设置声音提示、指示灯、震动效果</span></div><div class="line">        <span class="comment">//设置指示灯或震动效果都需要在Manifest.xml中配置相关权限</span></div><div class="line">        <span class="comment">//&lt;uses-permission android:name="android.permission.FLASHLIGHT"/&gt;</span></div><div class="line">        <span class="comment">//&lt;uses-permission android:name="android.permission.VIBRATE"/&gt;</span></div><div class="line">        </div><div class="line">        <span class="comment">//builder.setDefaults(Notification.DEFAULT_SOUND);</span></div><div class="line">        <span class="comment">//builder.setDefaults(Notification.DEFAULT_LIGHTS);//指示灯</span></div><div class="line">        <span class="comment">//builder.setDefaults(Notification.DEFAULT_VIBRATE);//震动效果</span></div><div class="line">        <span class="comment">//设置声音提示、指示灯、震动效果的以上三局代码也可以使用如下语句实现</span></div><div class="line">        builder.setDefaults(Notification.DEFAULT_ALL);</div><div class="line">        </div><div class="line">        <span class="comment">//通知消息会在被点击后自动消失</span></div><div class="line">        <span class="comment">//builder.setAutoCancel(true); </span></div><div class="line">        </div><div class="line">        <span class="comment">//9、获取Notification对象</span></div><div class="line">        <span class="comment">//安卓4.1及以上使用如下代码获取Notification对象</span></div><div class="line">        Notification notifi = builder.build();</div><div class="line">        <span class="comment">//安卓4.1以下使用如下代码获取Notification对象</span></div><div class="line">        <span class="comment">//Notification notifi = builder.getNotification();</span></div><div class="line">        <span class="comment">//12、通过NotificationManager显示通知</span></div><div class="line">        manager.notify(notification_id,notifi);</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用OptionsMenu实现选项菜单"><a href="#使用OptionsMenu实现选项菜单" class="headerlink" title="使用OptionsMenu实现选项菜单"></a>使用OptionsMenu实现选项菜单</h2><p>安卓中有三种类型的菜单：<br>    OptionsMenu 选项菜单 ————按menu物理按键弹出的菜单<br>    ContextMenu 上下文菜单<br>    SubMenu 子菜单</p>
+<p>实现选项菜单的步骤：<br>    1、创建选项菜单————在Activity中重写onCreateOptionsMenu()<br>    2、设置菜单项————在onCreateOptionsMenu()中完成<br>         设置菜单项的2种方法：<br>                通过用menuadd()动态添加菜单项<br>                用xml设置菜单项， 通过MenuInflater.infalte()添加<br>    3、设置菜单项点击事件监听器————重写onOptionsItemSelected() </p>
+<h3 id="通过xml配置OptionsMenu选项菜单的示例"><a href="#通过xml配置OptionsMenu选项菜单的示例" class="headerlink" title="通过xml配置OptionsMenu选项菜单的示例"></a>通过xml配置OptionsMenu选项菜单的示例</h3><p>1、在选项菜单布局xml文件中配置菜单项，保存该文件到/res/menu/main.xml<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;menu xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    tools:context=<span class="string">"com.example.howtouseoptionsmenu.MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    &lt;<span class="built_in">item</span></div><div class="line">        android:<span class="built_in">id</span>=<span class="string">"@+id/action_settings"</span></div><div class="line">        android:orderInCategory=<span class="string">"100"</span></div><div class="line">        android:showAsAction=<span class="string">"never"</span></div><div class="line">        android:title=<span class="string">"@string/action_settings"</span>/&gt;</div><div class="line">    </div><div class="line">    &lt;<span class="built_in">item</span></div><div class="line">        android:<span class="built_in">id</span>=<span class="string">"@+id/menu1"</span></div><div class="line">        android:orderInCategory=<span class="string">"100"</span></div><div class="line">        android:showAsAction=<span class="string">"never"</span></div><div class="line">        android:title=<span class="string">"菜单一"</span>/&gt;</div><div class="line">    </div><div class="line">    &lt;<span class="built_in">item</span></div><div class="line">        android:<span class="built_in">id</span>=<span class="string">"@+id/menu2"</span></div><div class="line">        android:orderInCategory=<span class="string">"100"</span></div><div class="line">        android:showAsAction=<span class="string">"never"</span></div><div class="line">        android:title=<span class="string">"菜单二"</span>/&gt;</div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure></p>
+<p>2、在MainActivity中使用xml布局文件<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">MainActivity</span> <span class="selector-tag">extends</span> <span class="selector-tag">Activity</span> &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</div><div class="line">        setContentView(R<span class="selector-class">.layout</span><span class="selector-class">.activity_main</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//1、重写onCreateOptionsMenu()方法</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onCreateOptionsMenu(Menu menu) &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></div><div class="line">        <span class="comment">//2、通过inflate()配置OptionsMenu的菜单项</span></div><div class="line">        getMenuInflater()<span class="selector-class">.inflate</span>(R.menu.main, menu);</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//3、重写OptionsMenu菜单项点击事件监听器</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onOptionsItemSelected(MenuItem item) &#123;</div><div class="line">        <span class="comment">//参数item为点击的菜单项</span></div><div class="line">        <span class="selector-tag">switch</span> (item.getItemId()) &#123;</div><div class="line">        case R<span class="selector-class">.id</span><span class="selector-class">.menu1</span>:</div><div class="line">            <span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(MainActivity.this, <span class="string">"点击了菜单一"</span>, Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">            break;</div><div class="line"></div><div class="line">        case R<span class="selector-class">.id</span><span class="selector-class">.menu2</span>:</div><div class="line">            <span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(MainActivity.this, <span class="string">"点击了菜单二"</span>, Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        return super.onOptionsItemSelected(item);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="动态添加OptionsMenu选项菜单的示例"><a href="#动态添加OptionsMenu选项菜单的示例" class="headerlink" title="动态添加OptionsMenu选项菜单的示例"></a>动态添加OptionsMenu选项菜单的示例</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//1、重写onCreateOptionsMenu()方法</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</div><div class="line">        </div><div class="line">        <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></div><div class="line">        <span class="comment">//2、通过inflate()配置OptionsMenu的菜单项</span></div><div class="line">        <span class="comment">//getMenuInflater().inflate(R.menu.main, menu);</span></div><div class="line">        </div><div class="line">        <span class="comment">//2、通过用menuadd()动态添加菜单项</span></div><div class="line">        <span class="comment">//menu.add(菜单分组ID, 菜单项ID, 菜单项的排序, 菜单项的名称);</span></div><div class="line">        menu.add(<span class="number">1</span>, <span class="number">100</span>, <span class="number">1</span>, <span class="string">"菜单一"</span>);</div><div class="line">        menu.add(<span class="number">1</span>, <span class="number">101</span>, <span class="number">1</span>, <span class="string">"菜单二"</span>);</div><div class="line">        menu.add(<span class="number">1</span>, <span class="number">102</span>, <span class="number">1</span>, <span class="string">"菜单三"</span>);</div><div class="line">        menu.add(<span class="number">1</span>, <span class="number">103</span>, <span class="number">1</span>, <span class="string">"菜单四"</span>);</div><div class="line">        menu.add(<span class="number">1</span>, <span class="number">104</span>, <span class="number">1</span>, <span class="string">"菜单五"</span>);</div><div class="line">        menu.add(<span class="number">1</span>, <span class="number">105</span>, <span class="number">1</span>, <span class="string">"菜单六"</span>);</div><div class="line">        MenuItem item = menu.add(<span class="number">1</span>, <span class="number">106</span>, <span class="number">1</span>, <span class="string">"菜单七"</span>);</div><div class="line">        item.setTitle(<span class="string">"菜单last"</span>);<span class="comment">//设置菜单项名称</span></div><div class="line">        item.setIcon(R.drawable.ic_launcher);<span class="comment">//仅在API&lt;11 上有效</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//3、重写菜单项点击事件</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">        <span class="comment">//处理动态添加的菜单项</span></div><div class="line">        <span class="keyword">case</span> <span class="number">100</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"点击了动态添加菜单一"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="number">101</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"点击了动态添加菜单二"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="number">102</span>:</div><div class="line">            //实现点击菜单项从MainActivity页面跳转到另一个页面SecondActivity</div><div class="line">            //SecondActivity中定义了跳转后的页面视图及使用到的布局xml文件</div><div class="line">            Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>,SecondActivity.class);</div><div class="line">            item.setIntent(intent);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">return</span> <span class="keyword">super</span>.<span class="title">onOptionsItemSelected</span><span class="params">(item)</span></span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用ContextMenu实现上下文菜单"><a href="#使用ContextMenu实现上下文菜单" class="headerlink" title="使用ContextMenu实现上下文菜单"></a>使用ContextMenu实现上下文菜单</h2><p>ContextMenu————长按时弹出的菜单</p>
+<p>ContextMenu的组成：<br>    标题及标题图标<br>    菜单项<br>    菜单项点击响应事件</p>
+<p>实现上下文菜单的步骤：<br>    1、给View注册上下文菜单————registerForContextMenu()<br>    2、为上下文菜单添加菜单项————重写onCreateContextMenu()<br>        添加菜单项的2种方式：<br>            通过代码动态添加菜单项<br>            通过加载xml文件中的菜单项<br>    3、设置菜单点击响应事件—————重写onContextItemSelected()</p>
+<p>实现上下文菜单的代码示例<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        showListView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//设置ListView的显示内容</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">showListView</span><span class="params">()</span> </span>&#123;</div><div class="line">        ListView lv = (ListView)findViewById(R.id.lv);</div><div class="line">        ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;</div><div class="line">            (<span class="keyword">this</span>, android.R.layout.simple_list_item_1,getData());</div><div class="line">        </div><div class="line">        lv.setAdapter(adapter);</div><div class="line">        </div><div class="line">        <span class="comment">//为listview设置上下文菜单，长按某个listview的item弹出上下文菜单</span></div><div class="line">        <span class="comment">//1、为view注册上下文菜单</span></div><div class="line">        <span class="keyword">this</span>.registerForContextMenu(lv);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//2、重写onCreateContextMenu()</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreateContextMenu</span><span class="params">(ContextMenu menu, View v,</span></span></div><div class="line">            ContextMenuInfo menuInfo) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        <span class="keyword">super</span>.onCreateContextMenu(menu, v, menuInfo);</div><div class="line">        </div><div class="line">        <span class="comment">//2.1、设置上下文菜单menu显示的内容</span></div><div class="line">        menu.setHeaderTitle(<span class="string">"文件操作"</span>);</div><div class="line">        menu.setHeaderIcon(R.drawable.ic_launcher);</div><div class="line">        </div><div class="line">        <span class="comment">//2.2、为上下文菜单添加菜单项</span></div><div class="line">        <span class="comment">//动态添加菜单项</span></div><div class="line">        <span class="comment">//menu.add(分组ID, 菜单项ID, 排列顺序, 菜单项名称)</span></div><div class="line">        menu.add(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">"复制"</span>);</div><div class="line">        menu.add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="string">"粘贴"</span>);</div><div class="line">        menu.add(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="string">"剪切"</span>);</div><div class="line">        menu.add(<span class="number">1</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="string">"重命名"</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//静态添加菜单项</span></div><div class="line">        <span class="comment">//首先在/res/menu/main.xml中设置菜单项</span></div><div class="line">        <span class="comment">//然后使用inflater添加xml文件</span></div><div class="line"><span class="comment">//      //MenuInflater inflater = getMenuInflater();</span></div><div class="line"><span class="comment">//      //inflater.inflate(R.menu.main,menu);</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//3、设置菜单项点击响应事件————重写onContextItemSelected()</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">onContextItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        <span class="keyword">switch</span> (item.getItemId()) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"点击复制"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"点击粘贴"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"点击剪切"</span>, Toast.LENGTH_SHORT).show();       </div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"重命名"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">return</span> <span class="keyword">super</span>.<span class="title">onContextItemSelected</span><span class="params">(item)</span></span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//构造ListView显示的数据</span></div><div class="line">    <span class="keyword">private</span> ArrayList&lt;String&gt; getData()&#123;</div><div class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">            list.add(<span class="string">"文件"</span>+i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> list;</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用SubMenu为选项菜单添加子菜单"><a href="#使用SubMenu为选项菜单添加子菜单" class="headerlink" title="使用SubMenu为选项菜单添加子菜单"></a>使用SubMenu为选项菜单添加子菜单</h2><p>子菜单：<br>    把功能相近的菜单分组显示</p>
+<h3 id="动态添加submenu子菜单项"><a href="#动态添加submenu子菜单项" class="headerlink" title="动态添加submenu子菜单项"></a>动态添加submenu子菜单项</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">MainActivity</span> <span class="selector-tag">extends</span> <span class="selector-tag">Activity</span> &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</div><div class="line">        setContentView(R<span class="selector-class">.layout</span><span class="selector-class">.activity_main</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//重写onCreateOptionsMenu()方法</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onCreateOptionsMenu(Menu menu) &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></div><div class="line"></div><div class="line">        <span class="comment">//1、添加子菜单</span></div><div class="line">        SubMenu file = menu<span class="selector-class">.addSubMenu</span>(<span class="string">"文件"</span>);</div><div class="line">        SubMenu edit = menu<span class="selector-class">.addSubMenu</span>(<span class="string">"编辑"</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//2、为子菜单添加菜单项</span></div><div class="line">        file<span class="selector-class">.setHeaderTitle</span>(<span class="string">"文件操作"</span>);<span class="comment">//子菜单标题</span></div><div class="line">        file<span class="selector-class">.setHeaderIcon</span>(R.drawable.ic_launcher);<span class="comment">//子菜单图标</span></div><div class="line">        file<span class="selector-class">.add</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">"新建"</span>);</div><div class="line">        file<span class="selector-class">.add</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="string">"打开"</span>);</div><div class="line">        file<span class="selector-class">.add</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="string">"保存"</span>);</div><div class="line">        </div><div class="line">        edit<span class="selector-class">.setHeaderTitle</span>(<span class="string">"编辑操作"</span>);</div><div class="line">        edit<span class="selector-class">.setHeaderIcon</span>(R.drawable.ic_launcher);</div><div class="line">        edit<span class="selector-class">.add</span>(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="string">"复制"</span>);</div><div class="line">        edit<span class="selector-class">.add</span>(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="string">"粘贴"</span>);</div><div class="line">        edit<span class="selector-class">.add</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="string">"剪切"</span>);</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//3、重写onOptionsItemSelected()方法</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onOptionsItemSelected(MenuItem item) &#123;</div><div class="line">        <span class="comment">//判断分组id</span></div><div class="line">        <span class="selector-tag">if</span>(item.getGroupId() == <span class="number">1</span>)&#123;</div><div class="line">            <span class="selector-tag">switch</span> (item.getItemId()) &#123;</div><div class="line">            case <span class="attribute">1</span>:</div><div class="line">                Toast.makeText(MainActivity.this, <span class="string">"点击新建"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                break;</div><div class="line"></div><div class="line">            case <span class="attribute">2</span>:</div><div class="line">                Toast.makeText(MainActivity.this, <span class="string">"点击打开"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                break;</div><div class="line">            case <span class="attribute">3</span>:</div><div class="line">                Toast.makeText(MainActivity.this, <span class="string">"点击保存"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="selector-tag">else</span> <span class="selector-tag">if</span>(item.getGroupId() == <span class="number">2</span>)&#123;</div><div class="line">            <span class="selector-tag">switch</span> (item.getItemId()) &#123;</div><div class="line">            case <span class="attribute">1</span>:</div><div class="line">                Toast.makeText(MainActivity.this, <span class="string">"点击复制"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                break;</div><div class="line"></div><div class="line">            case <span class="attribute">2</span>:</div><div class="line">                Toast.makeText(MainActivity.this, <span class="string">"点击粘贴"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                break;</div><div class="line">            case <span class="attribute">3</span>:</div><div class="line">                Toast.makeText(MainActivity.this, <span class="string">"点击剪切"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return super<span class="selector-class">.onOptionsItemSelected</span>(item);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="静态添加submenu子菜单项"><a href="#静态添加submenu子菜单项" class="headerlink" title="静态添加submenu子菜单项"></a>静态添加submenu子菜单项</h3><p>1、在xml文件中配置子菜单，在/res/menu/main.xml中编辑如下代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">menu</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.example.howtousesubmenu_40.MainActivity"</span> &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">        <span class="attr">android:title</span>=<span class="string">"文件"</span>&gt;</div><div class="line">        <span class="comment">&lt;!-- 子菜单 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">menu</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">item</span> </span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/new_file"</span></div><div class="line">                <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">                <span class="attr">android:title</span>=<span class="string">"新建"</span>/&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">item</span> </span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/open_file"</span></div><div class="line">                <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">                <span class="attr">android:title</span>=<span class="string">"打开"</span>/&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">item</span> </span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/save_file"</span></div><div class="line">                <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">                <span class="attr">android:title</span>=<span class="string">"保存"</span>/&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">menu</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">item</span></span></div><div class="line">        <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">        <span class="attr">android:title</span>=<span class="string">"编辑"</span>&gt;</div><div class="line">        <span class="comment">&lt;!-- 子菜单 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">menu</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">item</span> </span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/copy_file"</span></div><div class="line">                <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">                <span class="attr">android:title</span>=<span class="string">"复制"</span>/&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">item</span> </span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/parse_file"</span></div><div class="line">                <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">                <span class="attr">android:title</span>=<span class="string">"粘贴"</span>/&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">item</span> </span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/cut_file"</span></div><div class="line">                <span class="attr">android:showAsAction</span>=<span class="string">"never"</span></div><div class="line">                <span class="attr">android:title</span>=<span class="string">"剪切"</span>/&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">menu</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">menu</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2、在MainActivity中静态添加submenu子菜单项<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">MainActivity</span> <span class="selector-tag">extends</span> <span class="selector-tag">Activity</span> &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</div><div class="line">        setContentView(R<span class="selector-class">.layout</span><span class="selector-class">.activity_main</span>); </div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//重写onCreateOptionsMenu()方法</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onCreateOptionsMenu(Menu menu) &#123;</div><div class="line">        <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></div><div class="line">        <span class="comment">//1、静态添加菜单项</span></div><div class="line">        getMenuInflater()<span class="selector-class">.inflate</span>(R.menu.main, menu);</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//重写onOptionsItemSelected()</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onOptionsItemSelected(MenuItem item) &#123;</div><div class="line">        <span class="selector-tag">switch</span> (item.getItemId()) &#123;</div><div class="line">            case R<span class="selector-class">.id</span><span class="selector-class">.copy_file</span>:</div><div class="line">                <span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(MainActivity.this, <span class="string">"点击复制"</span>, Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">                break;</div><div class="line"></div><div class="line">            case R<span class="selector-class">.id</span><span class="selector-class">.parse_file</span>:</div><div class="line">                <span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(MainActivity.this, <span class="string">"点击粘贴"</span>, Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">                break;</div><div class="line">            case R<span class="selector-class">.id</span><span class="selector-class">.cut_file</span>:</div><div class="line">                <span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(MainActivity.this, <span class="string">"点击剪切"</span>, Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">        return super.onOptionsItemSelected(item);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="注意实现"><a href="#注意实现" class="headerlink" title="注意实现"></a>注意实现</h2><p>1、ContextMenu与OptionsMenu的区别<br>    OptionsMenu对应的是activity，一个Activity只能拥有一个选项菜单；<br>    ContextMenu对应的是View，每个View都可以设置上下文菜单；一般情况下，<br>    ContextMenu常用于ListView或GridView</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/12/learn-android-step-by-step-three/" rel="next" title="android入门三">
+                <i class="fa fa-chevron-left"></i> android入门三
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/14/learn-android-step-by-step-four/"
+           data-title="android入门四" data-url="https://aiolos123.github.io/2016/09/14/learn-android-step-by-step-four/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Debug方式调试程序"><span class="nav-number">1.</span> <span class="nav-text">使用Debug方式调试程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用LogCat方式调试程序"><span class="nav-number">2.</span> <span class="nav-text">使用LogCat方式调试程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Toast动态显示信息"><span class="nav-number">3.</span> <span class="nav-text">使用Toast动态显示信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Toast的常规用法"><span class="nav-number">3.1.</span> <span class="nav-text">Toast的常规用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全自定义Toast"><span class="nav-number">3.2.</span> <span class="nav-text">完全自定义Toast</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用AlertDialog实现提示框"><span class="nav-number">4.</span> <span class="nav-text">使用AlertDialog实现提示框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#确认对话框"><span class="nav-number">4.1.</span> <span class="nav-text">确认对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单选对话框"><span class="nav-number">4.2.</span> <span class="nav-text">单选对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多选按钮对话框"><span class="nav-number">4.3.</span> <span class="nav-text">多选按钮对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表对话框"><span class="nav-number">4.4.</span> <span class="nav-text">列表对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义对话框"><span class="nav-number">4.5.</span> <span class="nav-text">自定义对话框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Notification实现状态通知栏的通知"><span class="nav-number">5.</span> <span class="nav-text">使用Notification实现状态通知栏的通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用OptionsMenu实现选项菜单"><span class="nav-number">6.</span> <span class="nav-text">使用OptionsMenu实现选项菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过xml配置OptionsMenu选项菜单的示例"><span class="nav-number">6.1.</span> <span class="nav-text">通过xml配置OptionsMenu选项菜单的示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态添加OptionsMenu选项菜单的示例"><span class="nav-number">6.2.</span> <span class="nav-text">动态添加OptionsMenu选项菜单的示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ContextMenu实现上下文菜单"><span class="nav-number">7.</span> <span class="nav-text">使用ContextMenu实现上下文菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用SubMenu为选项菜单添加子菜单"><span class="nav-number">8.</span> <span class="nav-text">使用SubMenu为选项菜单添加子菜单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态添加submenu子菜单项"><span class="nav-number">8.1.</span> <span class="nav-text">动态添加submenu子菜单项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态添加submenu子菜单项"><span class="nav-number">8.2.</span> <span class="nav-text">静态添加submenu子菜单项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意实现"><span class="nav-number">9.</span> <span class="nav-text">注意实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

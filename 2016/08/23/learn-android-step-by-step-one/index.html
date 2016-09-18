@@ -1,0 +1,1146 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文为android入门的第一课，学习了android基础控件、布局、Activity组件的相关知识。学习来源：http://www.imooc.com/learn/96">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android入门一">
+<meta property="og:url" content="https://aiolos123.github.io/2016/08/23/learn-android-step-by-step-one/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="本文为android入门的第一课，学习了android基础控件、布局、Activity组件的相关知识。学习来源：http://www.imooc.com/learn/96">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/2.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/3.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/3.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/5.jpg">
+<meta property="og:updated_time" content="2016-09-01T08:39:37.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android入门一">
+<meta name="twitter:description" content="本文为android入门的第一课，学习了android基础控件、布局、Activity组件的相关知识。学习来源：http://www.imooc.com/learn/96">
+<meta name="twitter:image" content="http://ocej2soxx.bkt.clouddn.com/2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/08/23/learn-android-step-by-step-one/"/>
+
+  <title> android入门一 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                android入门一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T11:02:38+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/learn-android-step-by-step-one/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/learn-android-step-by-step-one/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/23/learn-android-step-by-step-one/" class="leancloud_visitors" data-flag-title="android入门一">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文为android入门的第一课，学习了android基础控件、布局、Activity组件的相关知识。<br>学习来源：<a href="http://www.imooc.com/learn/96" target="_blank" rel="external">http://www.imooc.com/learn/96</a><br><a id="more"></a></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>src：程序源文件
+res：资源文件。都会在R.java中自动生成id
+assets：资源文件。不会在R.java中生成id
+</code></pre><h2 id="自定义Activity类的基本结构"><a href="#自定义Activity类的基本结构" class="headerlink" title="自定义Activity类的基本结构"></a>自定义Activity类的基本结构</h2><p>自动生成的自定义Activity类的基本结构是不对的，需要改为如下结构<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//三、需要导入的包为如下2个</span></div><div class="line"><span class="keyword">import</span> android.app.<span class="type">Activity</span>;</div><div class="line"><span class="keyword">import</span> android.os.<span class="type">Bundle</span>;</div><div class="line"></div><div class="line"><span class="comment">//一、自定义Activity类必须继承自Activity</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//二、重写onCreate方法</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        </div><div class="line">        <span class="comment">//coding...</span></div><div class="line">          </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Android控件</th>
+<th style="text-align:center">控件的作用</th>
+<th style="text-align:center">HTML中与之功能相似的标签</th>
+<th style="text-align:left">控件属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TextView</td>
+<td style="text-align:center">显示文本</td>
+<td style="text-align:center">label</td>
+<td style="text-align:left">android:id/android:layout_width<br>android:layout_height/android:text<br>android:textSize/android:textColor<br>android:background</td>
+</tr>
+<tr>
+<td style="text-align:center">EditText</td>
+<td style="text-align:center">输入文本</td>
+<td style="text-align:center">input</td>
+<td style="text-align:left">TextView属性+android:hint/android:inputType</td>
+</tr>
+<tr>
+<td style="text-align:center">ImageView</td>
+<td style="text-align:center">显示图片</td>
+<td style="text-align:center">img</td>
+<td style="text-align:left">TextView属性+android:src=”@drawable/ic_launcher” #ImageView的图片内容<br> android:background=”@drawable/ic_launcher” #ImageView的背景图片</td>
+</tr>
+<tr>
+<td style="text-align:center">Button</td>
+<td style="text-align:center">按钮</td>
+<td style="text-align:center">button</td>
+<td style="text-align:left">TextView属性</td>
+</tr>
+<tr>
+<td style="text-align:center">ImageButton</td>
+<td style="text-align:center">图片按钮</td>
+<td style="text-align:center">button</td>
+<td style="text-align:left">TextView属性+android:src</td>
+</tr>
+<tr>
+<td style="text-align:center">AutoCompleteTextView</td>
+<td style="text-align:center">动态匹配输入内容，只能选择一个值。如搜索的下拉提示框</td>
+<td style="text-align:center">无</td>
+<td style="text-align:left">TextView属性+android:completionThreshold=2<br></td>
+</tr>
+<tr>
+<td style="text-align:center">MultiAutoCompleteTextView</td>
+<td style="text-align:center">支持多次输入、选择多个值，以分隔符分开。如邮件的收件人框</td>
+<td style="text-align:center">无</td>
+<td style="text-align:left">同AutoCompleteTextView</td>
+</tr>
+<tr>
+<td style="text-align:center">ToggleButton</td>
+<td style="text-align:center">类似于开关，有选中和未选中两种状态，并且在不同状态可设置显示不同文本</td>
+<td style="text-align:center">无</td>
+<td style="text-align:left">android:checked #是否被选中<br>android:textOff #未选中状态下显示的文本 <br>android:textOn #选中状态下显示的文本</td>
+</tr>
+<tr>
+<td style="text-align:center">CheckBox</td>
+<td style="text-align:center">复选框，有选中和取消两种状态。可实现多选多</td>
+<td style="text-align:center">input[type=checkbox]</td>
+<td style="text-align:left">TextView属性+android:checked #是否被选中</td>
+</tr>
+<tr>
+<td style="text-align:center">RadioButton</td>
+<td style="text-align:center">单选框。RadioButton一旦选中，无法取消，所以不建议单独使用，一般都是与RadioGroup配合使用；</td>
+<td style="text-align:center">一个input[type=radio]</td>
+<td style="text-align:left">TextView属性+android:checked #是否被选中</td>
+</tr>
+<tr>
+<td style="text-align:center">RadioGroup</td>
+<td style="text-align:center">RadioGroup是RadioButton的一个集合，提供多选一机制</td>
+<td style="text-align:center">多个input[type=radio]</td>
+<td style="text-align:left">TextView属性+<br>android:orientation: #设置其中radioButton的排布方式——vertical/horizontal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常见控件的属性值"><a href="#常见控件的属性值" class="headerlink" title="常见控件的属性值"></a>常见控件的属性值</h3><pre><code>wrap_content: 实际内容的宽高
+match_parent: 铺满父类容器
+fill_parent:  铺满父类容器     
+</code></pre><p>   match_parent与fill_parent的异同：</p>
+<pre><code>match_parent与fill_parent完全相同;
+只是match_parent是2.3API之后引入的属性值;
+而fill_parent是2.3之前引入的一个属性值。
+</code></pre><h3 id="实现事件监听的三个步骤"><a href="#实现事件监听的三个步骤" class="headerlink" title="实现事件监听的三个步骤"></a>实现事件监听的三个步骤</h3><pre><code>1、初始化对象  ————  findViewById()
+2、为对象绑定事件监听器  ———— setOnClickListener(listener)
+3、在监听器内部实现事件处理(即定义事件发生后的处理动作)   ———— listener
+</code></pre><h4 id="在监听器内部实现事件处理的三种方式"><a href="#在监听器内部实现事件处理的三种方式" class="headerlink" title="在监听器内部实现事件处理的三种方式"></a>在监听器内部实现事件处理的三种方式</h4><h5 id="a、通过匿名内部类来实现"><a href="#a、通过匿名内部类来实现" class="headerlink" title="a、通过匿名内部类来实现"></a>a、通过匿名内部类来实现</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        </div><div class="line">        <span class="comment">//匿名内部类来实现</span></div><div class="line">        loginBtn.setOnClickListener(<span class="keyword">new</span> <span class="type">OnClickListener</span>() &#123;     </div><div class="line">             <span class="meta">@Override</span></div><div class="line">             public void onClick(<span class="type">View</span> arg0) &#123;</div><div class="line">                 <span class="comment">//在当前onClick方法中监听点击button的事件</span></div><div class="line">                 <span class="comment">//some coding</span></div><div class="line">             &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="b、通过外部类来实现————-比较少用"><a href="#b、通过外部类来实现————-比较少用" class="headerlink" title="b、通过外部类来实现————(比较少用)"></a>b、通过外部类来实现————(比较少用)</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//主类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</div><div class="line">    <span class="comment">//在监听器内使用外部类实现事件监听</span></div><div class="line">    loginBtn.setOnClickListener(<span class="keyword">new</span> MyOnClickListener()&#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">              <span class="comment">//调用父类MyOnClickListener的onClick方法</span></div><div class="line">              <span class="keyword">super</span>.onClick(arg0);</div><div class="line">              <span class="comment">//在当前onClick方法中监听点击button的事件</span></div><div class="line">              <span class="comment">//some coding</span></div><div class="line">          &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"><span class="comment">//定义外部类MyOnClickListener,并且需要实现OnClickListener接口</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOnClickListener</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span></span>&#123;</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">        <span class="comment">//some coding</span></div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="c、通过外部类来实现的另一种写法"><a href="#c、通过外部类来实现的另一种写法" class="headerlink" title="c、通过外部类来实现的另一种写法"></a>c、通过外部类来实现的另一种写法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//主类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="comment">//将外部类赋予一个OnClickListener接口的对象listener</span></div><div class="line">        loginBtn.setOnClickListener(listener);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//将外部类赋予一个OnClickListener接口的对象</span></div><div class="line">    OnClickListener listener = <span class="keyword">new</span> MyOnClickListener()&#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">              <span class="comment">//调用父类的onClick方法</span></div><div class="line">              <span class="keyword">super</span>.onClick(arg0);</div><div class="line">              <span class="comment">//在当前onClick方法中监听点击button的事件</span></div><div class="line">              <span class="comment">//some coding</span></div><div class="line">          &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"><span class="comment">//定义外部类MyOnClickListener,并且需要实现OnClickListener接口</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOnClickListener</span> <span class="keyword">implements</span> <span class="title">OnClickListener</span></span>&#123;</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">        <span class="comment">//some coding</span></div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="d、通过实现接口的方式来实现"><a href="#d、通过实现接口的方式来实现" class="headerlink" title="d、通过实现接口的方式来实现"></a>d、通过实现接口的方式来实现</h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//MainActivity类直接实现OnClickListener接口，并重写onClick()方法</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="title">implements</span> <span class="title">OnClickListener</span></span>&#123;</div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="comment">//将监听事件的对象——MainActivity的当前对象(即this)绑定到当前控件loginBtn上</span></div><div class="line">        loginBtn.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//重写onClick()方法</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    public void onClick(<span class="type">View</span> v) &#123;</div><div class="line">        <span class="comment">//some coding</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Button与ImageButton的异同</p>
+<pre><code>都可以作为按钮产生点击事件、都会产生明显的点击效果；
+Button有text属性，ImageButton没有；
+ImageButton有src属性，Button没有
+</code></pre><h3 id="常见控件的使用步骤"><a href="#常见控件的使用步骤" class="headerlink" title="常见控件的使用步骤"></a>常见控件的使用步骤</h3><h4 id="autoCompleteTextView与MultiAutoCompleteTextView的使用步骤"><a href="#autoCompleteTextView与MultiAutoCompleteTextView的使用步骤" class="headerlink" title="autoCompleteTextView与MultiAutoCompleteTextView的使用步骤"></a>autoCompleteTextView与MultiAutoCompleteTextView的使用步骤</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、初始化对象</span></div><div class="line">actv = (AutoCompleteTextView) findViewById(R.id.actv1);</div><div class="line"><span class="comment">//2、初始化数据源，这些数据源用来匹配文本框中输入的内容</span></div><div class="line"><span class="keyword">String</span>[] res=&#123;<span class="string">"beijing1"</span>,<span class="string">"beijing2"</span>,<span class="string">"beijian"</span>,<span class="string">"shanghai"</span>&#125;;</div><div class="line"><span class="comment">//3、创建一个适配器，通过适配器来适配文本框的输入内容，下拉框的内容就是通过适配器来操作的</span></div><div class="line">ArrayAdapter&lt;<span class="keyword">String</span>&gt; adapter = <span class="keyword">new</span> ArrayAdapter&lt;<span class="keyword">String</span>&gt;(<span class="keyword">this</span>,android.R.layout.simple_list_item_1,res);</div><div class="line"><span class="comment">//4、将adapter与当前autoCompleteTextView控件绑定</span></div><div class="line">actv.setAdapter(adapter);</div><div class="line"><span class="comment">//5、在xml文件中设置android:completionThreshold，设置输入多少字符时自动匹配</span></div><div class="line"><span class="comment">//6、对MultiAutoCompleteTextView而言，以上步骤完全相同，仅多一步设置分隔符</span></div><div class="line">mactv.setTokenizer(<span class="keyword">new</span> MultiAutoCompleteTextView.CommaTokenizer());</div></pre></td></tr></table></figure>
+<p>AutoCompleteTextView与MultiAutoCompleteTextView控件的区别</p>
+<pre><code>AutoCompleteTextView：匹配多个值、只选择一个值。常用于搜索下拉提示框；
+MultiAutoCompleteTextView：匹配多个值、可选择多个值、以分隔符分隔。常用于邮件收件人输入框；
+</code></pre><h4 id="ToggleButton的使用步骤"><a href="#ToggleButton的使用步骤" class="headerlink" title="ToggleButton的使用步骤"></a>ToggleButton的使用步骤</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、初始化控件</span></div><div class="line">tb = (ToggleButton) findViewById(R.id.toggleButton1);     <span class="comment">//2、监听ToggleButton按钮，为当前的tbs设置onCheckedChangeListener监听器</span></div><div class="line">tb.setOnCheckedChangeListener(<span class="keyword">this</span>); <span class="comment">//通过实现接口的方式来实现事件监听</span></div><div class="line"><span class="comment">//3、重写onCheckedChanged()方法——当点击tb控件，更换textview的文字</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onCheckedChanged</span><span class="params">(CompoundButton buttonView, <span class="keyword">boolean</span> isChecked)</span> </span>&#123;</div><div class="line">    <span class="comment">//当tb被点击时，该方法会执行</span></div><div class="line">    <span class="comment">//参数buttonView代表被点击的控件对象本身</span></div><div class="line">    <span class="comment">//参数isChecked代表被点击的控件的状态,true或false</span></div><div class="line">    <span class="comment">//实现思路：当点击tb控件，更换textview的文字即可</span></div><div class="line">    tv.setText(isChecked?<span class="string">"open"</span>:<span class="string">"close"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>textOn  对应checked=true状态下的文字
+textOff 对应checked=false状态下的文字
+</code></pre><h4 id="CheckBox的使用步骤"><a href="#CheckBox的使用步骤" class="headerlink" title="CheckBox的使用步骤"></a>CheckBox的使用步骤</h4><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、初始化控件checkBox控件对象</span></div><div class="line">dViewById(R.id.checkBox1);</div><div class="line"><span class="comment">//2、设置checkbox的监听器setOnCheckedChangeListener()</span></div><div class="line">cb.setOnCheckedChangeListener(<span class="literal">new</span> OnCheckedChangeListener() &#123;</div><div class="line"><span class="comment">//3、通过监听器的onCheckedChanged()方法来判断当前checkbox是否被选中，并作相应处理</span></div><div class="line">        @Override</div><div class="line">        <span class="keyword">public</span> <span class="literal">void</span> onCheckedChanged(CompoundButton buttonView, <span class="built_in">boolean</span> isChecked) &#123;</div><div class="line">            <span class="comment">//参数buttonView代表被点击的当前控件对象本身</span></div><div class="line">            <span class="comment">//参数isChecked代表当前checkbox是否被选中</span></div><div class="line">            <span class="keyword">if</span>(isChecked)&#123;</div><div class="line">                <span class="comment">//获取checkbox的文本内容</span></div><div class="line">                <span class="built_in">String</span> txt = buttonView.getText().toString();</div><div class="line">                <span class="keyword">Log</span>.i(<span class="string">"tag"</span>,txt);<span class="comment">//android中输出的一种方式，使用Log</span></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">Log</span>.i(<span class="string">"tag"</span>,<span class="string">"取消选中"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h4 id="RadioGroup的使用步骤"><a href="#RadioGroup的使用步骤" class="headerlink" title="RadioGroup的使用步骤"></a>RadioGroup的使用步骤</h4><p>XML文件中的写法<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;RadioGroup</div><div class="line">          android:orientation=<span class="string">"horizontal"</span></div><div class="line">          android:<span class="built_in">id</span>=<span class="string">"@+id/radioGroup1"</span></div><div class="line">          android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">          android:layout_height=<span class="string">"wrap_content"</span> &gt;</div><div class="line">          &lt;RadioButton</div><div class="line">              android:<span class="built_in">id</span>=<span class="string">"@+id/radio0"</span></div><div class="line">              android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">              android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">              android:checked=<span class="string">"true"</span>  </div><div class="line">              android:<span class="built_in">text</span>=<span class="string">"男"</span> /&gt;</div><div class="line">          &lt;RadioButton</div><div class="line">              android:<span class="built_in">id</span>=<span class="string">"@+id/radio1"</span></div><div class="line">              android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">              android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">              android:<span class="built_in">text</span>=<span class="string">"女"</span> /&gt;    </div><div class="line">&lt;/RadioGroup&gt;</div></pre></td></tr></table></figure></p>
+<p>activity.java文件中<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、初始化控件RadioGroup控件对象</span></div><div class="line">rg = (RadioGroup) findViewById(R.id.radioGroup1);</div><div class="line"><span class="comment">//2、设置RadioGroup的监听器setOnCheckedChangeListener()</span></div><div class="line"><span class="comment">//3、通过监听器的onCheckedChanged()方法来判断当前RadioGroup中的哪个radioButton被选中</span></div><div class="line"><span class="comment">//注意：RadioGroup的接口OnCheckedChangeListener是android.widget.RadioGroup包下的</span></div><div class="line">rg.setOnCheckedChangeListener(<span class="keyword">new</span> android.widget.RadioGroup.OnCheckedChangeListener() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onCheckedChanged</span><span class="params">(RadioGroup group, <span class="keyword">int</span> checkedId)</span> </span>&#123;</div><div class="line">            <span class="comment">//参数group代表被点击的控件RadioGroup对象本身</span></div><div class="line">            <span class="comment">//参数checkedId代表被选中的radioButton的id</span></div><div class="line">            <span class="keyword">switch</span> (checkedId) &#123;</div><div class="line">            <span class="keyword">case</span> R.id.radio0:</div><div class="line">                Log.i(<span class="string">"tag"</span>,<span class="string">"当前——男孩被选中"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.radio1:</div><div class="line">                Log.i(<span class="string">"tag"</span>,<span class="string">"当前——女孩被选中"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>注意：RadioGroup的接口OnCheckedChangeListener是android.widget.RadioGroup包下的</strong></p>
+<h2 id="五大布局"><a href="#五大布局" class="headerlink" title="五大布局"></a>五大布局</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">布局名称</th>
+<th style="text-align:center">特点</th>
+<th style="text-align:center">语法</th>
+<th style="text-align:left">属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">LinearLayout</td>
+<td style="text-align:center">其包含的子控件将以横向或竖向方式排列</td>
+<td style="text-align:center">&lt;LinearLayout attr=value&gt;&lt;/LinearLayout&gt;</td>
+<td style="text-align:left">android:orientation<br>android:gravity</td>
+</tr>
+<tr>
+<td style="text-align:center">RelativeLayout</td>
+<td style="text-align:center">其包含的子控件将以子控件之间的相对位置或子控件相对父容器的位置的方式排列</td>
+<td style="text-align:center">&lt;RelativeLayout attr=value&gt;&lt;/RelativeLayout&gt;</td>
+<td style="text-align:left">本身无特殊属性，但该布局的子控件有特殊属性</td>
+</tr>
+<tr>
+<td style="text-align:center">FrameLayout</td>
+<td style="text-align:center">其包含的所有子控件都不能被指定存放位置，统统都放于该布局的左上角。并且后面的控件直接覆盖前面的控件，并将其部分或全部遮挡</td>
+<td style="text-align:center">&lt;FrameLayout attr=value&gt;&lt;/FrameLayout&gt;</td>
+<td style="text-align:left">本身无特殊属性，但该布局的子控件有特殊属性</td>
+</tr>
+<tr>
+<td style="text-align:center">AbsoluteLayout</td>
+<td style="text-align:center">直接指定子控件的在xy轴上的绝对位置。由于屏幕适配问题很少用到</td>
+<td style="text-align:center">忽略</td>
+<td style="text-align:left">忽略</td>
+</tr>
+<tr>
+<td style="text-align:center">TableLayout</td>
+<td style="text-align:center">以行列的表格形式管理子控件，每一行为一个TableRow的对象，也可以是一个View的对象</td>
+<td style="text-align:center">&lt;TableLayout attr=value&gt;&lt;/TableLayout&gt;</td>
+<td style="text-align:left">android:stretchColumns<br>android:shrinkColumns</td>
+</tr>
+</tbody>
+</table>
+<h3 id="LinearLayout的常用属性及其用法"><a href="#LinearLayout的常用属性及其用法" class="headerlink" title="LinearLayout的常用属性及其用法"></a>LinearLayout的常用属性及其用法</h3><h4 id="LinearLayout本身常用到的2个属性"><a href="#LinearLayout本身常用到的2个属性" class="headerlink" title="LinearLayout本身常用到的2个属性"></a>LinearLayout本身常用到的2个属性</h4><pre><code>android:orientation  //决定其子控件的水平或垂直排布方式，
+//其值为：
+    vertical 垂直
+    horizontal 水平
+android:gravity //决定其子控件的水平和垂直上的位置
+//其值有：
+      center_vertical  子控件垂直居中
+      center 子控件垂直水平居中
+      center_horizontal 子控件水平居中
+      right  子控件位于当前布局的右边
+      left   子控件位于当前布局的左边
+      bottom 子控件位于当前布局的底部
+</code></pre><p><strong>注：android:gravity支持多个属性,以|分隔,如android:gravity=”bottom|center_vertical”</strong></p>
+<h4 id="LinearLayout的子控件的常用属性"><a href="#LinearLayout的子控件的常用属性" class="headerlink" title="LinearLayout的子控件的常用属性"></a>LinearLayout的子控件的常用属性</h4><pre><code>android:layout_gravity //子控件本身在当前父容器的xy轴上的位置
+    其值同android:gravity
+android:layout_weight  //子控件本身占当前父容器的一个比例
+    其值为整数或小数
+</code></pre><p><strong>注意：android:layout_gravity与android:gravity的异同</strong></p>
+<pre><code>都用于设置水平和垂直上的位置
+属性值都相同
+
+android:gravity是LinearLayout的属性，决定布局的子控件的位置
+android:layout_gravity是LinearLayout的子控件的属性，决定子控件自身的位置
+某些属性值在android:layout_gravity上不起作用，此时需使用android:gravity
+</code></pre><h4 id="LinearLayout的实例代码"><a href="#LinearLayout的实例代码" class="headerlink" title="LinearLayout的实例代码"></a>LinearLayout的实例代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    android:layout_width=<span class="string">"match_parent"</span></div><div class="line">    android:layout_height=<span class="string">"match_parent"</span></div><div class="line">    android:orientation=<span class="string">"vertical"</span>  <span class="comment">//LinearLayout的常用属性</span></div><div class="line">    android:gravity=<span class="string">"bottom"</span>  <span class="comment">//LinearLayout的常用属性</span></div><div class="line">    &gt;</div><div class="line">    <span class="xml"><span class="comment">&lt;!--子控件--&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/button1"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Button"</span> </div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"right"</span>  //<span class="attr">LinearLayout</span>的子控件的常用属性</div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span> //<span class="attr">LinearLayout</span>的子控件的常用属性</div><div class="line">    /&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="RelativeLayout的常用属性及其用法"><a href="#RelativeLayout的常用属性及其用法" class="headerlink" title="RelativeLayout的常用属性及其用法"></a>RelativeLayout的常用属性及其用法</h3><p>RelativeLayout本身无特殊属性，但其子控件有特殊属性</p>
+<h4 id="RelativeLayout的子控件的常用属性-当前子控件相对于其父容器的一个位置"><a href="#RelativeLayout的子控件的常用属性-当前子控件相对于其父容器的一个位置" class="headerlink" title="RelativeLayout的子控件的常用属性 (当前子控件相对于其父容器的一个位置)"></a>RelativeLayout的子控件的常用属性 (当前子控件相对于其父容器的一个位置)</h4><pre><code>android:layout_alignParentXXX = &quot;true&quot;  //子控件相对当前父容器靠左|右|上|下
+android:layout_marginXXX =&quot;30dp&quot; //子控件距当前父容器左|右|上|下边的距离
+android:layout_centerXXX = &quot;true&quot; //子控件相对当前父容器水平|垂直居中
+</code></pre><h4 id="RelativeLayout的子控件的常用属性-当前子控件相对于其他子控件的位置"><a href="#RelativeLayout的子控件的常用属性-当前子控件相对于其他子控件的位置" class="headerlink" title="RelativeLayout的子控件的常用属性 (当前子控件相对于其他子控件的位置)"></a>RelativeLayout的子控件的常用属性 (当前子控件相对于其他子控件的位置)</h4><pre><code>android:layout_XXX  = &quot;@+id/btn1&quot;  //子控件相对与id为btn1的子控件的位置
+</code></pre><h4 id="RelativeLayout的实例代码"><a href="#RelativeLayout的实例代码" class="headerlink" title="RelativeLayout的实例代码"></a>RelativeLayout的实例代码</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    android:layout_width=<span class="string">"match_parent"</span></div><div class="line">    android:layout_height=<span class="string">"match_parent"</span> </div><div class="line">    &gt;</div><div class="line"></div><div class="line">    &lt;Button </div><div class="line">        android:id=<span class="string">"@+id/btn1"</span></div><div class="line">        android:<span class="built_in">text</span>=<span class="string">"第一个按钮"</span></div><div class="line">        android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">        android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">        <span class="comment">//当前子控件相对于其父容器的一个位置</span></div><div class="line">        android:layout_centerHorizontal=<span class="string">"true"</span>    </div><div class="line">   /&gt;</div><div class="line"></div><div class="line">   &lt;Button </div><div class="line">        android:id=<span class="string">"@+id/btn2"</span></div><div class="line">        android:<span class="built_in">text</span>=<span class="string">"第二个按钮"</span></div><div class="line">        android:layout_width=<span class="string">"200dp"</span></div><div class="line">        android:layout_height=<span class="string">"100dp"</span></div><div class="line">        <span class="comment">//当前子控件相对于其他子控件的位置</span></div><div class="line">        android:layout_alignTop=<span class="string">"@+id/btn1"</span></div><div class="line">   /&gt;</div><div class="line">&lt;/RelativeLayout&gt;</div></pre></td></tr></table></figure>
+<h3 id="FrameLayout的常用属性及其用法"><a href="#FrameLayout的常用属性及其用法" class="headerlink" title="FrameLayout的常用属性及其用法"></a>FrameLayout的常用属性及其用法</h3><p>FrameLayout本身无特殊属性，但其子控件有特殊属性</p>
+<h4 id="FrameLayout的子控件的常用属性"><a href="#FrameLayout的子控件的常用属性" class="headerlink" title="FrameLayout的子控件的常用属性"></a>FrameLayout的子控件的常用属性</h4><pre><code>android:layout_gravity  //同LinearLayout子控件的属性
+</code></pre><h4 id="FrameLayout的实例代码"><a href="#FrameLayout的实例代码" class="headerlink" title="FrameLayout的实例代码"></a>FrameLayout的实例代码</h4><p>FrameLayout常用于进度条布局，如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> </div><div class="line">    &gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">ProgressBar</span></span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/progressBar1"</span></div><div class="line">        <span class="attr">style</span>=<span class="string">"?android:attr/progressBarStyleLarge"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/textView1"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"80%"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="TableLayout的常用属性及其用法"><a href="#TableLayout的常用属性及其用法" class="headerlink" title="TableLayout的常用属性及其用法"></a>TableLayout的常用属性及其用法</h3><h4 id="TableLayout本身常用到的3个属性"><a href="#TableLayout本身常用到的3个属性" class="headerlink" title="TableLayout本身常用到的3个属性"></a>TableLayout本身常用到的3个属性</h4><pre><code>//隐藏第N列(0为第一列),列之间用逗号隔开
+android:collapseColumns=&quot;2,3&quot;
+//收缩第N列(0为第一列)的高度和宽度，防止可收缩的列因为内容过多而太宽被挤出屏幕外,列之间用逗号隔开，*代表收缩所有列
+//注：一列能同时表示收缩和拉伸
+android:shrinkColumns=&quot;2,4&quot;
+//拉伸第N列(0为第一列)的高度和宽度，以填满剩下的多余空白空间,列之间用逗号隔开
+android:stretchColumns=&quot;1,2&quot;  
+</code></pre><h4 id="TableLayout子控件常用到的属性"><a href="#TableLayout子控件常用到的属性" class="headerlink" title="TableLayout子控件常用到的属性"></a>TableLayout子控件常用到的属性</h4><pre><code>//该子控件显示在第2列
+android:layout_column =&quot;1&quot; 
+//该子控件占据2列
+android:layout_span=&quot;2&quot;  
+</code></pre><h4 id="TableLayout的实例代码"><a href="#TableLayout的实例代码" class="headerlink" title="TableLayout的实例代码"></a>TableLayout的实例代码</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TableLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:shrinkColumns</span>=<span class="string">"2"</span></div><div class="line">    &gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- 一个view控件也可以是一行   --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/button4"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"Button"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TableRow</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tableRow2"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> &gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:layout_span</span>=<span class="string">"2"</span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/button5"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"Button"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/button6"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"Button"</span> /&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">TableLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Android四大组件之Activity"><a href="#Android四大组件之Activity" class="headerlink" title="Android四大组件之Activity"></a>Android四大组件之Activity</h2><p>Activity是一个应用程序组件，提供用户与程序交互的界面</p>
+<pre><code>Android四大组件
+    Activity
+    Service
+    Broadcast Receiver
+    Content Provider
+</code></pre><h3 id="创建并使用Activity步骤"><a href="#创建并使用Activity步骤" class="headerlink" title="创建并使用Activity步骤"></a>创建并使用Activity步骤</h3><p>以代码示例创建并使用Activity的4个步骤<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> android.app.<span class="type">Activity</span>;</div><div class="line"><span class="keyword">import</span> android.os.<span class="type">Bundle</span>;</div><div class="line"><span class="comment">//1、创建一个继承了Android的Activity的类</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span></span>&#123;</div><div class="line">    <span class="comment">//2、在类中重写onCreate()方法</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        <span class="comment">//3、在onCreate()方法中设置显示布局</span></div><div class="line">        setContentView(<span class="type">R</span>.layout.activity_main);</div><div class="line">        <span class="comment">//some coding</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>//4、在AndroidManifest.xml文件中注册该Activity<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">application</span></span></span></div><div class="line">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_launcher"</span></div><div class="line">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></div><div class="line">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span> &gt;</div><div class="line">        </div><div class="line">        <span class="comment">&lt;!--注册activity--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">            &lt;!<span class="attr">--android:name</span>=<span class="string">"包名.类名"</span><span class="attr">--</span>&gt;</div><div class="line">            android:name="com.example.myfourthapp.MainActivity"</div><div class="line">            android:label="@string/app_name" &gt;</div><div class="line">            <span class="comment">&lt;!--应用程序的主入口Activity设置--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Activity生命周期"><a href="#Activity生命周期" class="headerlink" title="Activity生命周期"></a>Activity生命周期</h3><p>Activity整个生命周期如下图<br><img src="http://ocej2soxx.bkt.clouddn.com/2.jpg" alt="Activity生命周期"><br>其中各方法的作用为：</p>
+<pre><code>onCreate()  //创建
+onStart()   //运行
+onResume()  //获取焦点
+onPause()   //失去焦点
+onStop()    //暂停
+onDestroy() //销毁
+onRestart() //重新运行
+</code></pre><p>从创建到销毁(如按多次返回键)的生命周期如下图<br><img src="http://ocej2soxx.bkt.clouddn.com/3.jpg" alt="Activity创建到销毁的生命周期"><br>从启动到后台(如按Home键)，再到前台的生命周期<br><img src="http://ocej2soxx.bkt.clouddn.com/3.jpg" alt=""><br>从启动到失去焦点(如弹出新的半透明Activity)，再到获取焦点的生命周期<br><img src="http://ocej2soxx.bkt.clouddn.com/5.jpg" alt=""></p>
+<h4 id="Activity的四种状态"><a href="#Activity的四种状态" class="headerlink" title="Activity的四种状态"></a>Activity的四种状态</h4><pre><code>活动状态(Running) Activity处于界面最顶端，获取焦点 
+暂定状态(Paused) Activity失去焦点，但对用户可见。如弹出dailog
+停止状态(Stopped) Activity被完全遮挡，但保留所有状态和成员信息。如按下home键
+非活动状态(killed) Activity被停止
+</code></pre><h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><p>Intent用于完成Android各个组件之间的通讯。</p>
+<p>Intent实现页面跳转的两种方式</p>
+<h3 id="无返回结果的页面跳转"><a href="#无返回结果的页面跳转" class="headerlink" title="无返回结果的页面跳转"></a>无返回结果的页面跳转</h3><p>通过startActivity(intent)来实现无返回结果的页面跳转的3个步骤<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.为控件注册监听事件，即通过什么事件触发页面跳转</span></div><div class="line">btn1 = (Button) findViewById(R.id.btn1);</div><div class="line">btn1.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;   </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">            <span class="comment">//2.初始化Intent对象</span></div><div class="line"></div><div class="line">            <span class="comment">//使用Intent的构造方法为Intent(context , class) ,其中：</span></div><div class="line">            <span class="comment">//第一个参数content是启动Activity的上下文对象，</span></div><div class="line">            <span class="comment">//有两种写法：FirstActivity.this</span></div><div class="line">            <span class="comment">//或者定义FirstActivity类的成员变量Content mContext,</span></div><div class="line">            <span class="comment">//并在onCreate()方法中设置mContext=this;</span></div><div class="line">            </div><div class="line">            <span class="comment">//第二个参数：想要跳转到的目标Activity类</span></div><div class="line">            <span class="comment">//Intent intent = new Intent(mContext, SecondActivity.class);</span></div><div class="line">            Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">            <span class="comment">//3.通过startActivity(intent对象)来实现页面跳转</span></div><div class="line">            startActivity(intent);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p>通过上例，即可实现从FirstActivity跳转到SecondActivity</p>
+<h3 id="有返回结果的页面跳转"><a href="#有返回结果的页面跳转" class="headerlink" title="有返回结果的页面跳转"></a>有返回结果的页面跳转</h3><p>通过startActivityForResult()来实现有返回结果的页面跳转的7个步骤<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="comment">//1.为控件注册监听事件，即通过什么事件触发页面跳转</span></div><div class="line">    btn2 = (Button) findViewById(R.id.btn2);</div><div class="line">    btn2.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View arg0)</span> </span>&#123;</div><div class="line">                <span class="comment">//2.初始化Intent对象</span></div><div class="line">                Intent intent = <span class="keyword">new</span> Intent(FirstActivity.<span class="keyword">this</span>, SecondActivity.class);</div><div class="line">                <span class="comment">//3.通过startActivityForResult(intent,requestCode)来实现页面跳转，其中：</span></div><div class="line">                <span class="comment">//第一个参数为Intent对象</span></div><div class="line">                <span class="comment">//第二个参数requestCode为请求的一个标识</span></div><div class="line">                startActivityForResult(intent,<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">&#125;  </div><div class="line"><span class="comment">//4.通过重写onActivityResult()方法接收第二个Activity返回的数据</span></div><div class="line"><span class="comment">//其中的参数的含义：</span></div><div class="line"><span class="comment">//requestCode为请求的标识</span></div><div class="line"><span class="comment">//resultCode为第二个Activity返回的标识</span></div><div class="line"><span class="comment">//data为第二个Activity返回的数据</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">    <span class="comment">//6.判断请求标识和返回标识是否匹配</span></div><div class="line">    <span class="keyword">if</span>(requestCode ==<span class="number">1</span> &amp;&amp; resultCode ==<span class="number">2</span>)&#123;</div><div class="line">        <span class="comment">//7.获取第二个Activity返回的数据</span></div><div class="line">        String content = data.getStringExtra(<span class="string">"data"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>//5.在第二个Activity需要设置返回标识<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="type">Button</span> bt;</div><div class="line">    <span class="keyword">private</span> <span class="type">String</span> content = <span class="string">"你好"</span>;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(<span class="type">R</span>.layout.second_activity);</div><div class="line">        </div><div class="line">        <span class="comment">/*</span></div><div class="line">         * 第二个Activity什么时候给第一个Activity回传数据?</div><div class="line">         * ————被动式的回传数据————当点击第二个Activity的按钮时回传</div><div class="line">         * 回传到第一个Activity的数据实际上是一个Intent对象</div><div class="line">         * 通过setResult设置返回码</div><div class="line">         * */</div><div class="line">        bt = (<span class="type">Button</span>) findViewById(<span class="type">R</span>.id.sBtn1);</div><div class="line">        bt.setOnClickListener(<span class="keyword">new</span> <span class="type">OnClickListener</span>() &#123;</div><div class="line">            </div><div class="line">            <span class="meta">@Override</span></div><div class="line">            public void onClick(<span class="type">View</span> arg0) &#123;</div><div class="line">                <span class="comment">//创建用于回传数据的Intent对象</span></div><div class="line">                <span class="type">Intent</span> data = <span class="keyword">new</span> <span class="type">Intent</span>();</div><div class="line">                <span class="comment">//data用键值对保存数据</span></div><div class="line">                data.putExtra(<span class="string">"data"</span>, content);</div><div class="line">                <span class="comment">//第一个参数为resultCode，即返回的标识码</span></div><div class="line">                <span class="comment">//第二个参数为回传的数据，即Intent对象</span></div><div class="line">                setResult(<span class="number">2</span>,data);</div><div class="line">                <span class="comment">//结束当前页面</span></div><div class="line">                finish();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过上例，即可实现从FirstActivity跳转到SecondActivity,并将SecondActivity的数据返回到FirstActivity。</p>
+<p><strong>注：通过startActivityForResult()来实现有返回结果的页面跳转时，需要下面2个方法的配合</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">onActivityResult</span><span class="params">()</span></span></div><div class="line"><span class="function"><span class="title">setResult</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1、一般情况下，布局属性与对象的setXXX方法一一对应</p>
+<pre><code>比如设置字体颜色，在xml中属性是android:textColor，而在Activity中则是setTextColor方法
+</code></pre><p>2、将布局文件Demo.xml引入到该activity中<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">setContentView</span>(<span class="selector-tag">R</span><span class="selector-class">.layout</span><span class="selector-class">.Demo</span>);</div></pre></td></tr></table></figure></p>
+<p>3、快捷键</p>
+<pre><code>alt+/  代码提示与自动补全
+ctrl+/ 注释
+</code></pre><p>4、文字大小的单位常用sp;宽高的单位常用dp;android:hint为提示信息文体<br>5、执行android项目</p>
+<pre><code>右键项目--&gt;run as android project
+</code></pre><p>6、android底层自动根据手机屏幕分辨率选择不同分辨率的图片<br>7、res目录下的所有资源都会在R.java中自动生成对应的一个id</p>
+<pre><code>&quot;@string/btn_name&quot;的含义是访问string.xml文件中的btn_name属性;
+能访问的原因是由于R.java的存在,将其转换为R.string.btn_name;
+
+findViewById()是如何查找到对应View的id————通过R.java中内部静态类id中的静态变量
+</code></pre><p>8、android SDK开发文档：</p>
+<pre><code>在sdk目录下的docs文件夹内，常用的是Develop栏目下的API Guides/Reference/Tools
+
+查看android.support.design包控件的属性步骤
+    点击进入android.support.design包下的R.styleable类、搜索控件属性即可
+查看android控件的属性步骤
+    点击进入android包下的R.styleable类、搜索控件属性即可
+</code></pre><p>9、android信息输出</p>
+<pre><code>可以使用Log.i(&quot;Tag&quot;,info) 输出信息
+也可以使用System.out.println(info)
+</code></pre><p>10、RadioGroup的接口OnCheckedChangeListener是android.widget.RadioGroup包下的<br>11、五大布局之间可以嵌套使用<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="section">&lt;LinearLayout&gt;</span></div><div class="line">    <span class="section">&lt;RelativeLayout&gt;</span></div><div class="line">    <span class="section">&lt;/RelativeLayout&gt;</span></div><div class="line"><span class="section">&lt;/LinearLayout&gt;</span></div></pre></td></tr></table></figure></p>
+<p>12、长文本滚动效果<br>            <a href="http://www.imooc.com/video/4308" target="_blank" rel="external">http://www.imooc.com/video/4308</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/how-to-deploy-github-blog-with-hexo/" rel="next" title="如何使用hexo搭建github博客">
+                <i class="fa fa-chevron-left"></i> 如何使用hexo搭建github博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/24/liunx-common-commands/" rel="prev" title="liunx常用命令">
+                liunx常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/23/learn-android-step-by-step-one/"
+           data-title="android入门一" data-url="https://aiolos123.github.io/2016/08/23/learn-android-step-by-step-one/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义Activity类的基本结构"><span class="nav-number">2.</span> <span class="nav-text">自定义Activity类的基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控件"><span class="nav-number">3.</span> <span class="nav-text">控件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见控件的属性值"><span class="nav-number">3.1.</span> <span class="nav-text">常见控件的属性值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现事件监听的三个步骤"><span class="nav-number">3.2.</span> <span class="nav-text">实现事件监听的三个步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在监听器内部实现事件处理的三种方式"><span class="nav-number">3.2.1.</span> <span class="nav-text">在监听器内部实现事件处理的三种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a、通过匿名内部类来实现"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">a、通过匿名内部类来实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b、通过外部类来实现————-比较少用"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">b、通过外部类来实现————(比较少用)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c、通过外部类来实现的另一种写法"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">c、通过外部类来实现的另一种写法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d、通过实现接口的方式来实现"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">d、通过实现接口的方式来实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见控件的使用步骤"><span class="nav-number">3.3.</span> <span class="nav-text">常见控件的使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#autoCompleteTextView与MultiAutoCompleteTextView的使用步骤"><span class="nav-number">3.3.1.</span> <span class="nav-text">autoCompleteTextView与MultiAutoCompleteTextView的使用步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ToggleButton的使用步骤"><span class="nav-number">3.3.2.</span> <span class="nav-text">ToggleButton的使用步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CheckBox的使用步骤"><span class="nav-number">3.3.3.</span> <span class="nav-text">CheckBox的使用步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RadioGroup的使用步骤"><span class="nav-number">3.3.4.</span> <span class="nav-text">RadioGroup的使用步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五大布局"><span class="nav-number">4.</span> <span class="nav-text">五大布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LinearLayout的常用属性及其用法"><span class="nav-number">4.1.</span> <span class="nav-text">LinearLayout的常用属性及其用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LinearLayout本身常用到的2个属性"><span class="nav-number">4.1.1.</span> <span class="nav-text">LinearLayout本身常用到的2个属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinearLayout的子控件的常用属性"><span class="nav-number">4.1.2.</span> <span class="nav-text">LinearLayout的子控件的常用属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinearLayout的实例代码"><span class="nav-number">4.1.3.</span> <span class="nav-text">LinearLayout的实例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RelativeLayout的常用属性及其用法"><span class="nav-number">4.2.</span> <span class="nav-text">RelativeLayout的常用属性及其用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RelativeLayout的子控件的常用属性-当前子控件相对于其父容器的一个位置"><span class="nav-number">4.2.1.</span> <span class="nav-text">RelativeLayout的子控件的常用属性 (当前子控件相对于其父容器的一个位置)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RelativeLayout的子控件的常用属性-当前子控件相对于其他子控件的位置"><span class="nav-number">4.2.2.</span> <span class="nav-text">RelativeLayout的子控件的常用属性 (当前子控件相对于其他子控件的位置)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RelativeLayout的实例代码"><span class="nav-number">4.2.3.</span> <span class="nav-text">RelativeLayout的实例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FrameLayout的常用属性及其用法"><span class="nav-number">4.3.</span> <span class="nav-text">FrameLayout的常用属性及其用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FrameLayout的子控件的常用属性"><span class="nav-number">4.3.1.</span> <span class="nav-text">FrameLayout的子控件的常用属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FrameLayout的实例代码"><span class="nav-number">4.3.2.</span> <span class="nav-text">FrameLayout的实例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TableLayout的常用属性及其用法"><span class="nav-number">4.4.</span> <span class="nav-text">TableLayout的常用属性及其用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TableLayout本身常用到的3个属性"><span class="nav-number">4.4.1.</span> <span class="nav-text">TableLayout本身常用到的3个属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableLayout子控件常用到的属性"><span class="nav-number">4.4.2.</span> <span class="nav-text">TableLayout子控件常用到的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableLayout的实例代码"><span class="nav-number">4.4.3.</span> <span class="nav-text">TableLayout的实例代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android四大组件之Activity"><span class="nav-number">5.</span> <span class="nav-text">Android四大组件之Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建并使用Activity步骤"><span class="nav-number">5.1.</span> <span class="nav-text">创建并使用Activity步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity生命周期"><span class="nav-number">5.2.</span> <span class="nav-text">Activity生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity的四种状态"><span class="nav-number">5.2.1.</span> <span class="nav-text">Activity的四种状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent"><span class="nav-number">6.</span> <span class="nav-text">Intent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无返回结果的页面跳转"><span class="nav-number">6.1.</span> <span class="nav-text">无返回结果的页面跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有返回结果的页面跳转"><span class="nav-number">6.2.</span> <span class="nav-text">有返回结果的页面跳转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">7.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
