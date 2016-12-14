@@ -1,0 +1,1052 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JAVA," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="如何在Java中进行文件的读写，Java IO流是必备的知识。本门课程主要为您带来Java中的输入输出流的内容，包括文件编码、使用File类对文件和目录进行管理、字节流和字符流的基本操作，以及对象的序列化和反序列化的内容。视频来源：http://www.imooc.com/learn/123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA IO流">
+<meta property="og:url" content="https://aiolos123.github.io/2016/12/07/how-to-use-java-io-stream/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="如何在Java中进行文件的读写，Java IO流是必备的知识。本门课程主要为您带来Java中的输入输出流的内容，包括文件编码、使用File类对文件和目录进行管理、字节流和字符流的基本操作，以及对象的序列化和反序列化的内容。视频来源：http://www.imooc.com/learn/123">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:updated_time" content="2016-12-14T04:55:59.283Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA IO流">
+<meta name="twitter:description" content="如何在Java中进行文件的读写，Java IO流是必备的知识。本门课程主要为您带来Java中的输入输出流的内容，包括文件编码、使用File类对文件和目录进行管理、字节流和字符流的基本操作，以及对象的序列化和反序列化的内容。视频来源：http://www.imooc.com/learn/123">
+<meta name="twitter:image" content="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/12/07/how-to-use-java-io-stream/"/>
+
+  <title> JAVA IO流 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JAVA IO流
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T13:44:59+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/07/how-to-use-java-io-stream/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/how-to-use-java-io-stream/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/07/how-to-use-java-io-stream/" class="leancloud_visitors" data-flag-title="JAVA IO流">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如何在Java中进行文件的读写，Java IO流是必备的知识。本门课程主要为您带来Java中的输入输出流的内容，包括文件编码、使用File类对文件和目录进行管理、字节流和字符流的基本操作，以及对象的序列化和反序列化的内容。<br>视频来源：<a href="http://www.imooc.com/learn/123" target="_blank" rel="external">http://www.imooc.com/learn/123</a><br><a id="more"></a></p>
+<h2 id="IO流分类"><a href="#IO流分类" class="headerlink" title="IO流分类"></a>IO流分类</h2><p>引用自：<a href="http://blog.csdn.net/javaweiming/article/details/17396737" target="_blank" rel="external">http://blog.csdn.net/javaweiming/article/details/17396737</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类依据</th>
+<th style="text-align:center">内存</th>
+<th style="text-align:center">外设</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">根据流的位置来分</td>
+<td style="text-align:center">高端流</td>
+<td style="text-align:center">低端流</td>
+</tr>
+<tr>
+<td style="text-align:center">根据数据的流向来分</td>
+<td style="text-align:center">输出流</td>
+<td style="text-align:center">输入流</td>
+</tr>
+<tr>
+<td style="text-align:center">根据流数据的格式来分</td>
+<td style="text-align:center">字符流</td>
+<td style="text-align:center">字节流</td>
+</tr>
+<tr>
+<td style="text-align:center">根据流数据的包装过程来分</td>
+<td style="text-align:center">包装流</td>
+<td style="text-align:center">原始流</td>
+</tr>
+<tr>
+<td style="text-align:center">文件存储方式</td>
+<td style="text-align:center">文件在内存中以二进制序列存储</td>
+<td style="text-align:center">文件在外设中以字节(byte)序列存储</td>
+</tr>
+<tr>
+<td style="text-align:center">文件读取方式</td>
+<td style="text-align:center">以字符为单位读取文件，常用于读文本，数字等类型的文件;以行为单位读取文件，常用于读面向行的格式化文件</td>
+<td style="text-align:center">以字节为单位读取文件，常用于读二进制文件，如图片、声音、影像等文件</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg" alt="java io流继承关系"></p>
+<p>1、根据流的位置来分<br>    高端流：所有的内存中的流都是高端流，如InputStreamReader<br>    低端流：所有的外界设备中的流都是低端流，如InputStream、OutputStream<br>    如何区分：所有的流对象的后缀中包含Reader或者Writer的都是高端流，反之，则基本上为低端流，不过也有例外，比如PrintStream就是高端流<br>2、根据数据的流向来分：<br>    输出流：是用来写数据的，是由程序（内存）—&gt;外界设备<br>    输入流：是用来读数据的，是由外界设备—&gt;程序（内存）<br>    如何区分：一般来说输入流带有Input，输出流带有Output<br>3、根据流数据的格式来分：<br>    字节流：处理声音或者图片等二进制的数据的流，比如InputStream<br>    字符流：处理文本数据（如txt文件）的流，比如InputStreamReader<br>    如何区分：可用高低端流来区分，所有的低端流都是字节流，所有的高端流都是字符流<br>4、根据流数据的包装过程来分：<br>    原始流：在实例化流的对象的过程中，不需要传入另外一个流作为自己构造方法的参数的流，称之为原始流。<br>    包装流：在实例化流的对象的过程中，需要传入另外一个流作为自己构造方法发参数的流，称之为包装流。<br>    如何区分：所以的低端流都是原始流，所以的高端流都是包装流</p>
+<h2 id="IO总结————字节序列是IO的根本"><a href="#IO总结————字节序列是IO的根本" class="headerlink" title="IO总结————字节序列是IO的根本"></a>IO总结————字节序列是IO的根本</h2><pre><code>java中文件是byte byte byte...的字节序列，可以是任意编码的字节序列；
+
+从文件中读取数据到内存中成为读read,也就是对应输入input流;
+从内存中把数据存储到文件中就是写write,也就是对应输出output流
+
+以内存为中心看待读写与输入输出
+</code></pre><p><img src="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg" alt="java io流继承关系"></p>
+<p>一、字节流的抽象基类：InputStream、OutputStream</p>
+<pre><code>//读取数据填充到字节数组buf中，从buf的start位置开始，存放size长度的数据
+    in.read(byte[] buf,int start,int size);
+//将buf字节数组从start位置开始，写size长度的字节到流
+    out.wirte(byte[] buf,int start,int size);
+
+//字节流的第一组实现：读取文件数据
+FileInputStream   ---&gt; 具体实现了从文件上读取字节数据
+FileOutputStream  ---&gt; 具体实现了向文件中写出字节数据
+
+//字节流的第二组实现：读取int、long、字符等类型数据,主要用于操作类型数据
+DataOutputStream:
+    wirteInt()/wirteDouble()/wirteUTF()等等
+DataInputStream:
+    readInt()/readDouble()/readUTF()等等
+
+//字节流的第三组实现：
+BufferedInputStream和BufferedOutputStream
+这两个流类为IO提供了带缓冲区的操作，一般打开文件进行写入或读取操作时，都会加上缓冲，这种流模式提高了IO的读写性能。
+
+缓冲流是将需要读取或写入的数据先放入内存中的缓冲（存）区，然后再一次性进行数据读取或写入的操作，效率比较高;
+
+从应用程序中把数据输出到文件，相当于将一缸水(内存中)倒入到另一个缸中(硬盘文件中):
+FileOutputStream---&gt;write()方法相当于一滴一滴地把水“转移”过去
+DataOutputStream--&gt;writeXxx()方法会方便一些，相当于一瓢一瓢把水“转移”过去
+BufferedOutputStream---&gt;write()方法更方便，相当于一飘一瓢先放入桶(即缓冲区)中，再从桶中倒入到另一个缸中，性能提高了
+</code></pre><p>二、字符流的抽象基类：Reader、Writer<br>    <strong>字符流操作的是文本文件</strong></p>
+<pre><code>字符输入流抽象基类Reader
+字符输出流抽象基类Writer
+
+字符的处理，一次处理一个字符(字符所占大小不一样)
+字符的底层任然是基本的字节序列
+
+//字符流的基本实现：字节字符转换流
+InputStreamReader 完成byte流解析为char流，按照编码解析
+OutputStreamWirter 完成char流解析为byte流，按照编码解析
+
+//字符流的第二组实现：字符文件读写流
+FileReader  操作文件的读
+FileWriter  操作文件的写
+
+//字符流的第萨三组实现：字符缓冲流
+BufferedReader   --&gt;readLine   一次读一行,不识别换行
+BufferedWriter   --&gt;write  一次写一行,不可输出换行
+PrintWriter      --&gt;print/println  一次写一行,可输出换行
+
+FileReader与FileWriter无法指定编码，只能取项目的默认编码
+如果要指定编码，只能使用InputStreamReader和OutputStreamWirter
+</code></pre><p>三、对象的序列化和反序列化</p>
+<pre><code>1、对象序列化：就是将Object对象转换成byte序列，反之就是对象的反序列化。
+2、序列化流(ObjectOutputStream是字节输出流)的核心方法————writeObject()
+   反序列化流(ObjectInputStream是字节输入流)的核心方法————readObject()
+3、对象要序列化需要实现序列化接口————Serializable
+   对象必须实现序列化接口，才能进行序列化，否则将出现异常，
+   这个接口，没有任何方法，只是一个标准
+</code></pre><h2 id="java文件模型"><a href="#java文件模型" class="headerlink" title="java文件模型"></a>java文件模型</h2><pre><code>java中的文本是字符(char)即是16位无符号整数，是字符的unicode编码(即双字节编码)；
+
+java中的字符串是文本即char的组成的。
+
+java中文件是byte byte byte...的字节序列，可以是任意编码的字节序列；
+
+java中文本文件是文本(即char)序列按照某种编码方案(如utf-8,utf-16be,gbk)序列化为byte的存储结果。
+
+如果在中文机器上直接创建文本文件，那么文本文件只以ansi编码来保存文字信息。
+中文系统中，ANSI编码代表GBK编码。
+
+java文件模型：在硬盘上的文件是byte byte...即以字节方式存储的，是数据的集合
+</code></pre><h2 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h2><pre><code>在GBK编码中，中文占两个字节，英文占一个字节
+在UTF-8编码中，中文占用三个字节，英文还是一个字节
+在UTF-16BE编码中，中文占两个字节，英文占两个字节，
+                 java是双字节编码(即java中一个字符占2个字节)，编码格式即为utf-16be
+
+当你的字节序列是某种编码时，如果想把字节序列变成字符串，也必须用这种编码方式进行转换，否则会出现乱码
+</code></pre><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">String</span> <span class="built_in">str</span> = <span class="string">"慕课ABC"</span>;</div><div class="line"><span class="comment">//使用utf-16be编码将字符串转换为字节序列</span></div><div class="line"><span class="built_in">byte</span>[] byteArr3 = <span class="built_in">str</span>.getBytes(<span class="string">"utf-16be"</span>);</div><div class="line"></div><div class="line"><span class="comment">//用gbk编码转换utf-16be字节序列</span></div><div class="line"><span class="keyword">String</span> s1 = <span class="keyword">new</span> <span class="keyword">String</span>(byteArr3,<span class="string">"gbk"</span>);</div><div class="line">System.out.<span class="built_in">println</span>(s1);<span class="comment">//输出结果为乱码</span></div><div class="line"></div><div class="line"><span class="comment">//用正确的字节序列编码转换 字节序列为字符串</span></div><div class="line">s1 = <span class="keyword">new</span> <span class="keyword">String</span>(byteArr3,<span class="string">"utf-16be"</span>);</div><div class="line">System.out.<span class="built_in">println</span>(s1);<span class="comment">//输出结果正确</span></div></pre></td></tr></table></figure>
+<h2 id="File类的使用"><a href="#File类的使用" class="headerlink" title="File类的使用"></a>File类的使用</h2><p>java.io.File用于操作文件或目录<br>File类只用于表示文件或目录的信息如名称、大小等，不能用于文件或目录内容的访问<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> fileDemo()&#123;</div><div class="line">            <span class="comment">//了解构造函数的情况， alt+/  查看帮助</span></div><div class="line">            <span class="keyword">File</span> <span class="keyword">file</span> = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test\\javaio"</span>);</div><div class="line">            <span class="comment">//效果同上，兼容所有系统的分隔符</span></div><div class="line">            <span class="comment">//File file = new File("D:"+File.separator+"test"+File.separator+"javaio");</span></div><div class="line">            <span class="keyword">if</span>(!<span class="keyword">file</span>.exists())&#123;<span class="comment">//file.exists()判断文件或目录是否存在</span></div><div class="line">                <span class="keyword">file</span>.mkdir();<span class="comment">//创建目录</span></div><div class="line">                <span class="comment">//file.mkdirs();//创建多级目录</span></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">file</span>.<span class="keyword">delete</span>();<span class="comment">//删除文件或目录</span></div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="comment">//判断是否是一个目录</span></div><div class="line">            <span class="comment">//存在返回true，不存在或者不是目录返回false</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.isDirectory());</div><div class="line">            <span class="comment">//判断是否是一个文件</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.isFile());</div><div class="line">            </div><div class="line">            <span class="comment">//创建文件对象</span></div><div class="line">            <span class="comment">//File file2 = new File("D:\\test\\javaio.txt");</span></div><div class="line">            <span class="comment">//效果同上</span></div><div class="line">            <span class="keyword">File</span> file2 = <span class="keyword">new</span> <span class="keyword">File</span>(<span class="string">"D:\\test"</span>,<span class="string">"javaio.txt"</span>);</div><div class="line">            <span class="keyword">if</span>(!file2.exists())&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    <span class="comment">//创建文件</span></div><div class="line">                    file2.createNewFile();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                file2.<span class="keyword">delete</span>();</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="comment">//其他常用的File对象的API</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>); <span class="comment">//相当于打印file.toString()的内容</span></div><div class="line">            System.out.<span class="keyword">println</span>(file2);<span class="comment">//相当于打印file2.toString()的内容</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.getAbsolutePath());<span class="comment">//获取绝对路径</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.getName());<span class="comment">//获取文件或目录名称</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.getParent());<span class="comment">//获取父目录的路径</span></div><div class="line">            System.out.<span class="keyword">println</span>(<span class="keyword">file</span>.getParentFile());<span class="comment">//获取父目录的File对象</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="RandomAccessFile的使用"><a href="#RandomAccessFile的使用" class="headerlink" title="RandomAccessFile的使用"></a>RandomAccessFile的使用</h2><p>RandomAccessFile是java提供的对文件内容的访问，即可以读文件，也可以写文件<br>RandomAccessFile支持随机访问文件，即可以访问文件的任意位置</p>
+<p>1、打开文件有两种模式——“rw”和”r”<br>    RandomAccessFile raf = new RandomAccessFile(file,”rw”);<br>    文件指针: 打开文件时指针在开头，pointer = 0；在读写文件的过程中，指针也同时移动<br>2、写方法<br>    raf.write()  ———— 只写一个字节(后8位)，同时指针指向下一个位置，准备再次写入<br>3、读方法<br>    int b = raf.read() ———— 读一个字节<br>4、文件读写完成后以后一定要关闭</p>
+<h2 id="使用字节流对文件进行读写操作"><a href="#使用字节流对文件进行读写操作" class="headerlink" title="使用字节流对文件进行读写操作"></a>使用字节流对文件进行读写操作</h2><p>1、字节流的抽象父类：InputStream、OutputStream，其中：<br>    InputStream抽象了应用程序读取数据的方式<br>    OutputStream抽象了应用程序写出数据的方式</p>
+<p>2、文件读写结束的标志：<br>    EOF表示到达文件结尾或者读到-1也表示读到文件结尾</p>
+<p>3、抽象父类中的重要API:</p>
+<pre><code>输入流(即读取数据，如键盘)的基本方法：
+    int b = in.read();//读取一个字节无符号填充到int的低8位；读到-1表示结束
+    in.read(byte[] buf);//读取数据填充到字节数组buf中
+    in.read(byte[] buf,int start,int size);//读取数据填充到字节数组buf中，从buf的start位置开始，存放size长度的数据
+    in.close();//关闭输入流
+
+输出流(即写出数据)的基本方法：
+    out.write(int b);//写出一个字节(byte)到流，写的是b的低8位
+    out.wirte(byte[] buf);//将buf字节数组全部都写入到流
+    out.wirte(byte[] buf,int start,int size);//将buf字节数组从start位置开始，写size长度的字节到流
+    //关闭输出流
+</code></pre><p>4、字节流的第一组具体实现子类————文件输入输出流<br>FileInputStream   —&gt; 具体实现了从文件上读取字节数据<br><figure class="highlight d"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"> * 批量读取，对大文件而言效率较高，也是我们常用的读取文件的方式</div><div class="line"> * <span class="keyword">@param</span> fileName</div><div class="line"> * <span class="keyword">@throws</span> IOException</div><div class="line"> *</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> printHexByByteArray(String fileName) throws IOException&#123;</div><div class="line">    FileInputStream <span class="keyword">in</span> = <span class="keyword">new</span> FileInputStream(fileName);</div><div class="line">    <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>*<span class="number">1024</span>];</div><div class="line">    <span class="keyword">int</span> j=<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="comment">//从in中批量读取字节，放入到buf这个字节数组中，从第0个位置开始放，</span></div><div class="line">    <span class="comment">//最多放buf.length个，返回的是读到的字节的个数</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> bytesNum = <span class="number">0</span>;</div><div class="line">    <span class="comment">//如果字节数组不是足够大，则重复使用该数组</span></div><div class="line">    <span class="keyword">while</span>((bytesNum = <span class="keyword">in</span>.read(buf,<span class="number">0</span>,buf.length))!=-<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;bytesNum;i++)&#123;</div><div class="line">            <span class="keyword">if</span>((buf[i]&amp; <span class="number">0</span>xff)&lt;=<span class="number">0</span>xf)&#123;</div><div class="line">                System.<span class="keyword">out</span>.print(<span class="string">"0"</span>);</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="comment">//byte类型为8位，int类型是32位</span></div><div class="line">            <span class="comment">//为了避免数据转换错误，通过&amp; 0xff 将高24位清零</span></div><div class="line">            System.<span class="keyword">out</span>.print(Integer.toHexString(buf[i] &amp; <span class="number">0</span>xff)+<span class="string">" "</span>);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(j++%<span class="number">10</span>==<span class="number">0</span>)&#123;<span class="comment">//每输出10个byte换行</span></div><div class="line">                System.<span class="keyword">out</span>.println();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//关闭输入流</span></div><div class="line">    fin.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>FileOutputStream  —&gt; 具体实现了向文件中写出字节数据<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//append不写时,如果该文件不存在，则直接创建；如果存在，则删除后创建</span></div><div class="line"><span class="comment">//FileOutputStream out = new FileOutputStream("d:\\test\\javaio.txt");</span></div><div class="line"><span class="comment">//append为true时，如果该文件不存在，则直接创建；如果存在，则在文件尾部追加内容</span></div><div class="line"><span class="comment">//      FileOutputStream out = new FileOutputStream("d:\\test\\out.txt", true);</span></div><div class="line"><span class="comment">//      out.write('A');//write每次只写一个字节，本例写出A字符的低8位，</span></div><div class="line"><span class="comment">//      byte[] gbk = "中国".getBytes("gbk");</span></div><div class="line"><span class="comment">//      out.write(gbk);</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> copyFile(<span class="built_in">File</span> srcFile,<span class="built_in">File</span> destFile) throws IOException&#123;</div><div class="line">        </div><div class="line">        <span class="built_in">if</span>(!srcFile.<span class="built_in">exists</span>())&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"文件"</span>+srcFile+<span class="string">"不存在"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(!srcFile.isFile())&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(srcFile+<span class="string">"不是文件"</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        FileInputStream in = <span class="keyword">new</span> FileInputStream(srcFile);</div><div class="line">        FileOutputStream out  = <span class="keyword">new</span> FileOutputStream(destFile);</div><div class="line">        </div><div class="line">        <span class="comment">//批量写入</span></div><div class="line">        <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>*<span class="number">1024</span>];</div><div class="line">        <span class="keyword">int</span> b;</div><div class="line">        </div><div class="line">        <span class="built_in">while</span>((b = in.<span class="built_in">read</span>(buf,<span class="number">0</span>,buf.length))!=<span class="number">-1</span>)&#123;</div><div class="line">             out.<span class="built_in">write</span>(buf, <span class="number">0</span>, b);     </div><div class="line">        &#125;</div><div class="line"></div><div class="line">        out.<span class="built_in">flush</span>();<span class="comment">//最好加上</span></div><div class="line">        in.<span class="built_in">close</span>();</div><div class="line">        out.<span class="built_in">close</span>();</div><div class="line">        </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>5、字节流的第二组具体实现子类————数据输入输出流<br>DataInputStream/DataOutputStream<br>    对”流”功能的扩展，可以更加方面的读取int、long、字符等类型数据,主要用于操作类型数据<br>    DataOutputStream:<br>        wirteInt()/wirteDouble()/wirteUTF()等等<br>    DataInputStream:<br>        readInt()/readDouble()/readUTF()等等<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用FileOutputStream对象包装DataOutputStream</span></div><div class="line">DataOutputStream <span class="keyword">dos</span> = <span class="keyword">new</span> DataOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"d:\\test\\out.txt"</span>));</div><div class="line"></div><div class="line"><span class="keyword">dos</span>.writeInt(<span class="number">10</span>);</div><div class="line"><span class="keyword">dos</span>.writeUTF(<span class="string">"中国"</span>);<span class="comment">//采用UTF-8编码写出</span></div><div class="line"><span class="keyword">dos</span>.writeChars(<span class="string">"中国"</span>);<span class="comment">//采用UTF-16BE编码写出</span></div><div class="line">    </div><div class="line"><span class="comment">//使用FileInputStream对象包装DataInputStream</span></div><div class="line">DataInputStream dis = <span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> FileInputStream(fileName));</div><div class="line">int i = dis.readInt();</div><div class="line"><span class="keyword">System</span>.out.println(i);</div><div class="line"></div><div class="line"><span class="comment">//采用UTF-8编码读取</span></div><div class="line"><span class="keyword">System</span>.out.println(dis.readUTF());</div><div class="line"><span class="comment">//采用UTF-16BE编码读取</span></div><div class="line"><span class="keyword">System</span>.out.println(dis.readChar());</div><div class="line"><span class="keyword">System</span>.out.println(dis.readChar());</div><div class="line">dis.<span class="built_in">close</span>();</div></pre></td></tr></table></figure></p>
+<p>6、字节缓存流<br>BufferedInputStream和BufferedOutputStream<br>    这两个流类为IO提供了带缓冲区的操作，一般打开文件进行写入或读取操作时，都会加上缓冲，这种流模式提高了IO的读写性能。</p>
+<pre><code>缓冲流是将需要读取或写入的数据先放入内存中的缓冲（存）区，然后再一次性进行数据读取或写入的操作，效率比较高;
+</code></pre><p>从应用程序中把数据输出到文件，相当于将一缸水(内存中)倒入到另一个缸中(硬盘文件中):<br>    FileOutputStream—&gt;write()方法相当于一滴一滴地把水“转移”过去<br>    DataOutputStream–&gt;writeXxx()方法会方便一些，相当于一瓢一瓢把水“转移”过去<br>    BufferedOutputStream—&gt;write()方法更方便，相当于一飘一瓢先放入桶(即缓冲区)中，再从桶中倒入到另一个缸中，性能提高了<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//批量读取、缓冲输出的字节流进行文件复制</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> copyFileByBufferAndByteArray(<span class="built_in">File</span> srcFile,<span class="built_in">File</span> destFile) throws IOException&#123;</div><div class="line">        <span class="built_in">if</span>(!srcFile.<span class="built_in">exists</span>())&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"文件"</span>+srcFile+<span class="string">"不存在"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(!srcFile.isFile())&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(srcFile+<span class="string">"不是文件"</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream( <span class="keyword">new</span> FileInputStream(srcFile));</div><div class="line">        BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(destFile));</div><div class="line">        </div><div class="line">        <span class="comment">//批量读取</span></div><div class="line">        <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>*<span class="number">1024</span>];</div><div class="line">        <span class="keyword">int</span> b;</div><div class="line">        <span class="built_in">while</span>((b = bis.<span class="built_in">read</span>(buf))!=<span class="number">-1</span>)&#123;</div><div class="line">            <span class="comment">//缓冲输出</span></div><div class="line">            bos.<span class="built_in">write</span>(buf, <span class="number">0</span>, b);   </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//复制文件最快的做法应该是批量读取到字节数组中然后使用缓冲输出流写入到文件。</span></div><div class="line">        <span class="comment">//并且在循环写入的过程中不要flush，要不然就失去了缓冲的意义，</span></div><div class="line">        <span class="comment">//缓冲输出流在关闭的时候会将所有缓冲区中的数据全部写入文件。</span></div><div class="line">        </div><div class="line">        <span class="comment">//flush()主要用于即使缓存区没有满的情况下，会把缓存区的内容强制写入外设（主要是文件），</span></div><div class="line">        <span class="comment">//而当缓存区满了，会自动写入文件中;</span></div><div class="line"></div><div class="line">        bos.<span class="built_in">flush</span>();</div><div class="line">        bos.<span class="built_in">close</span>();</div><div class="line">        bis.<span class="built_in">close</span>();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用字符流对文件进行读写操作"><a href="#使用字符流对文件进行读写操作" class="headerlink" title="使用字符流对文件进行读写操作"></a>使用字符流对文件进行读写操作</h2><p><strong>字符流操作的是文本文件</strong></p>
+<p>1、字符输入流和输出流抽象基类</p>
+<pre><code>字符输入流抽象基类Reader
+字符输出流抽象基类Writer
+
+字符的处理，一次处理一个字符(字符所占大小不一样)
+字符的底层任然是基本的字节序列
+</code></pre><p>2、字符流的基本实现</p>
+<pre><code>InputStreamReader 完成byte流解析为char流，按照编码解析
+OutputStreamWirter 完成char流解析为byte流，按照编码解析
+</code></pre><h3 id="字节字符转换流"><a href="#字节字符转换流" class="headerlink" title="字节字符转换流"></a>字节字符转换流</h3><p>见上一节的2——字符流的基本实现</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//利用字符数组批量读取进行文件复制</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> copyFileByCharArray(<span class="built_in">File</span> srcFile,<span class="built_in">File</span> destFile) throws IOException&#123;</div><div class="line">        <span class="built_in">if</span>(!srcFile.<span class="built_in">exists</span>())&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"文件"</span>+srcFile+<span class="string">"不存在"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(!srcFile.isFile())&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(srcFile+<span class="string">"不是文件"</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//构造字符输入、输出流对象</span></div><div class="line">        FileInputStream in = <span class="keyword">new</span> FileInputStream(srcFile);</div><div class="line">        InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in);<span class="comment">//默认是项目的编码,将要写文件本身的编码格式</span></div><div class="line">        </div><div class="line">        FileOutputStream out = <span class="keyword">new</span> FileOutputStream(destFile);</div><div class="line">        OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(out);<span class="comment">//默认是项目的编码</span></div><div class="line">        </div><div class="line">        <span class="comment">//每次读一个字符</span></div><div class="line"><span class="comment">//      int c ;</span></div><div class="line"><span class="comment">//      while((c=isr.read())!=-1)&#123;</span></div><div class="line"><span class="comment">//          System.out.print((char)c);</span></div><div class="line"><span class="comment">//      &#125;</span></div><div class="line">        </div><div class="line">        <span class="comment">//每次读一个字符数组</span></div><div class="line">        <span class="keyword">char</span>[] <span class="built_in">buffer</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">8</span>*<span class="number">1024</span>];</div><div class="line">        <span class="keyword">int</span> d;</div><div class="line">        <span class="comment">//批量读取，放入buffer这个字符数组，从第0个位置开始放置，最多放buffer.length个</span></div><div class="line">        <span class="comment">//返回的是读到的字符的个数</span></div><div class="line">        <span class="built_in">while</span>((d=isr.<span class="built_in">read</span>(<span class="built_in">buffer</span>))!=<span class="number">-1</span>)&#123;</div><div class="line">            <span class="comment">//String s = new String(buffer,0,d);</span></div><div class="line">            <span class="comment">//System.out.print(s);</span></div><div class="line">            osw.<span class="built_in">write</span>(<span class="built_in">buffer</span>,<span class="number">0</span>,d);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        osw.<span class="built_in">flush</span>();</div><div class="line">        osw.<span class="built_in">close</span>();</div><div class="line">        isr.<span class="built_in">close</span>();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="字符流文件读写流"><a href="#字符流文件读写流" class="headerlink" title="字符流文件读写流"></a>字符流文件读写流</h3><p>FileReader  操作文件的读<br>FileWriter  操作文件的写</p>
+<p><strong>FileReader与FileWriter无法指定编码，只能取项目的默认编码</strong><br>如果要指定编码，只能使用InputStreamReader和OutputStreamWirter<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//无法指定编码，只能默认去项目的编码</span></div><div class="line">FileReader fr = <span class="keyword">new</span> FileReader(srcFile);</div><div class="line">FileWriter fw = <span class="keyword">new</span> FileWriter(destFile);           </div><div class="line"></div><div class="line"><span class="comment">//批量读取</span></div><div class="line"><span class="keyword">char</span>[] <span class="built_in">buffer</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">8</span>*<span class="number">1024</span>];</div><div class="line"><span class="keyword">int</span> c;</div><div class="line"><span class="built_in">while</span>((c= fr.<span class="built_in">read</span>(<span class="built_in">buffer</span>))!=<span class="number">-1</span>)&#123;</div><div class="line">                fw.<span class="built_in">write</span>(<span class="built_in">buffer</span>,<span class="number">0</span>,c);</div><div class="line">&#125;</div><div class="line">        </div><div class="line">fw.<span class="built_in">flush</span>();</div><div class="line">fr.<span class="built_in">close</span>();</div><div class="line">fw.<span class="built_in">close</span>();</div></pre></td></tr></table></figure></p>
+<h3 id="字符流的缓冲器"><a href="#字符流的缓冲器" class="headerlink" title="字符流的缓冲器"></a>字符流的缓冲器</h3><p>BufferedReader   –&gt;readLine   一次读一行,不识别换行<br>BufferedWriter   –&gt;write  一次写一行,不可输出换行<br>PrintWriter      –&gt;print/println  一次写一行,可输出换行<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//利用BufferedReader和PrintWriter字符缓冲流进行文件复制</span></div><div class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(</div><div class="line">                <span class="keyword">new</span> InputStreamReader(</div><div class="line">                        <span class="keyword">new</span> FileInputStream(srcFile)));</div><div class="line">        </div><div class="line"><span class="comment">//      BufferedWriter bw  = new BufferedWriter(</span></div><div class="line"><span class="comment">//              new OutputStreamWriter(</span></div><div class="line"><span class="comment">//                      new FileOutputStream(destFile)));</span></div><div class="line"><span class="comment">//      </span></div><div class="line">        PrintWriter pw = <span class="keyword">new</span> PrintWriter(destFile);</div><div class="line">        <span class="comment">//PrintWriter pw2 = new PrintWriter(out, autoFlush)</span></div><div class="line">        <span class="keyword">String</span> <span class="built_in">line</span>;</div><div class="line">        <span class="built_in">while</span>((<span class="built_in">line</span> = br.readLine())!=null)&#123;</div><div class="line">            System.out.<span class="built_in">println</span>(<span class="built_in">line</span>);<span class="comment">//一次读一行，不识别换行</span></div><div class="line"><span class="comment">//          bw.write(line);//单独写出换行操作</span></div><div class="line"><span class="comment">//          bw.newLine();//换行操作</span></div><div class="line">            </div><div class="line">            pw.<span class="built_in">println</span>(<span class="built_in">line</span>);<span class="comment">//一次读一行，可输出换行</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">            <span class="comment">//bw.flush();</span></div><div class="line">            pw.<span class="built_in">flush</span>();</div><div class="line">            br.<span class="built_in">close</span>();</div><div class="line">            <span class="comment">//bw.close();</span></div><div class="line">            pw.<span class="built_in">close</span>();</div></pre></td></tr></table></figure></p>
+<h2 id="对象的序列化和反序列化"><a href="#对象的序列化和反序列化" class="headerlink" title="对象的序列化和反序列化"></a>对象的序列化和反序列化</h2><p>1、对象序列化：就是将Object对象转换成byte序列，反之就是对象的反序列化。<br>2、序列化流(ObjectOutputStream是字节输出流)的核心方法————writeObject()<br>   反序列化流(ObjectInputStream是字节输入流)的核心方法————readObject()<br>3、对象要序列化需要实现序列化接口————Serializable<br>    对象必须实现序列化接口，才能进行序列化，否则将出现异常，<br>    这个接口，没有任何方法，只是一个标准<br>4、transient关键字<br>    被transient修饰的成员变量不会进行jvm默认的序列化，<br>    但可以自己完成该元素的序列化<br>5、一个类实现了序列化接口，其子类一定都可以进行序列化；<br>    对子类对象进行反序列化操作时，如果其父类没有实现序列化接口，则其父类的构造函数会被调用————当父类没实现Serializable接口，子类继承父类并实现Serializable接口，子类序列化时，父类的部分是没有被序列化的，那么反序列化的时候就没办法找到父类的部分，这时候怎么办呢，就调用父类构造器初始化父类部分。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1、对象要序列化需要实现序列化接口————Serializable</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> StudentSeriali <span class="keyword">implements</span> Serializable&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> stuAge;</div><div class="line">    <span class="comment">//被transient修饰的元素不会进行jvm默认的序列化，</span></div><div class="line">    <span class="comment">//但可以自己完成该元素的序列化</span></div><div class="line"></div><div class="line">    <span class="comment">//自己完成元素的序列化</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> writeObject(java.io.ObjectOutputStream s)</div><div class="line">    <span class="keyword">throws</span> java.io.IOException&#123;</div><div class="line"></div><div class="line">        s.defaultWriteObject();<span class="comment">//把jvm能默认序列化的元素进行序列化操作</span></div><div class="line">        </div><div class="line">        s.writeInt(stuAge);<span class="comment">//自己完成stuAge的序列化</span></div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//自己完成元素的反序列化</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> readObject(java.io.ObjectInputStream s)</div><div class="line">            <span class="keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;</div><div class="line">        s.defaultReadObject();<span class="comment">//把jvm能默认反序列化的元素进行反序列化操作</span></div><div class="line">        <span class="keyword">this</span>.stuAge  = s.readInt();<span class="comment">//自己完成stuAge的反序列化操作</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//2、对象序列化</span></div><div class="line">String <span class="keyword">file</span> = <span class="string">"d:\\test\\obj.dat"</span>;</div><div class="line">ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(</div><div class="line">        <span class="keyword">new</span> FileOutputStream(<span class="keyword">file</span>));</div><div class="line"></div><div class="line">StudentSeriali stu = <span class="keyword">new</span> StudentSeriali(<span class="string">"1001"</span>,<span class="string">"张三"</span>,<span class="number">20</span>);</div><div class="line"></div><div class="line">oos.writeObject(stu);</div><div class="line"></div><div class="line">oos.flush();</div><div class="line">oos.close();</div><div class="line"></div><div class="line"><span class="comment">//3、对象的反序列化</span></div><div class="line">ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(</div><div class="line">        <span class="keyword">new</span> FileInputStream(<span class="keyword">file</span>));</div><div class="line"></div><div class="line">StudentSeriali stu2 = (StudentSeriali)ois.readObject();</div><div class="line">System.out.<span class="keyword">println</span>(stu2);</div><div class="line"></div><div class="line">ois.close();</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag">#JAVA</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/how-to-use-ajax/" rel="next" title="ajax全接触">
+                <i class="fa fa-chevron-left"></i> ajax全接触
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/07/how-to-use-java-io-stream/"
+           data-title="JAVA IO流" data-url="https://aiolos123.github.io/2016/12/07/how-to-use-java-io-stream/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO流分类"><span class="nav-number">1.</span> <span class="nav-text">IO流分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO总结————字节序列是IO的根本"><span class="nav-number">2.</span> <span class="nav-text">IO总结————字节序列是IO的根本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java文件模型"><span class="nav-number">3.</span> <span class="nav-text">java文件模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件编码"><span class="nav-number">4.</span> <span class="nav-text">文件编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类的使用"><span class="nav-number">5.</span> <span class="nav-text">File类的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RandomAccessFile的使用"><span class="nav-number">6.</span> <span class="nav-text">RandomAccessFile的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用字节流对文件进行读写操作"><span class="nav-number">7.</span> <span class="nav-text">使用字节流对文件进行读写操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用字符流对文件进行读写操作"><span class="nav-number">8.</span> <span class="nav-text">使用字符流对文件进行读写操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节字符转换流"><span class="nav-number">8.1.</span> <span class="nav-text">字节字符转换流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符流文件读写流"><span class="nav-number">8.2.</span> <span class="nav-text">字符流文件读写流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符流的缓冲器"><span class="nav-number">8.3.</span> <span class="nav-text">字符流的缓冲器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的序列化和反序列化"><span class="nav-number">9.</span> <span class="nav-text">对象的序列化和反序列化</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

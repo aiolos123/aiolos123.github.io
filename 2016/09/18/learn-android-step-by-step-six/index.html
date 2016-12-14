@@ -1,0 +1,998 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本课程深入的讲解了Android中的四大组件、Service以及手势识别学习来源：http://www.imooc.com/learn/179">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android入门六">
+<meta property="og:url" content="https://aiolos123.github.io/2016/09/18/learn-android-step-by-step-six/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="本课程深入的讲解了Android中的四大组件、Service以及手势识别学习来源：http://www.imooc.com/learn/179">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/uri.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/service%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg">
+<meta property="og:updated_time" content="2016-10-10T06:40:38.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android入门六">
+<meta name="twitter:description" content="本课程深入的讲解了Android中的四大组件、Service以及手势识别学习来源：http://www.imooc.com/learn/179">
+<meta name="twitter:image" content="http://ocej2soxx.bkt.clouddn.com/uri.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/09/18/learn-android-step-by-step-six/"/>
+
+  <title> android入门六 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                android入门六
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T16:06:55+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/18/learn-android-step-by-step-six/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/learn-android-step-by-step-six/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/18/learn-android-step-by-step-six/" class="leancloud_visitors" data-flag-title="android入门六">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本课程深入的讲解了Android中的四大组件、Service以及手势识别<br>学习来源：<a href="http://www.imooc.com/learn/179" target="_blank" rel="external">http://www.imooc.com/learn/179</a><br><a id="more"></a></p>
+<h1 id="四大组件篇"><a href="#四大组件篇" class="headerlink" title="四大组件篇"></a>四大组件篇</h1><h2 id="四大组件之ContentProvider"><a href="#四大组件之ContentProvider" class="headerlink" title="四大组件之ContentProvider"></a>四大组件之ContentProvider</h2><p>Content Provider用于保存数据，以供其他程序通过Uri访问并进行增删改查等操作，类似于服务器的一个数据库。</p>
+<h3 id="何为Uri"><a href="#何为Uri" class="headerlink" title="何为Uri"></a>何为Uri</h3><pre><code>- Uri是指通用资源标志符，
+- 在android中的写法为：content://com.imooc.provider/music/#
+- 即表示将要操作的数据
+</code></pre><p><img src="http://ocej2soxx.bkt.clouddn.com/uri.jpg" alt="Uri的写法"></p>
+<p>使用UriMatcher类来解析Uri<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//UriMatcher.NO_MATCH表示不匹配任何路径的返回码</span></div><div class="line">UriMatcher matcher = <span class="keyword">new</span> UriMatcher(UriMatcher.NO_MATCH);</div><div class="line"></div><div class="line"><span class="comment">//matcher.addURI(B段,C段,返回code值)</span></div><div class="line">matcher.addURI(<span class="string">"com.pk.provider"</span>,<span class="string">"music"</span>,<span class="number">1</span>);</div><div class="line"><span class="comment">//往UriMatcher类的对象里添加一个拼接起来的Uri</span></div><div class="line"><span class="comment">//UriMatcher为一个Uri的容器，容器里面包含我们即将要操作的Uri</span></div><div class="line"><span class="comment">//如果通过match()方法匹配成功就返回code值</span></div><div class="line"></div><div class="line">matcher.<span class="keyword">match</span>(uri);</div><div class="line"><span class="comment">//首先与通过addURI()方法添加进来的Uri匹配</span></div><div class="line"><span class="comment">//匹配成功就返回设置的code值，反之返回UriMatcher.NO_MATCH常量(-1)</span></div></pre></td></tr></table></figure></p>
+<h3 id="使用ContentResolver操作ContentProvider中的数据"><a href="#使用ContentResolver操作ContentProvider中的数据" class="headerlink" title="使用ContentResolver操作ContentProvider中的数据"></a>使用ContentResolver操作ContentProvider中的数据</h3><p>1、当外部应用需要对ContentProvider中的数据进行增、删、改、查操作时，可以使用ContentResolver类来完成；<br>2、使用Activity提供的getContentResolver()方法获取ContentResolver对象；<br>3、ContentResolver类提供了与ContentProvider类签名完全一致的四个方法：<br>    insert()  //用于往ContentProvider添加数据<br>    delete()  //用于从ContentProvider删除数据<br>    update()  //用于更新ContentProvider中的数据<br>    query()   //用于从ContentProvider中获取数据</p>
+<p>4、使用系统自带的ContentProvider操作联系人的代码示例<br>注：<br>1、<strong>查询联系人需要在Manifest.xml中授权android.permission.READ_CONTACTS</strong><br>2、<strong>增加联系人需要在Manifest.xml中授权android.permission.WRITE_CONTACTS</strong><br>3、系统提供的ContentProvider有：<br>    查询联系人<br>    增加联系人<br>    短信的读取<br>    通话记录的读取<br>    多媒体的读取   图片、视频、音频<br>    等等</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> android.provider.<span class="type">ContactsContract</span>.<span class="type">CommonDataKinds</span>.<span class="type">Email</span>;</div><div class="line"><span class="keyword">import</span> android.provider.<span class="type">ContactsContract</span>.<span class="type">CommonDataKinds</span>.<span class="type">Phone</span>;</div><div class="line"><span class="keyword">import</span> android.provider.<span class="type">ContactsContract</span>.<span class="type">Contacts</span>;</div><div class="line"></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(<span class="type">R</span>.layout.activity_main);</div><div class="line">        </div><div class="line">        <span class="comment">//使用系统自带的ContentProvider</span></div><div class="line">        <span class="comment">//使用Activity提供的getContentResolver()方法获取ContentResolver对象</span></div><div class="line">        <span class="type">ContentResolver</span> cr = getContentResolver();</div><div class="line">        <span class="comment">//1、查询联系人的id和姓名</span></div><div class="line">        <span class="type">Cursor</span> c = cr.query(<span class="type">Contacts</span>.<span class="type">CONTENT_URI</span>, <span class="keyword">new</span> <span class="type">String</span>[]&#123;<span class="type">Contacts</span>._ID,<span class="type">Contacts</span>.<span class="type">DISPLAY_NAME</span>&#125;, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>);</div><div class="line">        <span class="keyword">if</span>(c!=<span class="literal">null</span>)&#123;</div><div class="line">            <span class="keyword">while</span> (c.moveToNext()) &#123;</div><div class="line">                int id = c.getInt(c.getColumnIndex(<span class="string">"_id"</span>));</div><div class="line">                <span class="type">Log</span>.i(<span class="string">"Contacts"</span>,<span class="string">"_id:"</span>+id);</div><div class="line">                <span class="type">Log</span>.i(<span class="string">"Contacts"</span>,<span class="string">"name:"</span>+c.getString(c.getColumnIndex(<span class="string">"display_name"</span>)));</div><div class="line">                </div><div class="line">                <span class="comment">//2、根据联系人的ID查询联系人的电话号码</span></div><div class="line">                <span class="type">Cursor</span> cursor = cr.query(<span class="type">Phone</span>.<span class="type">CONTENT_URI</span>, <span class="keyword">new</span> <span class="type">String</span>[]&#123;<span class="type">Phone</span>.<span class="type">NUMBER</span>,<span class="type">Phone</span>.<span class="type">TYPE</span>&#125;, <span class="type">Phone</span>.<span class="type">CONTACT_ID</span>+<span class="string">"="</span>+id, <span class="literal">null</span>, <span class="literal">null</span>);</div><div class="line">                <span class="keyword">if</span>(cursor!=<span class="literal">null</span>)&#123;</div><div class="line">                    <span class="keyword">while</span> (cursor.moveToNext()) &#123;</div><div class="line">                        int <span class="class"><span class="keyword">type</span> </span>= cursor.getInt(cursor.getColumnIndex(<span class="type">Phone</span>.<span class="type">TYPE</span>));</div><div class="line">                        <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">==</span> <span class="title">Phone</span>.<span class="title">TYPE_HOME</span>)</span>&#123;</div><div class="line">                            <span class="type">Log</span>.i(<span class="string">"Contacts"</span>,<span class="string">"家庭电话"</span>+cursor.getString(cursor.getColumnIndex(<span class="type">Phone</span>.<span class="type">NUMBER</span>)));</div><div class="line">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">==</span> <span class="title">Phone</span>.<span class="title">TYPE_MOBILE</span>)</span>&#123;</div><div class="line">                            <span class="type">Log</span>.i(<span class="string">"Contacts"</span>,<span class="string">"移动电话"</span>+cursor.getString(cursor.getColumnIndex(<span class="type">Phone</span>.<span class="type">NUMBER</span>)));</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    cursor.close();</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//3、根据联系人的ID去查询出联系人的邮箱地址</span></div><div class="line">                <span class="type">Cursor</span> c2 = cr.query(<span class="type">Email</span>.<span class="type">CONTENT_URI</span>, <span class="keyword">new</span> <span class="type">String</span>[]&#123;<span class="type">Email</span>.<span class="type">DATA</span>,<span class="type">Email</span>.<span class="type">TYPE</span>&#125;, <span class="type">Email</span>.<span class="type">CONTACT_ID</span>+<span class="string">"="</span>+id, <span class="literal">null</span>, <span class="literal">null</span>);</div><div class="line">                <span class="keyword">if</span>(c2!=<span class="literal">null</span>)&#123;</div><div class="line">                    <span class="keyword">while</span> (c2.moveToNext()) &#123;</div><div class="line">                        int <span class="class"><span class="keyword">type</span> </span>= c2.getInt(c2.getColumnIndex(<span class="type">Email</span>.<span class="type">TYPE</span>));</div><div class="line">                        <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span><span class="title">==Email</span>.<span class="title">TYPE_WORK</span>)</span>&#123;</div><div class="line">                            <span class="type">Log</span>.i(<span class="string">"Contacts"</span>,<span class="string">"工作邮箱："</span>+c2.getString(c2.getColumnIndex(<span class="type">Email</span>.<span class="type">DATA</span>)));</div><div class="line">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="class"><span class="keyword">type</span> <span class="title">==Email</span>.<span class="title">TYPE_HOME</span>)</span>&#123;</div><div class="line">                            <span class="type">Log</span>.i(<span class="string">"Contacts"</span>,<span class="string">"家庭邮箱："</span>+c2.getString(c2.getColumnIndex(<span class="type">Email</span>.<span class="type">DATA</span>)));</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    c2.close();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            c.close();</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//4、向联系人中插入一条记录</span></div><div class="line">        <span class="type">ContentValues</span> <span class="keyword">val</span> = <span class="keyword">new</span> <span class="type">ContentValues</span>();</div><div class="line">        <span class="type">Uri</span> uri = cr.insert(<span class="type">RawContacts</span>.<span class="type">CONTENT_URI</span>, <span class="keyword">val</span>);</div><div class="line">        <span class="type">Long</span> raw_contact_id = <span class="type">ContentUris</span>.parseId(uri);</div><div class="line">        <span class="keyword">val</span>.clear();</div><div class="line">        <span class="comment">//插入人名</span></div><div class="line">        <span class="keyword">val</span>.put(<span class="type">StructuredName</span>.<span class="type">RAW_CONTACT_ID</span>, raw_contact_id);</div><div class="line">        <span class="keyword">val</span>.put(<span class="type">StructuredName</span>.<span class="type">DISPLAY_NAME</span>,<span class="string">"张三"</span>);<span class="comment">//显示名称</span></div><div class="line">        <span class="keyword">val</span>.put(<span class="type">StructuredName</span>.<span class="type">MIMETYPE</span>,<span class="type">StructuredName</span>.<span class="type">CONTENT_ITEM_TYPE</span>);</div><div class="line">        uri=cr.insert(<span class="type">Data</span>.<span class="type">CONTENT_URI</span>, <span class="keyword">val</span>);</div><div class="line">        <span class="comment">//插入电话信息</span></div><div class="line">        <span class="keyword">val</span>.clear();</div><div class="line">        <span class="keyword">val</span>.put(<span class="type">Phone</span>.<span class="type">RAW_CONTACT_ID</span>, raw_contact_id);</div><div class="line">        <span class="keyword">val</span>.put(<span class="type">Phone</span>.<span class="type">NUMBER</span>, <span class="string">"1234567"</span>);</div><div class="line">        <span class="keyword">val</span>.put(<span class="type">Phone</span>.<span class="type">MIMETYPE</span>, <span class="type">Phone</span>.<span class="type">CONTENT_ITEM_TYPE</span>);</div><div class="line">        uri = cr.insert(<span class="type">Data</span>.<span class="type">CONTENT_URI</span>, <span class="keyword">val</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="如何实现自定义ContentProvider-实际意义不大"><a href="#如何实现自定义ContentProvider-实际意义不大" class="headerlink" title="如何实现自定义ContentProvider(实际意义不大)"></a>如何实现自定义ContentProvider(实际意义不大)</h3><p>1、自定义ContentProvider需继承抽象类ContentProvider，实现其一系列针对数据的增、删、改、查等方法；<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">MyContentProvider</span> <span class="selector-tag">extends</span> <span class="selector-tag">ContentProvider</span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//如只实现了增和删的方法，那么使用该provider的程序只有增和删的功能</span></div><div class="line">    <span class="comment">//在Content Provider创建后被调用</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public boolean onCreate() &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//根据uri查询出selection指定的条件所匹配的全部记录</span></div><div class="line">    <span class="comment">//并且可以指定查询哪些列 以什么方式排序</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public Cursor query(Uri uri, String[] projection, String selection,</div><div class="line">            String[] selectionArgs, String sortOrder) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//返回当前uri的MIME类型，如果该URI对应的数据可能包括多条记录</span></div><div class="line">    <span class="comment">//那么MIME类型字符串就是以vnd.android.dir/开头</span></div><div class="line">    <span class="comment">//如果该uri对应的数据只有一条，该MIME类型字符串以vnd.android.cursor.item/开头</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public String getType(Uri uri) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//根据Uri插入Values对应的数据时调用</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public Uri insert(Uri uri, ContentValues values) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//根据Uri删除selection指定的条件所匹配的全部记录时调用</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public int delete(Uri uri, String selection, String[] selectionArgs) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//根据uri修改selection指定的条件所匹配的全部记录</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public int update(Uri uri, ContentValues values, String selection,</div><div class="line">            String[] selectionArgs) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、在Manifest.xml中完成对ContentProvider的注册<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;provider</div><div class="line">    android:name = <span class="string">"com.pk.MusicProvider"</span></div><div class="line">    android:authorities = <span class="string">"com.provider.music"</span></div><div class="line">        &gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span></div><div class="line"><span class="comment">//注：注册的authorities属性值是全局唯一的</span></div></pre></td></tr></table></figure></p>
+<h2 id="四大组件之BroadcastReceiver"><a href="#四大组件之BroadcastReceiver" class="headerlink" title="四大组件之BroadcastReceiver"></a>四大组件之BroadcastReceiver</h2><p>Broadcast(广播)————是一种广泛运用在应用程序之间或其内部传输信息的机制，类似于广播电台；<br>roadcastReceiver(广播接收者)————是对发送出来的广播进行过滤接受并响应的一类组件，它就是用来接收来自系统和应用中的广播，类似于广播收音机；</p>
+<p>广播的用途：<br>    1、当开机完成后系统会产生一条广播，实现应用的开机自动启动<br>    2、当网络状态改变时系统会产生一条广播<br>    3、当电量改变时系统会产生一条广播</p>
+<h3 id="广播的使用方法"><a href="#广播的使用方法" class="headerlink" title="广播的使用方法"></a>广播的使用方法</h3><p>1、发送</p>
+<pre><code>- 把信息装入一个Intent对象(如Action、Category)
+- 通过调用相应的方法将Intent对象以广播方式发送出去
+    + sendBroadcast()
+    + sendOrderBroadcast()
+    + sendStickyBroadcast()
+</code></pre><p>2、接收<br>    当Intent发送以后，所有已经注册的BroadcastReceiver会检查注册时的IntentFilter是否与发送的Intent相匹配，若匹配则会调用BroadcastReceiver的onReceive()方法。所以当我们实现BroadcastReceiver抽象类的子类时，都需要实现onReceive()方法。</p>
+<p>注意：<br>1、BroadcastReciever需要注册，有2种方式：<br>    静态注册<br>    动态注册————在activity注销时一定要先销毁接收器<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> BroadcastReceiver br;</div><div class="line"></div><div class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onDestroy();</div><div class="line">    unregisterReceiver(br);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、BroadcastReciever需要匹配<br>3、BroadcastReciever生命周期只有5秒左右。<br>4、在BroadcastReciever中不要做比较耗时的操作，如果要做，应该通过发送Intent给Service,由Service完成<br>5、不能使用子线程（因为宿主进程BroadcastReciever被杀死）。<br>6、广播的种类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对比内容</th>
+<th style="text-align:center">普通广播(Normal broadcast)</th>
+<th style="text-align:center">有序广播(Ordered broadcast)</th>
+<th style="text-align:left">异步广播(粘滞性滞留广播)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">概念</td>
+<td style="text-align:center">所有监听该广播的广播接收者都可以监听到该广播</td>
+<td style="text-align:center">安装接收者的优先级顺序接收广播，优先级别再intent-filter中的priority中声明，-1000到1000之间，值越大优先级越高。可以终止广播意图的继续传播。接收者可以篡改内容</td>
+<td style="text-align:left">不能将处理结果传给下一个接收者，无法终止广播，用的较少</td>
+</tr>
+<tr>
+<td style="text-align:center">特点</td>
+<td style="text-align:center">同级别接收先后是随机的(无序)</td>
+<td style="text-align:center">同级别接收先后是随机的(无序)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">特点</td>
+<td style="text-align:center">级别低的后收到广播</td>
+<td style="text-align:center">级别低的后收到广播</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">特点</td>
+<td style="text-align:center">接收器不能截断广播的继续传播业不能处理广播</td>
+<td style="text-align:center">高级别接收器能截断广播的继续传播，也能处理广播</td>
+<td style="text-align:left">不能将处理结果传给下一个接收者，无法终止广播(一直都存在)</td>
+</tr>
+<tr>
+<td style="text-align:center">特点</td>
+<td style="text-align:center">同级别动态注册高于静态注册</td>
+<td style="text-align:center">同级别动态注册高于静态注册</td>
+</tr>
+</tbody>
+</table>
+<h3 id="普通广播的发送与接收代码示例"><a href="#普通广播的发送与接收代码示例" class="headerlink" title="普通广播的发送与接收代码示例"></a>普通广播的发送与接收代码示例</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">////</span><span class="number">1</span>、在MainActivity中发送一条普通广播<span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span>/</div><div class="line">                Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">                intent.putExtra(<span class="string">"msg"</span>, <span class="string">"这是一条普通广播"</span>);</div><div class="line">                intent.setAction(<span class="string">"BC_one"</span>);</div><div class="line">                sendBroadcast(intent);</div><div class="line"></div><div class="line"><span class="regexp">////</span><span class="regexp">//2、实现BroadcastReceiver抽象类来接收广播//</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BCOne_Receiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span>&#123;</span></div><div class="line">    </div><div class="line">    @Override<span class="regexp">//重写接收广播的方法</span></div><div class="line">    public void onReceive(Context context, Intent intent) &#123;</div><div class="line">        //接收广播</div><div class="line">        String msg = intent.getStringExtra(<span class="string">"msg"</span>);</div><div class="line">        Toast.makeText(context, msg+<span class="string">"1"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">        System.out.println(msg+<span class="string">"1"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="regexp">////</span><span class="regexp">/3、在Manifest中注册接收器BCOne_Receiver/</span><span class="regexp">////</span><span class="regexp">////</span>/</div><div class="line">&lt;application&gt;</div><div class="line">    &lt;activity&gt;...&lt;/activity&gt;</div><div class="line">    &lt;!-- 静态注册receiver<span class="function">  --&gt;</span></div><div class="line">    &lt;receiver</div><div class="line">        android:name=<span class="string">"com.example.howtousebroadcastreceiver.BCOne_Receiver"</span>&gt;           </div><div class="line">        &lt;intent-filter&gt;</div><div class="line">            &lt;action android:name=<span class="string">"BC_one"</span>/&gt;</div><div class="line">        &lt;/intent-filter&gt;</div><div class="line">    &lt;/receiver&gt; </div><div class="line">&lt;/application&gt;</div><div class="line"></div><div class="line"><span class="regexp">////</span>或者在MainActivity中动态注册接收器BCOne_Receiver</div><div class="line">    IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">"BC_one"</span>);</div><div class="line">    BCOne_Receiver bc1 = <span class="keyword">new</span> BCOne_Receiver();</div><div class="line">    registerReceiver(bc1, intentFilter);</div></pre></td></tr></table></figure>
+<h3 id="有序广播的发送与接收代码示例"><a href="#有序广播的发送与接收代码示例" class="headerlink" title="有序广播的发送与接收代码示例"></a>有序广播的发送与接收代码示例</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">////1、在MainActivity中发送一条有序广播/////////////////////////</span></div><div class="line">    <span class="type">Intent</span> intent2 = <span class="keyword">new</span> <span class="type">Intent</span>();</div><div class="line">    intent2.putExtra(<span class="string">"msg"</span>, <span class="string">"这是一条有序广播"</span>);</div><div class="line">    intent2.setAction(<span class="string">"BC_one"</span>);</div><div class="line">    sendOrderedBroadcast(intent2, <span class="literal">null</span>);</div><div class="line"><span class="comment">//////2、高级别接收器接收并处理广播或截断广播//////////</span></div><div class="line">    public <span class="class"><span class="keyword">class</span> <span class="title">BCTwo_Receiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    public void onReceive(<span class="type">Context</span> context, <span class="type">Intent</span> intent) &#123;</div><div class="line">        <span class="comment">//接收广播</span></div><div class="line">        <span class="type">String</span> msg = intent.getStringExtra(<span class="string">"msg"</span>);</div><div class="line">        <span class="type">Toast</span>.makeText(context, msg+<span class="string">"2"</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show();</div><div class="line">        <span class="type">System</span>.out.println(msg+<span class="string">"2"</span>);</div><div class="line">        <span class="comment">//截断广播，截断后低级别接收器不会再接收到广播</span></div><div class="line">        <span class="comment">//abortBroadcast();</span></div><div class="line">        </div><div class="line">        <span class="comment">//处理广播</span></div><div class="line">        <span class="type">Bundle</span> bundle = <span class="keyword">new</span> <span class="type">Bundle</span>();</div><div class="line">        bundle.putString(<span class="string">"test"</span>, <span class="string">"处理截断广播"</span>);</div><div class="line">        setResultExtras(bundle);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">///3、低级别接收器接收并处理广播/////////////////////////</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BCOne_Receiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    public void onReceive(<span class="type">Context</span> context, <span class="type">Intent</span> intent) &#123;</div><div class="line">        <span class="comment">//接收广播</span></div><div class="line">        <span class="type">String</span> msg = intent.getStringExtra(<span class="string">"msg"</span>);</div><div class="line">        <span class="type">Toast</span>.makeText(context, msg+<span class="string">"1"</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show();</div><div class="line">        <span class="type">System</span>.out.println(msg+<span class="string">"1"</span>);</div><div class="line">        </div><div class="line">        <span class="comment">//接收处理后的广播</span></div><div class="line">        <span class="type">Bundle</span> bundle = getResultExtras(<span class="literal">true</span>);</div><div class="line">        <span class="type">String</span> s = bundle.getString(<span class="string">"test"</span>);</div><div class="line">        <span class="type">System</span>.out.println(<span class="string">"处理后的数据"</span>+s);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">////////////4、在Manifest中注册接收器BCOne_Receiver，在MainActivity中动态注册接收器BCTwo_Receiver，形成注册器的级别差；或者都通过静态注册并设置priority属性值形成级别差/////</span></div><div class="line"></div><div class="line">    &lt;application&gt;</div><div class="line">        &lt;activity&gt;...&lt;/activity&gt;</div><div class="line">        &lt;!-- 静态注册receiver  --&gt;</div><div class="line">        &lt;receiver</div><div class="line">            android:name=<span class="string">"com.example.howtousebroadcastreceiver.BCOne_Receiver"</span>&gt;           </div><div class="line">            &lt;intent-filter&gt;</div><div class="line">                &lt;action android:name=<span class="string">"BC_one"</span>/&gt;</div><div class="line">            &lt;/intent-filter&gt;</div><div class="line">        &lt;/receiver&gt; </div><div class="line">    &lt;/application&gt;</div><div class="line">    </div><div class="line">    <span class="comment">////动态注册BCTwo_Receiver//////////////////////////</span></div><div class="line">        <span class="type">IntentFilter</span> intentFilter = <span class="keyword">new</span> <span class="type">IntentFilter</span>(<span class="string">"BC_one"</span>);</div><div class="line">        <span class="type">BCTwo_Receiver</span> bc2 = <span class="keyword">new</span> <span class="type">BCTwo_Receiver</span>();</div><div class="line">        registerReceiver(bc2, intentFilter);</div></pre></td></tr></table></figure>
+<h3 id="异步广播的发送与接收代码示例"><a href="#异步广播的发送与接收代码示例" class="headerlink" title="异步广播的发送与接收代码示例"></a>异步广播的发送与接收代码示例</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">////</span><span class="number">1</span>、在MainActivity中发送一条异步广播<span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span>/</div><div class="line">            <span class="regexp">//先发送异步广播后注册广播接收器</span></div><div class="line">            Intent intent3 = new Intent();</div><div class="line">            intent3.putExtra("msg", "这是一条异步广播");</div><div class="line">            intent3.setAction("BC_Three");</div><div class="line">            sendStickyBroadcast(intent3);</div><div class="line">            </div><div class="line">            //动态注册异步广播BCThree_Receiver</div><div class="line">            IntentFilter intentFilter = <span class="keyword">new</span> IntentFilter(<span class="string">"BC_Three"</span>);</div><div class="line">            br = <span class="keyword">new</span> BCThree_Receiver();</div><div class="line">            registerReceiver(br, intentFilter);</div><div class="line"></div><div class="line"><span class="regexp">////</span><span class="number">2</span>、接收器接收并处理广播<span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span>/</div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BCThree_Receiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span>&#123;</span></div><div class="line">    </div><div class="line">    @Override</div><div class="line">    public <span class="literal">void</span> onReceive(Context context, Intent intent) &#123;</div><div class="line">        <span class="regexp">// TODO Auto-generated method stub</span></div><div class="line">        //接收广播</div><div class="line">        System.out.println(<span class="string">"接收到一条异步广播"</span>);   </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="regexp">///3、在Manifest中为异步广播授权//</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span><span class="regexp">////</span>/</div><div class="line">&lt;uses-permission android:name=<span class="string">"android.permission.BROADCAST_STICKY"</span>/&gt;</div></pre></td></tr></table></figure>
+<h2 id="四大组件之Service"><a href="#四大组件之Service" class="headerlink" title="四大组件之Service"></a>四大组件之Service</h2><p>定义：</p>
+<pre><code>- 后台运行，不可见，没有界面
+- 优先级高于Activity
+- 继承关系与Activity类似，都继承自Context
+</code></pre><p>作用：</p>
+<pre><code>- 播放音乐、记录地理信息位置的改变、监听某种动作...
+</code></pre><p>类型：</p>
+<pre><code>- 本地服务，一般都用于应用程序内部
+    + startService stopService stopSelf stopSelfResult
+        * Start方式启动Service的特点：
+            - 服务跟启动源没有任何联系
+            - 无法得到服务对象
+    + bindService  unbindService
+        * Bind方式启动Service的特点：
+            - 通过Ibinder接口实例，返回一个ServiceConnection对象给启动源
+            - 通过ServiceConnection对象的相关方法可以得到Service对象
+- 远程服务，一般都用于同一个手机的Android系统内部的应用程序之间
+    + 通过实现IBinder接口
+</code></pre><p>注意：</p>
+<pre><code>- Service运行在主线程，不能用它来做耗时的请求或动作
+- 可以在服务中开一个线程，在线程中做耗时动作
+</code></pre><p>生命周期：<br><img src="http://ocej2soxx.bkt.clouddn.com/service%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg" alt="Servcice生命周期"><br>左侧为startService方式的生命周期，右侧为bindService方式的生命周期</p>
+<h3 id="Start方式启动Service代码示例"><a href="#Start方式启动Service代码示例" class="headerlink" title="Start方式启动Service代码示例"></a>Start方式启动Service代码示例</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、实现<span class="type">Service</span>抽象类的子类<span class="type">MyService</span>，并重写其中的方法</div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword">extends</span> <span class="title">Service</span></span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="number">2</span>、在<span class="type">Manifest</span>中注册<span class="type">MyService</span>服务</div><div class="line">    &lt;application&gt;</div><div class="line">        &lt;activity&gt;...&lt;/activity&gt;</div><div class="line">        &lt;!-- 注册<span class="type">Service</span> --&gt;</div><div class="line">        &lt;service android:name=<span class="string">"com.example.howtouseservice.MyService"</span>&gt;&lt;/service&gt;</div><div class="line">    &lt;/application&gt;</div><div class="line"><span class="number">3</span>、在<span class="type">MainActivity</span>中启动<span class="type">Service</span></div><div class="line">        <span class="type">Intent</span> in1;</div><div class="line">        <span class="comment">//启动Service</span></div><div class="line">            in1 = <span class="keyword">new</span> <span class="type">Intent</span>(<span class="type">MainActivity</span>.<span class="keyword">this</span>,<span class="type">MyService</span>.<span class="keyword">class</span>);</div><div class="line">            startService(in1);</div><div class="line">        <span class="comment">//停止Service</span></div><div class="line">            stopService(in1);</div></pre></td></tr></table></figure>
+<h3 id="Bind方式启动Service代码示例"><a href="#Bind方式启动Service代码示例" class="headerlink" title="Bind方式启动Service代码示例"></a>Bind方式启动Service代码示例</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、实现<span class="type">Service</span>抽象类的子类<span class="type">MyBindService</span>，并重写其中的方法</div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyBindService</span> <span class="keyword">extends</span> <span class="title">Service</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//声明继承自Binder的类，在其中返回想返回的参数即可</span></div><div class="line">    public <span class="class"><span class="keyword">class</span> <span class="title">MyBinder</span> <span class="keyword">extends</span> <span class="title">Binder</span></span>&#123;</div><div class="line">        <span class="comment">//想返回本服务的对象</span></div><div class="line">        public <span class="type">MyBindService</span> getService()&#123;</div><div class="line">            <span class="keyword">return</span> <span class="type">MyBindService</span>.<span class="keyword">this</span>;<span class="comment">//返回MyBindService对象</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    public <span class="type">IBinder</span> onBind(<span class="type">Intent</span> intent) &#123;</div><div class="line">        <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">        <span class="type">Log</span>.i(<span class="string">"MyBindService"</span>,<span class="string">"MyBindService---onBind()"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">MyBinder</span>();</div><div class="line">    &#125;</div><div class="line">    public void play()&#123;</div><div class="line">        <span class="type">Log</span>.i(<span class="string">"MyBindService"</span>,<span class="string">"MyBindService---play()"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="number">2</span>、在<span class="type">Manifest</span>中注册<span class="type">MyBindService</span>服务</div><div class="line">&lt;application&gt;</div><div class="line">        &lt;activity&gt;...&lt;/activity&gt;</div><div class="line">        &lt;!-- 注册<span class="type">Service</span> --&gt;</div><div class="line">        &lt;service android:name=<span class="string">"com.example.howtouseservice.MyBindService"</span>&gt;&lt;/service&gt;</div><div class="line">    &lt;/application&gt;</div><div class="line"><span class="number">3</span>、在<span class="type">MainActivity</span>中启动<span class="type">Service</span></div><div class="line">    <span class="type">Intent</span> in2;</div><div class="line">    <span class="type">ServiceConnection</span> coon;</div><div class="line">    <span class="type">MyBindService</span> service;</div><div class="line"></div><div class="line">    public void doClick(<span class="type">View</span> v) &#123;     </div><div class="line">            <span class="comment">//同时使用start和bind方式启动Service</span></div><div class="line">            startService(in2);</div><div class="line">            <span class="comment">//通过bind方式启动Service</span></div><div class="line">            in2 = <span class="keyword">new</span> <span class="type">Intent</span>(<span class="type">MainActivity</span>.<span class="keyword">this</span>,<span class="type">MyBindService</span>.<span class="keyword">class</span>);</div><div class="line">            <span class="comment">//实现ServiceConnection接口的方法</span></div><div class="line">            coon = <span class="keyword">new</span> <span class="type">ServiceConnection</span>()&#123;</div><div class="line">                <span class="comment">//当启动源与Service的成功连接之后将会自动调用该方法</span></div><div class="line">                <span class="meta">@Override</span></div><div class="line">                public void onServiceConnected(<span class="type">ComponentName</span> name,</div><div class="line">                        <span class="type">IBinder</span> binder) &#123;</div><div class="line">                    <span class="comment">//获得服务对象</span></div><div class="line">                    service = ((<span class="type">MyBinder</span>)binder).getService();</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//当启动源与Service的连接意外丢失时会调用该方法</span></div><div class="line">                <span class="comment">//如当Service崩溃了或被强行杀死时会调用该方法</span></div><div class="line">                <span class="comment">//如启动源与Service解除绑定时不会调用该方法</span></div><div class="line">                <span class="meta">@Override</span></div><div class="line">                public void onServiceDisconnected(<span class="type">ComponentName</span> name) &#123;</div><div class="line">                    <span class="comment">// TODO Auto-generated method stub </span></div><div class="line">                &#125;&#125;;</div><div class="line">            bindService(in2, coon, <span class="type">Service</span>.<span class="type">BIND_AUTO_CREATE</span>);</div><div class="line">            </div><div class="line">            <span class="comment">//操作服务对象</span></div><div class="line">            service.play();</div><div class="line"></div><div class="line">            <span class="comment">//停止服务</span></div><div class="line">            stopService(in2);</div><div class="line">            in2 = <span class="literal">null</span>;</div><div class="line">            <span class="comment">//解除绑定Service</span></div><div class="line">            unbindService(coon);</div><div class="line">            coon = <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//销毁Activity之前注销Service</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onDestroy() &#123;</div><div class="line">        <span class="keyword">if</span>(in2!=<span class="literal">null</span>)&#123;</div><div class="line">            stopService(in2);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(coon!=<span class="literal">null</span>)&#123;</div><div class="line">            unbindService(coon);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="Android中常用的系统服务"><a href="#Android中常用的系统服务" class="headerlink" title="Android中常用的系统服务"></a>Android中常用的系统服务</h1><h2 id="常用的系统服务"><a href="#常用的系统服务" class="headerlink" title="常用的系统服务"></a>常用的系统服务</h2><p>后台Service在系统启动时被SystemServer开启，常用的系统服务有：</p>
+<pre><code>- MountService  监听是否有SD卡安装及移除
+- ClipboardService 剪切板功能
+- PackageManagerService 提供软件包的安装移除及查看
+- 电量、网络连接状态等等
+</code></pre><p>主要使用getSystemService(String NAME)获取系统服务,它是Activity的一个方法，传入NAME参数–&gt;返回Object对象–&gt;转换为服务对象</p>
+<p><strong>注意：获取系统服务常需要在Manifest文件中添加相关权限</strong></p>
+<p>代码示例<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//判断网络是否连接</span></div><div class="line"><span class="comment">//要在Manifest文件中添加ACCESS_NETWORK_STATE权限</span></div><div class="line">ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);</div><div class="line">NetworkInfo ni = cm.getActiveNetworkInfo();</div><div class="line">    <span class="keyword">if</span>(ni!=<span class="literal">null</span>)&#123;<span class="comment">//ni非null,网络连接存在</span></div><div class="line">        Toast.makeText(<span class="keyword">this</span>, <span class="string">"网络是否连接?"</span>+ni.isAvailable(), Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        Toast.makeText(<span class="keyword">this</span>, <span class="string">"网络未连接"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//开关WIFI</span></div><div class="line"><span class="comment">//要在Manifest文件中添加ACCESS_WIFI_STATE和CHANGE_WIFI_STATE权限</span></div><div class="line">WifiManager wm = (WifiManager)getSystemService(WIFI_SERVICE);</div><div class="line"><span class="keyword">if</span>(wm.isWifiEnabled())&#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"WIFI处于开启状态"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">    wm.setWifiEnabled(<span class="literal">false</span>);<span class="comment">//关闭WIFI</span></div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"WIFI已关闭"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"WIFI处于关闭状态"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">    wm.setWifiEnabled(<span class="literal">true</span>);<span class="comment">//开启WIFI</span></div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"WIFI已开启"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div><div class="line"><span class="keyword">break</span>;</div><div class="line"><span class="comment">//获取系统音量</span></div><div class="line">AudioManager am = (AudioManager)getSystemService(AUDIO_SERVICE);</div><div class="line">int max = am.getStreamMaxVolume(AudioManager.STREAM_SYSTEM);</div><div class="line">int current = am.getStreamVolume(AudioManager.STREAM_RING);</div><div class="line">Toast.makeText(<span class="keyword">this</span>, <span class="string">"系统最大音量"</span>+max+<span class="string">",系统当前音量"</span>+current, Toast.LENGTH_SHORT).show();</div></pre></td></tr></table></figure></p>
+<h1 id="手势识别篇"><a href="#手势识别篇" class="headerlink" title="手势识别篇"></a>手势识别篇</h1><p>实现手势识别的2种方式：</p>
+<pre><code>- 使用GestureDetector
+- 使用GestureOverlayView
+</code></pre><p>名词介绍：<br>    一、MotionEvent：<br>         1、用于封装手势、触摸笔、轨迹球等动作事件<br>         2、内部封装用于记录横轴和纵轴坐标的属性X和Y<br>    二、GestureDetector<br>        1、识别各种手势<br>        2、触摸屏上的手势动作：按下、移动、抬起<br>        3、重载onTouch或者设置setOnTouchListener实现触摸事件<br>        4、GestureDetector提供了两个监听器<br>            a、OnGestureListener接口处理单击类消息<br>                    onDown()————点击<br>                    onSingleTapUp()————抬起<br>                    onShowPress————短按<br>                    onLongPress————长按<br>                    onScroll————滚动<br>                    onFling————滑动<br>            b、OnDoubleTapListener接口处理双击类消息<br>                    onDoubleTap()  双击<br>                    onDoubleTapEvent()  双击按下和抬起各触发一次<br>                    onSingleTapConfirmed()  点击确认，即很快的按下并抬起，但并不连续点击第二下<br>        5、继承SimpleOnGestureListener,重载感兴趣的手势方法即可<br>    三、OnGestureListener接口<br>        1、手势交互的监听接口，其提供多个抽象方法<br>        2、根据GestureDetector的手势识别结果调用相对应的方法</p>
+<h2 id="使用GestureDetector进行手势识别"><a href="#使用GestureDetector进行手势识别" class="headerlink" title="使用GestureDetector进行手势识别"></a>使用GestureDetector进行手势识别</h2><p>GestureDetector手势交互过程：<br>    1、手指触屏一刹那，触发MotionEvent事件<br>    2、这个MotionEvent事件被OnTouchListener监听，在其onTouch()中获得MotionEvent事件对象<br>    3、在OnTouchListener监听器中，GestureDetector对象转发MotionEvent事件对象到OnGestureListener接口<br>    4、在OnGestureListener接口(常继承自SimpleOnGestureListener)的实现类中获得该MotionEvent事件对象，重载感兴趣的手势，根据该对象封装的信息做出合适的处理。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="type">ImageView</span> img;</div><div class="line">    <span class="keyword">private</span> <span class="type">GestureDetector</span> myGestureDetector;</div><div class="line">    </div><div class="line">    <span class="comment">//3、自定义继承自SimpleOnGestureListener的子类,重载感兴趣的手势方法</span></div><div class="line">    <span class="comment">//在OnGestureListener接口中获得该MotionEvent事件对象，</span></div><div class="line">    <span class="comment">//根据该对象封装的信息做出合适的处理。</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">myGestureListener</span> <span class="keyword">extends</span> <span class="title">SimpleOnGestureListener</span></span>&#123;</div><div class="line">        </div><div class="line">        <span class="meta">@Override</span></div><div class="line">        public boolean onFling(<span class="type">MotionEvent</span> e1, <span class="type">MotionEvent</span> e2, float velocityX,</div><div class="line">                float velocityY) &#123;</div><div class="line">            <span class="comment">//MotionEvent e1 为起始位置事件</span></div><div class="line">            <span class="comment">//MotionEvent e2 为终止位置事件</span></div><div class="line">            <span class="keyword">if</span>(e1.getX() - e2.getX()&gt;<span class="number">50</span>)&#123;</div><div class="line">                <span class="comment">//向左滑动</span></div><div class="line">                <span class="type">Toast</span>.makeText(<span class="type">MainActivity</span>.<span class="keyword">this</span>, <span class="string">"从右向左滑动"</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show();</div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(e2.getX() - e1.getX()&gt;<span class="number">50</span>)&#123;</div><div class="line">                <span class="type">Toast</span>.makeText(<span class="type">MainActivity</span>.<span class="keyword">this</span>, <span class="string">"从左向右滑动"</span>, <span class="type">Toast</span>.<span class="type">LENGTH_SHORT</span>).show();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.onFling(e1, e2, velocityX, velocityY);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(<span class="type">R</span>.layout.activity_main);</div><div class="line"></div><div class="line">        img = (<span class="type">ImageView</span>)findViewById(<span class="type">R</span>.id.img);</div><div class="line">        <span class="comment">//4、初始化GestureDetector对象</span></div><div class="line">        myGestureDetector = <span class="keyword">new</span> <span class="type">GestureDetector</span>(<span class="type">MainActivity</span>.<span class="keyword">this</span>,<span class="keyword">new</span> myGestureListener());</div><div class="line">        <span class="comment">//设置监听器</span></div><div class="line">        img.setOnTouchListener(<span class="keyword">new</span> <span class="type">OnTouchListener</span>() &#123;</div><div class="line">            </div><div class="line">            <span class="meta">@Override</span><span class="comment">//1、手指触屏一刹那，可以捕获到触摸屏幕发生的MotionEvent事件</span></div><div class="line">            public boolean onTouch(<span class="type">View</span> v, <span class="type">MotionEvent</span> event) &#123;</div><div class="line">                <span class="comment">//2、GestureDetector对象转发MotionEvent事件对象到OnGestureListener接口————常为SimpleOnGestureListener的子类</span></div><div class="line">                myGestureDetector.onTouchEvent(event);</div><div class="line">                </div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用GestureOverlayView进行手势识别"><a href="#使用GestureOverlayView进行手势识别" class="headerlink" title="使用GestureOverlayView进行手势识别"></a>使用GestureOverlayView进行手势识别</h2><p>GestureOverlayView控件：<br>    一种用于手势输入的透明覆盖层，可覆盖在其他控件的上方，也可包含其他控件。存在3个监听器接口：<br>       GestureOverlayView.OnGestureListener     手势监听器<br>       GestureOverlayView.OnGesturePerformedListener  手势执行监听器<br>       GestureOverlayView.OnGesturingListener     手势执行中监听器</p>
+<p>使用GestureOverlayView控件的步骤：<br>    1、使用Gestures Builder生成手势文件并导出，手势文件位于：/mnt/sdcard/gestures或查看Toast提示<br>    2、将文件粘贴到项目中的res/raw/文件夹下<br>    3、创建GestureOverlayView控件来使用手势识别</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>、在xml布局文件中添加GestureOverlayView控件</div><div class="line">&lt;RelativeLayout&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;android.gesture.GestureOverlayView</div><div class="line">        android:id=<span class="string">"@+id/gov"</span></div><div class="line">        android:layout_width=<span class="string">"match_parent"</span></div><div class="line">        android:layout_height=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">        &lt;ImageView</div><div class="line">            android:layout_width=<span class="string">"match_parent"</span></div><div class="line">            android:layout_height=<span class="string">"match_parent"</span></div><div class="line">            android:src=<span class="string">"@mipmap/ic_launcher"</span>/&gt;</div><div class="line"></div><div class="line">    &lt;/android.gesture.GestureOverlayView&gt;</div><div class="line">&lt;/RelativeLayout&gt;</div><div class="line">2、在MainActivity中编写代码</div><div class="line"><span class="keyword">public</span> class MainActivity <span class="keyword">extends</span> Activity &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> GestureOverlayView gov;</div><div class="line">    GestureLibrary library;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        <span class="comment">//1、找到刚才的预设定的手势文件</span></div><div class="line">        <span class="comment">//2、加载手势文件里的所有手势</span></div><div class="line">        <span class="comment">//3、匹配识别手势</span></div><div class="line">        </div><div class="line">        gov = (GestureOverlayView)findViewById(R.id.gov);</div><div class="line">        </div><div class="line">        <span class="comment">//从raw资源中加载手势文件</span></div><div class="line">        library = GestureLibraries.fromRawResource(<span class="keyword">this</span>,R.raw.gestures);</div><div class="line">        library.load();</div><div class="line"></div><div class="line">        <span class="comment">//为GestureOverlayView控件添加手势执行监听器</span></div><div class="line">        gov.addOnGesturePerformedListener(<span class="keyword">new</span> GestureOverlayView.OnGesturePerformedListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onGesturePerformed</span><span class="params">(GestureOverlayView overlay, Gesture gesture)</span> </span>&#123;</div><div class="line">                <span class="comment">//读出手势库中的内容，即识别手势</span></div><div class="line">                ArrayList&lt;Prediction&gt; myGesture = library.recognize(gesture);</div><div class="line">                <span class="comment">//遍历手势</span></div><div class="line">                Prediction prediction = myGesture.get(<span class="number">0</span>);</div><div class="line">                <span class="comment">//判断相似度</span></div><div class="line">                <span class="keyword">if</span> (prediction.score&gt;=<span class="number">5.0</span>)&#123;</div><div class="line">                    <span class="comment">//识别手势</span></div><div class="line">                    <span class="keyword">switch</span> (prediction.name)&#123;</div><div class="line">                        <span class="keyword">case</span> <span class="string">"exit"</span>:</div><div class="line">                            finish();</div><div class="line">                            <span class="keyword">break</span>;</div><div class="line">                        <span class="keyword">case</span> <span class="string">"next"</span>:</div><div class="line">                            Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"next手势"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">                            <span class="keyword">break</span>;</div><div class="line">                        <span class="keyword">case</span> <span class="string">"prev"</span>:</div><div class="line">                            Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"prev手势"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">                            <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"没有该手势"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>GestureOverlayView控件的一些常见XML属性：<br>    android:eventsInterceptionEnabled   定义当手势已经被识别出来时，是否拦截该手势动作<br>    android:fadeDuration  当用户画完，手势效果淡出的时间<br>    android:fadeEnabled  用户画完之后，手势是否自动淡出<br>    android:gestureColor 手势的颜色<br>    android:gestureStrokeType  手势笔画的类型<br>    android:gestureStrokeWidth  手势笔画的宽度</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/14/learn-android-step-by-step-four/" rel="next" title="android入门四">
+                <i class="fa fa-chevron-left"></i> android入门四
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/18/learn-android-step-by-step-five/" rel="prev" title="android入门五">
+                android入门五 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/18/learn-android-step-by-step-six/"
+           data-title="android入门六" data-url="https://aiolos123.github.io/2016/09/18/learn-android-step-by-step-six/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#四大组件篇"><span class="nav-number">1.</span> <span class="nav-text">四大组件篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件之ContentProvider"><span class="nav-number">1.1.</span> <span class="nav-text">四大组件之ContentProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为Uri"><span class="nav-number">1.1.1.</span> <span class="nav-text">何为Uri</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ContentResolver操作ContentProvider中的数据"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用ContentResolver操作ContentProvider中的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现自定义ContentProvider-实际意义不大"><span class="nav-number">1.1.3.</span> <span class="nav-text">如何实现自定义ContentProvider(实际意义不大)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件之BroadcastReceiver"><span class="nav-number">1.2.</span> <span class="nav-text">四大组件之BroadcastReceiver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#广播的使用方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">广播的使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通广播的发送与接收代码示例"><span class="nav-number">1.2.2.</span> <span class="nav-text">普通广播的发送与接收代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序广播的发送与接收代码示例"><span class="nav-number">1.2.3.</span> <span class="nav-text">有序广播的发送与接收代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步广播的发送与接收代码示例"><span class="nav-number">1.2.4.</span> <span class="nav-text">异步广播的发送与接收代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件之Service"><span class="nav-number">1.3.</span> <span class="nav-text">四大组件之Service</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Start方式启动Service代码示例"><span class="nav-number">1.3.1.</span> <span class="nav-text">Start方式启动Service代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bind方式启动Service代码示例"><span class="nav-number">1.3.2.</span> <span class="nav-text">Bind方式启动Service代码示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android中常用的系统服务"><span class="nav-number">2.</span> <span class="nav-text">Android中常用的系统服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的系统服务"><span class="nav-number">2.1.</span> <span class="nav-text">常用的系统服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手势识别篇"><span class="nav-number">3.</span> <span class="nav-text">手势识别篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用GestureDetector进行手势识别"><span class="nav-number">3.1.</span> <span class="nav-text">使用GestureDetector进行手势识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用GestureOverlayView进行手势识别"><span class="nav-number">3.2.</span> <span class="nav-text">使用GestureOverlayView进行手势识别</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

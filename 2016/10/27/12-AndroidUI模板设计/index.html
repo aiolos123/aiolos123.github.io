@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="学习如何动态创建组件、设计动态模板，以及模板化开发视频来源：http://www.imooc.com/learn/247">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android学习12————Android UI模板设计">
+<meta property="og:url" content="https://aiolos123.github.io/2016/10/27/12-AndroidUI模板设计/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="学习如何动态创建组件、设计动态模板，以及模板化开发视频来源：http://www.imooc.com/learn/247">
+<meta property="og:updated_time" content="2016-10-31T08:08:45.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android学习12————Android UI模板设计">
+<meta name="twitter:description" content="学习如何动态创建组件、设计动态模板，以及模板化开发视频来源：http://www.imooc.com/learn/247">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/10/27/12-AndroidUI模板设计/"/>
+
+  <title> android学习12————Android UI模板设计 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                android学习12————Android UI模板设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T17:21:43+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/27/12-AndroidUI模板设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/27/12-AndroidUI模板设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/27/12-AndroidUI模板设计/" class="leancloud_visitors" data-flag-title="android学习12————Android UI模板设计">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学习如何动态创建组件、设计动态模板，以及模板化开发<br>视频来源：<a href="http://www.imooc.com/learn/247" target="_blank" rel="external">http://www.imooc.com/learn/247</a><br><a id="more"></a></p>
+<h2 id="创建模板的步骤"><a href="#创建模板的步骤" class="headerlink" title="创建模板的步骤"></a>创建模板的步骤</h2><p>1、定义atts.xml文件，声明需要的自定义属性<br>2、创建自定义View,将控件组合起来，实现需求<br>3、在布局xml中使用自定义View</p>
+<h2 id="自定义控件属性"><a href="#自定义控件属性" class="headerlink" title="自定义控件属性"></a>自定义控件属性</h2><p>新建atts.xml文件：(res –&gt;values –&gt; atts.xml –&gt; Finish)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--使用declare-styleable申明自定义属性--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"Topbar"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--使用attr标签声明自定义属性的名称--&gt;</span></div><div class="line">        <span class="comment">&lt;!--定义标题文字内容属性，format指定在xml布局文件中引用资源的类型--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"title"</span> <span class="attr">format</span>=<span class="string">"string"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!--定义标题文字大小属性，format指定在xml布局文件中引用资源的类型--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"titleTextSize"</span> <span class="attr">format</span>=<span class="string">"dimension"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!--定义标题文字颜色属性，format指定在xml布局文件中引用资源的类型--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"titleTextColor"</span> <span class="attr">format</span>=<span class="string">"color"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"leftText"</span> <span class="attr">format</span>=<span class="string">"string"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"leftTextColor"</span> <span class="attr">format</span>=<span class="string">"color"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!--reference表示引用资源中的文件--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"leftBackground"</span> <span class="attr">format</span>=<span class="string">"color|reference"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"rightText"</span> <span class="attr">format</span>=<span class="string">"string"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"rightTextColor"</span> <span class="attr">format</span>=<span class="string">"color"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"rightBackground"</span> <span class="attr">format</span>=<span class="string">"color|reference"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="创建自定义View"><a href="#创建自定义View" class="headerlink" title="创建自定义View"></a>创建自定义View</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UITemplateLearn_Topbar</span> <span class="keyword">extends</span> <span class="title">RelativeLayout</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//声明自定义View所需要的控件</span></div><div class="line">    <span class="keyword">private</span> Button leftBtn,rightBtn;</div><div class="line">    <span class="keyword">private</span> TextView tv_title;</div><div class="line"></div><div class="line">    <span class="comment">//声明这些控件所用到的属性，即atts.xml中定义的属性</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> leftTextColor;</div><div class="line">    <span class="keyword">private</span> Drawable leftBackground;</div><div class="line">    <span class="keyword">private</span> String leftText;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rightTextColor;</div><div class="line">    <span class="keyword">private</span> Drawable rightBackground;</div><div class="line">    <span class="keyword">private</span> String rightText;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String title;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> titleTextSize;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> titleTextColor;</div><div class="line"></div><div class="line">    <span class="comment">//申明LayoutParams布局属性</span></div><div class="line">    <span class="keyword">private</span> LayoutParams leftParams,rightParams,titleParams;</div><div class="line"></div><div class="line">    <span class="comment">//声明接口</span></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TopbarClickListener</span></span>&#123;</div><div class="line">        <span class="comment">//左button点击事件</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">leftClick</span><span class="params">()</span></span>;</div><div class="line">        <span class="comment">//右button点击事件</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rightClick</span><span class="params">()</span></span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//声明接口对象</span></div><div class="line">    <span class="keyword">private</span> TopbarClickListener listener;</div><div class="line"></div><div class="line">    <span class="comment">//接口回调</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnTopbarListener</span><span class="params">(TopbarClickListener listener)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.listener = listener;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//实现带自定义属性attrs参数的构造方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UITemplateLearn_Topbar</span><span class="params">(<span class="keyword">final</span> Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">        <span class="comment">//一、关联控件与属性，基本思路：获取atts.xml中自定义的属性，将其值赋于控件</span></div><div class="line">        <span class="comment">//具体实现如下：</span></div><div class="line">        <span class="comment">//1、通过TypedArray来存储atts.xml中自定义的属性及其值的键值对映射</span></div><div class="line">        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Topbar);</div><div class="line">        <span class="comment">//从TypedArray中获取属性的属性值</span></div><div class="line">        leftTextColor = typedArray.getColor(R.styleable.Topbar_leftTextColor,<span class="number">0</span>);</div><div class="line">        leftBackground = typedArray.getDrawable(R.styleable.Topbar_leftBackground);</div><div class="line">        leftText= typedArray.getString(R.styleable.Topbar_leftText);</div><div class="line"></div><div class="line">        rightTextColor = typedArray.getColor(R.styleable.Topbar_rightTextColor,<span class="number">0</span>);</div><div class="line">        rightBackground = typedArray.getDrawable(R.styleable.Topbar_rightBackground);</div><div class="line">        rightText = typedArray.getString(R.styleable.Topbar_rightText);</div><div class="line"></div><div class="line">        title = typedArray.getString(R.styleable.Topbar_tit);</div><div class="line">        titleTextSize = typedArray.getDimension(R.styleable.Topbar_titTextSize,<span class="number">0</span>);</div><div class="line">        titleTextColor = typedArray.getColor(R.styleable.Topbar_titTextColor,<span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="comment">//回收TypedArray对象</span></div><div class="line">        typedArray.recycle();</div><div class="line"></div><div class="line">        <span class="comment">//2、关联控件与属性值————实例化控件，将属性值赋于控件</span></div><div class="line">        leftBtn = <span class="keyword">new</span> Button(context);</div><div class="line">        rightBtn = <span class="keyword">new</span> Button(context);</div><div class="line">        tv_title = <span class="keyword">new</span> TextView(context);</div><div class="line"></div><div class="line">        <span class="comment">//////////将属性值赋于控件////////////////////</span></div><div class="line">        leftBtn.setTextColor(leftTextColor);</div><div class="line">        leftBtn.setBackground(leftBackground);</div><div class="line">        leftBtn.setText(leftText);</div><div class="line"></div><div class="line">        rightBtn.setTextColor(rightTextColor);</div><div class="line">        rightBtn.setBackground(rightBackground);</div><div class="line">        rightBtn.setText(rightText);</div><div class="line"></div><div class="line">        tv_title.setTextSize(titleTextSize);</div><div class="line">        tv_title.setTextColor(titleTextColor);</div><div class="line">        tv_title.setText(title);</div><div class="line">        tv_title.setGravity(Gravity.CENTER);<span class="comment">//文字居中</span></div><div class="line"></div><div class="line">        <span class="comment">//为ViewGroup设置背景色</span></div><div class="line">        setBackgroundColor(<span class="number">0xFFF59563</span>);</div><div class="line"></div><div class="line">        <span class="comment">//二、将控件以LayoutParams方式添加到ViewGroup中</span></div><div class="line">        <span class="comment">//要将控件放到layout中，就需要用到LayoutParams；在代码中布局控件的方式类似于xml文件</span></div><div class="line">        <span class="comment">//所有布局属性都在LayoutParams中进行设置</span></div><div class="line">        leftParams = <span class="keyword">new</span> LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);<span class="comment">//宽高</span></div><div class="line">        leftParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,TRUE);<span class="comment">//居左对齐</span></div><div class="line">        addView(leftBtn,leftParams);</div><div class="line"></div><div class="line">        rightParams = <span class="keyword">new</span> LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);<span class="comment">//宽高</span></div><div class="line">        rightParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,TRUE);<span class="comment">//居右对齐</span></div><div class="line">        addView(rightBtn,rightParams);</div><div class="line"></div><div class="line">        titleParams = <span class="keyword">new</span> LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);</div><div class="line">        titleParams.addRule(RelativeLayout.CENTER_IN_PARENT);<span class="comment">//居中对齐</span></div><div class="line">        addView(tv_title,titleParams);</div><div class="line"></div><div class="line">        <span class="comment">//三、为自定义View中的控件添加响应事件</span></div><div class="line">        leftBtn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                listener.leftClick();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        rightBtn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                listener.rightClick();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//为自定义View增加更多功能</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLeftBtnIsVisable</span><span class="params">(<span class="keyword">boolean</span> flag)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(flag)&#123;</div><div class="line">            leftBtn.setVisibility(View.VISIBLE);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            leftBtn.setVisibility(View.GONE);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用自定义View"><a href="#使用自定义View" class="headerlink" title="使用自定义View"></a>使用自定义View</h2><p>1、使用自定义View创建xml布局文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span></span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    <span class="attr">xmlns:custom</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--使用自定义的View--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">com.xg.bas.UITemplateLearn_Topbar</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"40dp"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/topbar"</span></div><div class="line">        <span class="attr">custom:leftBackground</span>=<span class="string">"#FFF000"</span></div><div class="line">        <span class="attr">custom:leftText</span>=<span class="string">"Back"</span></div><div class="line">        <span class="attr">custom:leftTextColor</span>=<span class="string">"#FFFFFF"</span></div><div class="line">        <span class="attr">custom:rightBackground</span>=<span class="string">"#FFF000"</span></div><div class="line">        <span class="attr">custom:rightText</span>=<span class="string">"More"</span></div><div class="line">        <span class="attr">custom:rightTextColor</span>=<span class="string">"#FFFFFF"</span></div><div class="line">        <span class="attr">custom:title</span>=<span class="string">"自定义标题"</span></div><div class="line">        <span class="attr">custom:titTextColor</span>=<span class="string">"#123412"</span></div><div class="line">        <span class="attr">custom:titTextSize</span>=<span class="string">"10sp"</span></div><div class="line">        /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>2、在Activity中使用自定义View<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">UITtemplateShowActivity</span> <span class="selector-tag">extends</span> <span class="selector-tag">Activity</span> &#123;</div><div class="line"></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super<span class="selector-class">.onCreate</span>(savedInstanceState);</div><div class="line"></div><div class="line">        <span class="comment">//使用自定义View</span></div><div class="line">        setContentView(R<span class="selector-class">.layout</span><span class="selector-class">.uitemplate</span>);</div><div class="line">        UITemplateLearn_Topbar topbar = (UITemplateLearn_Topbar) findViewById(R<span class="selector-class">.id</span><span class="selector-class">.topbar</span>);</div><div class="line"></div><div class="line">        <span class="comment">//绑定事件</span></div><div class="line">        <span class="selector-tag">topbar</span><span class="selector-class">.setOnTopbarListener</span>(new UITemplateLearn_Topbar.TopbarClickListener() &#123;</div><div class="line">            <span class="variable">@Override</span></div><div class="line">            public void leftClick() &#123;</div><div class="line">                Toast<span class="selector-class">.makeText</span>(UITtemplateShowActivity.this,<span class="string">"left btn is clicked"</span>,Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="variable">@Override</span></div><div class="line">            public void rightClick() &#123;</div><div class="line">                Toast<span class="selector-class">.makeText</span>(UITtemplateShowActivity.this,<span class="string">"right btn is clicked"</span>,Toast.LENGTH_SHORT)<span class="selector-class">.show</span>();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        <span class="comment">//使用更多功能</span></div><div class="line">        <span class="selector-tag">topbar</span><span class="selector-class">.setLeftBtnIsVisable</span>(false);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、自定义控件属性的文件格式都是类似上述的atts.xml的，只要修改name和format属性即可直接使用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/18/11-Android属性动画赏析/" rel="next" title="android学习11————Android属性动画赏析">
+                <i class="fa fa-chevron-left"></i> android学习11————Android属性动画赏析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/13-Android打造万能适配器/" rel="prev" title="android学习13————打造万能适配器">
+                android学习13————打造万能适配器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/27/12-AndroidUI模板设计/"
+           data-title="android学习12————Android UI模板设计" data-url="https://aiolos123.github.io/2016/10/27/12-AndroidUI模板设计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建模板的步骤"><span class="nav-number">1.</span> <span class="nav-text">创建模板的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义控件属性"><span class="nav-number">2.</span> <span class="nav-text">自定义控件属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建自定义View"><span class="nav-number">3.</span> <span class="nav-text">创建自定义View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用自定义View"><span class="nav-number">4.</span> <span class="nav-text">使用自定义View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

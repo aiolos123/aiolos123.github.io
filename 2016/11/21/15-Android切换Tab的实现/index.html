@@ -1,0 +1,910 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本节课程讲解4中App主界面Tab实现方法,及自定义ViewPagerIndicator的实现视频来源：http://www.imooc.com/learn/264http://www.imooc.com/learn/615">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android切换Tab的实现">
+<meta property="og:url" content="https://aiolos123.github.io/2016/11/21/15-Android切换Tab的实现/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="本节课程讲解4中App主界面Tab实现方法,及自定义ViewPagerIndicator的实现视频来源：http://www.imooc.com/learn/264http://www.imooc.com/learn/615">
+<meta property="og:updated_time" content="2016-11-24T06:36:11.339Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android切换Tab的实现">
+<meta name="twitter:description" content="本节课程讲解4中App主界面Tab实现方法,及自定义ViewPagerIndicator的实现视频来源：http://www.imooc.com/learn/264http://www.imooc.com/learn/615">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2016/11/21/15-Android切换Tab的实现/"/>
+
+  <title> Android切换Tab的实现 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android切换Tab的实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T13:56:59+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/21/15-Android切换Tab的实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/21/15-Android切换Tab的实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/21/15-Android切换Tab的实现/" class="leancloud_visitors" data-flag-title="Android切换Tab的实现">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本节课程讲解4中App主界面Tab实现方法,及自定义ViewPagerIndicator的实现<br>视频来源：<br><a href="http://www.imooc.com/learn/264" target="_blank" rel="external">http://www.imooc.com/learn/264</a><br><a href="http://www.imooc.com/learn/615" target="_blank" rel="external">http://www.imooc.com/learn/615</a><br><a id="more"></a><br>1、layout_gravity与gravity的区别：<br>    layout_gravity———— 本控件在其父控件中的对齐方式<br>    gravity———— 控件内部元素的对齐方式</p>
+<p>2、layout_weight = 1的妙用：<br>    layout_weight = 1并且layout_width=”0dp”<br>    layout_weight = 1并且layout_height=”0dp”</p>
+<pre><code>本控件将占用/均分屏幕的剩余全部空间；
+layout_weight 仅可使用在LinearLayout中
+</code></pre><p>3、解决点击ImageButton不切换的Bug<br>     为ImageButton增加android:clickable=”false”的属性，使其不具备处理点击事件的能力，从而将处理点击事件的责任交给其父控件；</p>
+<pre><code>造成点击ImageButton不切换的原因是：当点击事件发生后，LinearLayout会首先接受到该事件，同时LinearLayout发现其内部子控件ImageButton具有处理点击事件的能力，因此将该点击事件就给其内部子控件ImageButton进行处理，但因为ImageButton未绑定事件处理方法，所以出现了点击ImageButton不出现效果的Bug。
+
+解决办法是通知LinearLayout其内部子控件ImageButton不具有处理点击事件的能力，则该点击事件将直接由LinearLayout进行处理。而说明ImageButton不具有处理点击事件的能力的方式就是为ImageButton增加android:clickable=&quot;false&quot;的属性。
+</code></pre><p>4、优化布局层次可以使用：<br>    include<br>    merge<br>    viewStub</p>
+<p>5、Fragment实现Tab较ViewPager的优点<br>    每个切换页面的事件处理都放到各种的Fragment中编写，避免使用ViewPager时都只能编写到MainActivity中</p>
+<h2 id="ViewPager实现Tab"><a href="#ViewPager实现Tab" class="headerlink" title="ViewPager实现Tab"></a>ViewPager实现Tab</h2><p>一、底部切换Tab布局文件————tablearning_bottom.xml<br>    一个横向LinearLayout中包括四个纵向的LinearLayout<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"55dp"</span></div><div class="line">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">    <span class="attr">android:background</span>=<span class="string">"@drawable/bottom_bar"</span>&gt;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--一个横向LinearLayout中包括四个纵向的LinearLayout--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_weixin"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">ImageButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_weixin_img"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:clickable</span>=<span class="string">"false"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/tab_weixin_pressed"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ffffffff"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"微信"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"#ffffff"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_friend"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">ImageButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_friend_img"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:clickable</span>=<span class="string">"false"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/tab_find_frd_normal"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ffffffff"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"朋友"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"#ffffff"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_address"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">ImageButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_address_img"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:clickable</span>=<span class="string">"false"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/tab_address_normal"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ffffffff"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"通讯录"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"#ffffff"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_setting"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">ImageButton</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_setting_img"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:clickable</span>=<span class="string">"false"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/tab_settings_normal"</span></div><div class="line">            <span class="attr">android:background</span>=<span class="string">"#ffffffff"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"设置"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"#ffffff"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>二、主布局文件————main.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--引入top布局文件,内容忽略--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/tablearning_top"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--使用ViewPager实现Tab--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">android.support.v4.view.ViewPager</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_viewpager"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">android.support.v4.view.ViewPager</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--引入bottom布局文件--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/tablearning_bottom"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>三、各切换页面————tab_content01.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"This is WeiXin Tab"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"30sp"</span></div><div class="line">        <span class="attr">android:textStyle</span>=<span class="string">"bold"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>四、MainActivity<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> android.support.v4.view.PagerAdapter;</div><div class="line"><span class="keyword">import</span> android.support.v4.view.ViewPager;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TabActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span></span>&#123;</div><div class="line">    <span class="comment">//Tab,用于在这四个Tab上进行点击</span></div><div class="line">    <span class="keyword">private</span> LinearLayout mTabWeiXin;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabFriend;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabAddress;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabSetting;</div><div class="line"></div><div class="line">    <span class="comment">//ImageButton，用于更换图片</span></div><div class="line">    <span class="keyword">private</span> ImageButton mWeinXinImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mFriendImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mAddressImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mSettingImg;</div><div class="line"></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> ViewPager mViewPager;</div><div class="line">    <span class="keyword">private</span> PagerAdapter mAdapter; <span class="comment">//初始化ViewPager需要PagerAdapter</span></div><div class="line">    <span class="keyword">private</span> List&lt;View&gt; mViews = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">//初始化PagerAdapter需要List&lt;View&gt;</span></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab////////////////////////////</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        <span class="comment">//去掉默认title区域，必须写在setContentView之前</span></div><div class="line">        requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line"></div><div class="line">        <span class="comment">//////////////使用ViewPager实现Tab开始////////////////////////////</span></div><div class="line">        setContentView(R.layout.main);</div><div class="line">        <span class="comment">//视图初始化</span></div><div class="line">        initViewWithViewPager();</div><div class="line">        <span class="comment">//事件初始化</span></div><div class="line">        initEventWithViewPager();</div><div class="line">        <span class="comment">//////////////使用ViewPager实现Tab结束////////////////////////////</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab————initViewWithViewPager////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initViewWithViewPager</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//初始化ViewPager</span></div><div class="line">        mViewPager = (ViewPager) findViewById(R.id.id_tab_viewpager);</div><div class="line">        <span class="comment">//初始化底部Tab</span></div><div class="line">        mTabWeiXin = (LinearLayout) findViewById(R.id.id_tab_weixin);</div><div class="line">        mTabFriend = (LinearLayout) findViewById(R.id.id_tab_friend);</div><div class="line">        mTabAddress = (LinearLayout) findViewById(R.id.id_tab_address);</div><div class="line">        mTabSetting = (LinearLayout) findViewById(R.id.id_tab_setting);</div><div class="line">        <span class="comment">//初始化ImageButton</span></div><div class="line">        mWeinXinImg = (ImageButton) findViewById(R.id.id_tab_weixin_img);</div><div class="line">        mFriendImg = (ImageButton) findViewById(R.id.id_tab_friend_img);</div><div class="line">        mAddressImg = (ImageButton) findViewById(R.id.id_tab_address_img);</div><div class="line">        mSettingImg = (ImageButton) findViewById(R.id.id_tab_setting_img);</div><div class="line"></div><div class="line">        <span class="comment">//初始化Tab Content布局</span></div><div class="line">        LayoutInflater inflater = LayoutInflater.from(<span class="keyword">this</span>);</div><div class="line">        View tabContent1 = inflater.inflate(R.layout.tablearning_tab_content01,<span class="keyword">null</span>);</div><div class="line">        View tabContent2 = inflater.inflate(R.layout.tablearning_tab_content02,<span class="keyword">null</span>);</div><div class="line">        View tabContent3 = inflater.inflate(R.layout.tablearning_tab_content03,<span class="keyword">null</span>);</div><div class="line">        View tabContent4 = inflater.inflate(R.layout.tablearning_tab_content04,<span class="keyword">null</span>);</div><div class="line"></div><div class="line">        mViews.add(tabContent1);</div><div class="line">        mViews.add(tabContent2);</div><div class="line">        mViews.add(tabContent3);</div><div class="line">        mViews.add(tabContent4);</div><div class="line"></div><div class="line">        <span class="comment">//初始化PagerAdapter</span></div><div class="line">        mAdapter = <span class="keyword">new</span> PagerAdapter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="function"><span class="keyword">return</span> mViews.<span class="title">size</span><span class="params">()</span></span>;<span class="comment">//包含View的个数</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">isViewFromObject</span><span class="params">(View view, Object object)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> view == object;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">//一般初始化PagerAdapter还需要重新如下2个方法</span></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function">Object <span class="title">instantiateItem</span><span class="params">(ViewGroup container, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                View view = mViews.get(position);</div><div class="line">                container.addView(view);</div><div class="line">                <span class="keyword">return</span> view;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">destroyItem</span><span class="params">(ViewGroup container, <span class="keyword">int</span> position, Object object)</span> </span>&#123;</div><div class="line">                container.removeView(mViews.get(position));</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        mViewPager.setAdapter(mAdapter);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab————initEventWithViewPager////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initEventWithViewPager</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//为底部Tab增加点击切换效果</span></div><div class="line">        mTabWeiXin.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabFriend.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabAddress.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabSetting.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">//为ViewPager添加滑动监听事件————滑动tab content时切换底部Tab</span></div><div class="line">        mViewPager.setOnPageChangeListener(<span class="keyword">new</span> ViewPager.OnPageChangeListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageScrolled</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">float</span> positionOffset, <span class="keyword">int</span> positionOffsetPixels)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageSelected</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                <span class="keyword">int</span> curr = mViewPager.getCurrentItem();</div><div class="line">                resetTabDefaultImage();</div><div class="line">                <span class="keyword">switch</span> (curr)&#123;</div><div class="line">                    <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">                        mWeinXinImg.setImageResource(R.drawable.tab_weixin_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">                        mFriendImg.setImageResource(R.drawable.tab_find_frd_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">                        mAddressImg.setImageResource(R.drawable.tab_address_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">                        mSettingImg.setImageResource(R.drawable.tab_settings_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageScrollStateChanged</span><span class="params">(<span class="keyword">int</span> state)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab————itapWithViewPager////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">tapWithViewPager</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="comment">//设置底部Tab图片为默认值</span></div><div class="line">        resetTabDefaultImage();</div><div class="line">        <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_weixin:</div><div class="line">                mViewPager.setCurrentItem(0);<span class="comment">//设置当前Tab Content显示内容</span></div><div class="line">                <span class="comment">//设置底部Tab的图片为点中亮色</span></div><div class="line">                mWeinXinImg.setImageResource(R.drawable.tab_weixin_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_friend:</div><div class="line">                mViewPager.setCurrentItem(1);</div><div class="line">                mFriendImg.setImageResource(R.drawable.tab_find_frd_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_address:</div><div class="line">                mViewPager.setCurrentItem(2);</div><div class="line">                mAddressImg.setImageResource(R.drawable.tab_address_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_setting:</div><div class="line">                mViewPager.setCurrentItem(3);</div><div class="line">                mSettingImg.setImageResource(R.drawable.tab_settings_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        tapWithViewPager(v);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置底部Tab图片为默认暗色值</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">resetTabDefaultImage</span><span class="params">()</span> </span>&#123;</div><div class="line">        mWeinXinImg.setImageResource(R.drawable.tab_weixin_normal);</div><div class="line">        mFriendImg.setImageResource(R.drawable.tab_find_frd_normal);</div><div class="line">        mAddressImg.setImageResource(R.drawable.tab_address_normal);</div><div class="line">        mSettingImg.setImageResource(R.drawable.tab_settings_normal);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Fragment实现Tab"><a href="#Fragment实现Tab" class="headerlink" title="Fragment实现Tab"></a>Fragment实现Tab</h2><p>缺点：无法通过左右滑动进行切换</p>
+<p>一、底部切换Tab布局文件同上<br>二、主布局文件————main<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--引入top布局文件--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/tablearning_top"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--使用Fragment实现Tab--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">FrameLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_fragment"</span>&gt;<span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--引入bottom布局文件--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/tablearning_bottom"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>三、各切换页面同上<br>四、各Fragment文件<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import android<span class="selector-class">.support</span><span class="selector-class">.v4</span><span class="selector-class">.app</span><span class="selector-class">.Fragment</span>;</div><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">WeiXinFragment</span> <span class="selector-tag">extends</span> <span class="selector-tag">Fragment</span> &#123;</div><div class="line">    <span class="variable">@Nullable</span></div><div class="line">    <span class="variable">@Override</span></div><div class="line">    public View onCreateView(LayoutInflater inflater, <span class="variable">@Nullable</span> ViewGroup container, <span class="variable">@Nullable</span> Bundle savedInstanceState) &#123;</div><div class="line">        return inflater<span class="selector-class">.inflate</span>(R.layout.tab_content01,container,false);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>五、MainActivity<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> android.support.v4.app.Fragment;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentActivity;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentManager;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentTransaction;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TabActivity</span> <span class="keyword">extends</span> <span class="title">FragmentActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span></span>&#123;</div><div class="line">    <span class="comment">//Tab,用于在这四个Tab上进行点击</span></div><div class="line">    <span class="keyword">private</span> LinearLayout mTabWeiXin;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabFriend;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabAddress;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabSetting;</div><div class="line"></div><div class="line">    <span class="comment">//ImageButton，用于更换图片</span></div><div class="line">    <span class="keyword">private</span> ImageButton mWeinXinImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mFriendImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mAddressImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mSettingImg;</div><div class="line"></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab////////////////////////////</span></div><div class="line">    <span class="comment">//ViewPager</span></div><div class="line">    <span class="keyword">private</span> ViewPager mViewPager;</div><div class="line">    <span class="keyword">private</span> PagerAdapter mAdapter; <span class="comment">//初始化ViewPager需要PagerAdapter</span></div><div class="line">    <span class="keyword">private</span> List&lt;View&gt; mViews = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">//初始化PagerAdapter需要List&lt;View&gt;</span></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab////////////////////////////</span></div><div class="line"></div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> Fragment mFragment01;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment02;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment03;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment04;</div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        <span class="comment">//去掉默认title区域，必须写在setContentView之前</span></div><div class="line">        requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line"></div><div class="line">        <span class="comment">//////////////使用ViewPager实现Tab开始////////////////////////////</span></div><div class="line">        <span class="comment">//setContentView(R.layout.tablearning_main);</span></div><div class="line">        <span class="comment">//视图初始化</span></div><div class="line">        <span class="comment">//initViewWithViewPager();</span></div><div class="line">        <span class="comment">//事件初始化</span></div><div class="line">        <span class="comment">//initEventWithViewPager();</span></div><div class="line">        <span class="comment">//////////////使用ViewPager实现Tab结束////////////////////////////</span></div><div class="line"></div><div class="line">        <span class="comment">//////////////使用Fragment实现Tab开始////////////////////////////</span></div><div class="line">        setContentView(R.layout.tablearning_fragment_main);</div><div class="line">        initViewWithFragment();</div><div class="line">        initEventWithFragment();</div><div class="line"></div><div class="line">        <span class="comment">//显示第一个Fragment</span></div><div class="line">        setCurrentFragment(<span class="number">1</span>);</div><div class="line">        <span class="comment">//////////////使用Fragment实现Tab结束////////////////////////////</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initEventWithFragment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//为底部Tab增加点击切换效果</span></div><div class="line">        mTabWeiXin.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabFriend.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabAddress.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabSetting.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initViewWithFragment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//初始化底部Tab</span></div><div class="line">        mTabWeiXin = (LinearLayout) findViewById(R.id.id_tab_weixin);</div><div class="line">        mTabFriend = (LinearLayout) findViewById(R.id.id_tab_friend);</div><div class="line">        mTabAddress = (LinearLayout) findViewById(R.id.id_tab_address);</div><div class="line">        mTabSetting = (LinearLayout) findViewById(R.id.id_tab_setting);</div><div class="line">        <span class="comment">//初始化ImageButton</span></div><div class="line">        mWeinXinImg = (ImageButton) findViewById(R.id.id_tab_weixin_img);</div><div class="line">        mFriendImg = (ImageButton) findViewById(R.id.id_tab_friend_img);</div><div class="line">        mAddressImg = (ImageButton) findViewById(R.id.id_tab_address_img);</div><div class="line">        mSettingImg = (ImageButton) findViewById(R.id.id_tab_setting_img);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 切换Fragment</div><div class="line">     * <span class="doctag">@param</span> v</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">tapWithFragment</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="comment">//设置底部Tab图片为默认值</span></div><div class="line">        resetTabDefaultImage();</div><div class="line">        <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_weixin:</div><div class="line">                setCurrentFragment(1);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_friend:</div><div class="line">                setCurrentFragment(2);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_address:</div><div class="line">                setCurrentFragment(3);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_setting:</div><div class="line">                setCurrentFragment(4);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置当前显示的Fragment</div><div class="line">     * 设置底部Tab的图片为点中亮色</div><div class="line">     * <span class="doctag">@param</span> i</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">setCurrentFragment</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">        <span class="comment">//通过FragmentManager</span></div><div class="line">        FragmentManager fm = getSupportFragmentManager();</div><div class="line">        FragmentTransaction transaction = fm.beginTransaction();</div><div class="line">        <span class="comment">//隐藏全部Fragment，仅显示需要显示的一个Fragment</span></div><div class="line">        hideAllFragments(transaction);</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> (i)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">                <span class="keyword">if</span>(mFragment01 == <span class="keyword">null</span>)&#123;</div><div class="line">                    <span class="comment">//初始化</span></div><div class="line">                    mFragment01 = <span class="keyword">new</span> WeiXinFragment();</div><div class="line">                    <span class="comment">//设置当前显示Fragment</span></div><div class="line">                    transaction.add(R.id.id_tab_fragment,mFragment01);</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    transaction.show(mFragment01);</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//设置底部Tab的图片为点中亮色</span></div><div class="line">                mWeinXinImg.setImageResource(R.drawable.tab_weixin_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">                <span class="keyword">if</span>(mFragment02 == <span class="keyword">null</span>)&#123;</div><div class="line">                    mFragment02 = <span class="keyword">new</span> FriendFragment();</div><div class="line">                    transaction.add(R.id.id_tab_fragment,mFragment02);</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    transaction.show(mFragment02);</div><div class="line">                &#125;</div><div class="line">                mFriendImg.setImageResource(R.drawable.tab_find_frd_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">                <span class="keyword">if</span>(mFragment03 == <span class="keyword">null</span>)&#123;</div><div class="line">                    mFragment03 = <span class="keyword">new</span> AddressFragment();</div><div class="line">                    transaction.add(R.id.id_tab_fragment,mFragment03);</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    transaction.show(mFragment03);</div><div class="line">                &#125;</div><div class="line">                mAddressImg.setImageResource(R.drawable.tab_address_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">                <span class="keyword">if</span>(mFragment04 == <span class="keyword">null</span>)&#123;</div><div class="line">                    mFragment04 = <span class="keyword">new</span> SettingFragment();</div><div class="line">                    transaction.add(R.id.id_tab_fragment,mFragment04);</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    transaction.show(mFragment04);</div><div class="line">                &#125;</div><div class="line">                mSettingImg.setImageResource(R.drawable.tab_settings_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        transaction.commit();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 隐藏全部Fragment</div><div class="line">     * <span class="doctag">@param</span> transaction</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">hideAllFragments</span><span class="params">(FragmentTransaction transaction)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(mFragment01 != <span class="keyword">null</span>)&#123;</div><div class="line">            transaction.hide(mFragment01);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(mFragment02 != <span class="keyword">null</span>)&#123;</div><div class="line">            transaction.hide(mFragment02);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(mFragment03 != <span class="keyword">null</span>)&#123;</div><div class="line">            transaction.hide(mFragment03);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(mFragment04 != <span class="keyword">null</span>)&#123;</div><div class="line">            transaction.hide(mFragment04);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab————initViewWithViewPager////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initViewWithViewPager</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//初始化ViewPager</span></div><div class="line">        mViewPager = (ViewPager) findViewById(R.id.id_tab_viewpager);</div><div class="line">        <span class="comment">//初始化底部Tab</span></div><div class="line">        mTabWeiXin = (LinearLayout) findViewById(R.id.id_tab_weixin);</div><div class="line">        mTabFriend = (LinearLayout) findViewById(R.id.id_tab_friend);</div><div class="line">        mTabAddress = (LinearLayout) findViewById(R.id.id_tab_address);</div><div class="line">        mTabSetting = (LinearLayout) findViewById(R.id.id_tab_setting);</div><div class="line">        <span class="comment">//初始化ImageButton</span></div><div class="line">        mWeinXinImg = (ImageButton) findViewById(R.id.id_tab_weixin_img);</div><div class="line">        mFriendImg = (ImageButton) findViewById(R.id.id_tab_friend_img);</div><div class="line">        mAddressImg = (ImageButton) findViewById(R.id.id_tab_address_img);</div><div class="line">        mSettingImg = (ImageButton) findViewById(R.id.id_tab_setting_img);</div><div class="line"></div><div class="line">        <span class="comment">//初始化Tab Content布局</span></div><div class="line">        LayoutInflater inflater = LayoutInflater.from(<span class="keyword">this</span>);</div><div class="line">        View tabContent1 = inflater.inflate(R.layout.tablearning_tab_content01,<span class="keyword">null</span>);</div><div class="line">        View tabContent2 = inflater.inflate(R.layout.tablearning_tab_content02,<span class="keyword">null</span>);</div><div class="line">        View tabContent3 = inflater.inflate(R.layout.tablearning_tab_content03,<span class="keyword">null</span>);</div><div class="line">        View tabContent4 = inflater.inflate(R.layout.tablearning_tab_content04,<span class="keyword">null</span>);</div><div class="line"></div><div class="line">        mViews.add(tabContent1);</div><div class="line">        mViews.add(tabContent2);</div><div class="line">        mViews.add(tabContent3);</div><div class="line">        mViews.add(tabContent4);</div><div class="line"></div><div class="line">        <span class="comment">//初始化PagerAdapter</span></div><div class="line">        mAdapter = <span class="keyword">new</span> PagerAdapter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="function"><span class="keyword">return</span> mViews.<span class="title">size</span><span class="params">()</span></span>;<span class="comment">//包含View的个数</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">isViewFromObject</span><span class="params">(View view, Object object)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> view == object;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">//一般初始化PagerAdapter还需要重新如下2个方法</span></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function">Object <span class="title">instantiateItem</span><span class="params">(ViewGroup container, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                View view = mViews.get(position);</div><div class="line">                container.addView(view);</div><div class="line">                <span class="keyword">return</span> view;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">destroyItem</span><span class="params">(ViewGroup container, <span class="keyword">int</span> position, Object object)</span> </span>&#123;</div><div class="line">                container.removeView(mViews.get(position));</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        mViewPager.setAdapter(mAdapter);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab————initEventWithViewPager////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initEventWithViewPager</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//为底部Tab增加点击切换效果</span></div><div class="line">        mTabWeiXin.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabFriend.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabAddress.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabSetting.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">//为ViewPager添加滑动监听事件————滑动tab content时切换底部Tab</span></div><div class="line">        mViewPager.setOnPageChangeListener(<span class="keyword">new</span> ViewPager.OnPageChangeListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageScrolled</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">float</span> positionOffset, <span class="keyword">int</span> positionOffsetPixels)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageSelected</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                <span class="keyword">int</span> curr = mViewPager.getCurrentItem();</div><div class="line">                resetTabDefaultImage();</div><div class="line">                <span class="keyword">switch</span> (curr)&#123;</div><div class="line">                    <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">                        mWeinXinImg.setImageResource(R.drawable.tab_weixin_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">                        mFriendImg.setImageResource(R.drawable.tab_find_frd_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">                        mAddressImg.setImageResource(R.drawable.tab_address_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">                        mSettingImg.setImageResource(R.drawable.tab_settings_pressed);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageScrollStateChanged</span><span class="params">(<span class="keyword">int</span> state)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab————itapWithViewPager////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">tapWithViewPager</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="comment">//设置底部Tab图片为默认值</span></div><div class="line">        resetTabDefaultImage();</div><div class="line">        <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_weixin:</div><div class="line">                mViewPager.setCurrentItem(0);<span class="comment">//设置当前Tab Content显示内容</span></div><div class="line">                <span class="comment">//设置底部Tab的图片为点中亮色</span></div><div class="line">                mWeinXinImg.setImageResource(R.drawable.tab_weixin_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_friend:</div><div class="line">                mViewPager.setCurrentItem(1);</div><div class="line">                mFriendImg.setImageResource(R.drawable.tab_find_frd_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_address:</div><div class="line">                mViewPager.setCurrentItem(2);</div><div class="line">                mAddressImg.setImageResource(R.drawable.tab_address_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_setting:</div><div class="line">                mViewPager.setCurrentItem(3);</div><div class="line">                mSettingImg.setImageResource(R.drawable.tab_settings_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="comment">//////////////使用ViewPager实现Tab</span></div><div class="line">        <span class="comment">//tapWithViewPager(v);</span></div><div class="line"></div><div class="line">        <span class="comment">//////////////使用Fragment实现Tab</span></div><div class="line">        tapWithFragment(v);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置底部Tab图片为默认暗色值</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">resetTabDefaultImage</span><span class="params">()</span> </span>&#123;</div><div class="line">        mWeinXinImg.setImageResource(R.drawable.tab_weixin_normal);</div><div class="line">        mFriendImg.setImageResource(R.drawable.tab_find_frd_normal);</div><div class="line">        mAddressImg.setImageResource(R.drawable.tab_address_normal);</div><div class="line">        mSettingImg.setImageResource(R.drawable.tab_settings_normal);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="FragmentPagerAdapter-ViewPager实现Tab"><a href="#FragmentPagerAdapter-ViewPager实现Tab" class="headerlink" title="FragmentPagerAdapter+ViewPager实现Tab"></a>FragmentPagerAdapter+ViewPager实现Tab</h2><p>优点：通过ViewPager实现左右滑动进行切换<br>    Fragment管理内容区域<br>    ViewPager实现左右滑动切换</p>
+<p>一、底部切换Tab布局文件同第二节<br>二、主布局文件同第一节的main.xml，使用V4.ViewPager<br>三、各切换页面同第二节的Fragment<br>四、MainActivity<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> android.support.v4.app.Fragment;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentActivity;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentManager;</div><div class="line"><span class="keyword">import</span> android.support.v4.app.FragmentPagerAdapter;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TabActivity</span> <span class="keyword">extends</span> <span class="title">FragmentActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span></span>&#123;</div><div class="line">    <span class="comment">//Tab,用于在这四个Tab上进行点击</span></div><div class="line">    <span class="keyword">private</span> LinearLayout mTabWeiXin;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabFriend;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabAddress;</div><div class="line">    <span class="keyword">private</span> LinearLayout mTabSetting;</div><div class="line"></div><div class="line">    <span class="comment">//ImageButton，用于更换图片</span></div><div class="line">    <span class="keyword">private</span> ImageButton mWeinXinImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mFriendImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mAddressImg;</div><div class="line">    <span class="keyword">private</span> ImageButton mSettingImg;</div><div class="line"></div><div class="line">    <span class="comment">//////////////使用ViewPager实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> ViewPager mViewPager;</div><div class="line">    <span class="keyword">private</span> PagerAdapter mAdapter; <span class="comment">//初始化ViewPager需要PagerAdapter</span></div><div class="line">    <span class="keyword">private</span> List&lt;View&gt; mViews = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">//初始化PagerAdapter需要List&lt;View&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> Fragment mFragment01;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment02;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment03;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment04;</div><div class="line"></div><div class="line">    <span class="comment">/////////////FragmentPagerAdapter+ViewPager实现Tab//////////</span></div><div class="line">    <span class="keyword">private</span> ViewPager mFragmentViewPager;</div><div class="line">    <span class="keyword">private</span> FragmentPagerAdapter mFragmentPagerAdapter;</div><div class="line">    <span class="keyword">private</span> List&lt;Fragment&gt; mFragments;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        <span class="comment">//去掉默认title区域，必须写在setContentView之前</span></div><div class="line">        requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line"></div><div class="line">        <span class="comment">/////////////FragmentPagerAdapter+ViewPager实现Tab开始//////////</span></div><div class="line">        setContentView(R.layout.tablearning_main);</div><div class="line">        initViewWithFragmentPagerAdapter();</div><div class="line">        initEventWithFragment();</div><div class="line">        <span class="comment">//默认显示第一个Fragment</span></div><div class="line">        setCurrentFragmentWithFragmentPagerAdapter(<span class="number">1</span>);</div><div class="line">        <span class="comment">/////////////FragmentPagerAdapter+ViewPager实现Tab结束//////////</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/////////////FragmentPagerAdapter+ViewPager实现Tab//////////</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initViewWithFragmentPagerAdapter</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//初始化ViewPager</span></div><div class="line">        mFragmentViewPager = (ViewPager) findViewById(R.id.id_tab_viewpager);</div><div class="line">        <span class="comment">//初始化底部Tab</span></div><div class="line">        mTabWeiXin = (LinearLayout) findViewById(R.id.id_tab_weixin);</div><div class="line">        mTabFriend = (LinearLayout) findViewById(R.id.id_tab_friend);</div><div class="line">        mTabAddress = (LinearLayout) findViewById(R.id.id_tab_address);</div><div class="line">        mTabSetting = (LinearLayout) findViewById(R.id.id_tab_setting);</div><div class="line">        <span class="comment">//初始化ImageButton</span></div><div class="line">        mWeinXinImg = (ImageButton) findViewById(R.id.id_tab_weixin_img);</div><div class="line">        mFriendImg = (ImageButton) findViewById(R.id.id_tab_friend_img);</div><div class="line">        mAddressImg = (ImageButton) findViewById(R.id.id_tab_address_img);</div><div class="line">        mSettingImg = (ImageButton) findViewById(R.id.id_tab_setting_img);</div><div class="line"></div><div class="line">        <span class="comment">//初始化数据源</span></div><div class="line">        mFragments = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        mFragment01 = <span class="keyword">new</span> WeiXinFragment();</div><div class="line">        mFragment02 = <span class="keyword">new</span> FriendFragment();</div><div class="line">        mFragment03 = <span class="keyword">new</span> AddressFragment();</div><div class="line">        mFragment04 = <span class="keyword">new</span> SettingFragment();</div><div class="line"></div><div class="line">        mFragments.add(mFragment01);</div><div class="line">        mFragments.add(mFragment02);</div><div class="line">        mFragments.add(mFragment03);</div><div class="line">        mFragments.add(mFragment04);</div><div class="line"></div><div class="line">        <span class="comment">//初始化Adapter</span></div><div class="line">        mFragmentPagerAdapter = <span class="keyword">new</span> FragmentPagerAdapter(getSupportFragmentManager()) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function">Fragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                <span class="function"><span class="keyword">return</span> mFragments.<span class="title">get</span><span class="params">(position)</span></span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="function"><span class="keyword">return</span> mFragments.<span class="title">size</span><span class="params">()</span></span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        mFragmentViewPager.setAdapter(mFragmentPagerAdapter);</div><div class="line"></div><div class="line">        <span class="comment">//解决滑动Fragment时底部Tab不切换</span></div><div class="line">        mFragmentViewPager.setOnPageChangeListener(<span class="keyword">new</span> ViewPager.OnPageChangeListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageScrolled</span><span class="params">(<span class="keyword">int</span> position, <span class="keyword">float</span> positionOffset, <span class="keyword">int</span> positionOffsetPixels)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageSelected</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                <span class="keyword">int</span> curr = mFragmentViewPager.getCurrentItem();</div><div class="line">                setTabHighLightImage(curr+<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onPageScrollStateChanged</span><span class="params">(<span class="keyword">int</span> state)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">tapWithFragmentPagerAdapter</span><span class="params">(View v)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> (v.getId())&#123;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_weixin:</div><div class="line">                setCurrentFragmentWithFragmentPagerAdapter(1);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_friend:</div><div class="line">                setCurrentFragmentWithFragmentPagerAdapter(2);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_address:</div><div class="line">                setCurrentFragmentWithFragmentPagerAdapter(3);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> R.id.id_tab_setting:</div><div class="line">                setCurrentFragmentWithFragmentPagerAdapter(4);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置当前显示的Fragment</div><div class="line">     * 设置底部Tab的图片为点中亮色</div><div class="line">     * <span class="doctag">@param</span> i</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">setCurrentFragmentWithFragmentPagerAdapter</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">        <span class="comment">//设置底部Tab的图片为点中亮色</span></div><div class="line">        setTabHighLightImage(i);</div><div class="line">        <span class="comment">//设置当前显示的Fragment</span></div><div class="line">        mFragmentViewPager.setCurrentItem(i<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置底部Tab的图片为点中亮色</div><div class="line">     * <span class="doctag">@param</span> i</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">setTabHighLightImage</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="comment">//设置底部Tab图片为默认值</span></div><div class="line">        resetTabDefaultImage();</div><div class="line">        <span class="keyword">switch</span> (i)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">                //设置底部Tab的图片为点中亮色</div><div class="line">                mWeinXinImg.setImageResource(R.drawable.tab_weixin_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">                mFriendImg.setImageResource(R.drawable.tab_find_frd_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">                mAddressImg.setImageResource(R.drawable.tab_address_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">                mSettingImg.setImageResource(R.drawable.tab_settings_pressed);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initEventWithFragment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//为底部Tab增加点击切换效果</span></div><div class="line">        mTabWeiXin.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabFriend.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabAddress.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        mTabSetting.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">////////FragmentPagerAdapter+ViewPager实现Tab//////////</span></div><div class="line">        tapWithFragmentPagerAdapter(v);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置底部Tab图片为默认暗色值</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">resetTabDefaultImage</span><span class="params">()</span> </span>&#123;</div><div class="line">        mWeinXinImg.setImageResource(R.drawable.tab_weixin_normal);</div><div class="line">        mFriendImg.setImageResource(R.drawable.tab_find_frd_normal);</div><div class="line">        mAddressImg.setImageResource(R.drawable.tab_address_normal);</div><div class="line">        mSettingImg.setImageResource(R.drawable.tab_settings_normal);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="ViewPagerIndicator-ViewPager实现Tab"><a href="#ViewPagerIndicator-ViewPager实现Tab" class="headerlink" title="ViewPagerIndicator+ViewPager实现Tab"></a>ViewPagerIndicator+ViewPager实现Tab</h2><p>一、导入github中的ViewPagerIndicator包<br>1、File–Project Structure–项目–Dependencies– 右侧+号 – Library dependency<br>2、在搜索栏中输入”com.github.JakeWharton:ViewPagerIndicator:2.4.1@aar”，点击搜索，出现包后点击OK<br>3、在”Module.项目名”的build.gradle中加编译compile那一行</p>
+<p>dependencies {<br>        …<br>        compile ‘com.github.JakeWharton:ViewPagerIndicator:2.4.1@aar’<br>}<br>4、最后sync即可使用<br>二、主布局文件————tablearning_indicator_main.xml<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--引入top布局文件--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/tablearning_indicator_top"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--tab指示器--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">com.viewpagerindicator.TabPageIndicator</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_indicator"</span></div><div class="line">        <span class="attr">android:background</span>=<span class="string">"@android:color/transparent"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--使用ViewPager实现Tab--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">android.support.v4.view.ViewPager</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/id_tab_viewpager"</span>&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">android.support.v4.view.ViewPager</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>三、各切换页面同第二节的Fragment<br>四、MainActivity<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TabActivity</span> <span class="keyword">extends</span> <span class="title">FragmentActivity</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="comment">//////////////使用Fragment实现Tab////////////////////////////</span></div><div class="line">    <span class="keyword">private</span> Fragment mFragment01;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment02;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment03;</div><div class="line">    <span class="keyword">private</span> Fragment mFragment04;</div><div class="line"></div><div class="line">    <span class="comment">/////////////FragmentPagerAdapter+ViewPager实现Tab//////////</span></div><div class="line">    <span class="keyword">private</span> ViewPager mFragmentViewPager;</div><div class="line">    <span class="keyword">private</span> FragmentPagerAdapter mFragmentPagerAdapter;</div><div class="line">    <span class="keyword">private</span> List&lt;Fragment&gt; mFragments;</div><div class="line"></div><div class="line">    <span class="comment">////ViewPagerIndicator+FragmentPagerAdapter+ViewPager实现Tab////</span></div><div class="line">    <span class="keyword">private</span> TabPageIndicator mTabPageIndicator;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line"></div><div class="line">        <span class="comment">//去掉默认title区域，必须写在setContentView之前</span></div><div class="line">        requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line"></div><div class="line">        <span class="comment">////ViewPagerIndicator+FragmentPagerAdapter+ViewPager实现Tab</span></div><div class="line">        setContentView(R.layout.tablearning_indicator_main);</div><div class="line">        initViewWithIndicator();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">////ViewPagerIndicator+FragmentPagerAdapter+ViewPager实现Tab</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">initViewWithIndicator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//初始化ViewPager</span></div><div class="line">        mFragmentViewPager = (ViewPager) findViewById(R.id.id_tab_viewpager);</div><div class="line">        mTabPageIndicator = (TabPageIndicator) findViewById(R.id.id_tab_indicator);</div><div class="line"></div><div class="line">        <span class="comment">//初始化数据源</span></div><div class="line">        mFragments = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        mFragment01 = <span class="keyword">new</span> WeiXinFragment();</div><div class="line">        mFragment02 = <span class="keyword">new</span> FriendFragment();</div><div class="line">        mFragment03 = <span class="keyword">new</span> AddressFragment();</div><div class="line">        mFragment04 = <span class="keyword">new</span> SettingFragment();</div><div class="line"></div><div class="line">        mFragments.add(mFragment01);</div><div class="line">        mFragments.add(mFragment02);</div><div class="line">        mFragments.add(mFragment03);</div><div class="line">        mFragments.add(mFragment04);</div><div class="line"></div><div class="line">        mFragmentPagerAdapter = <span class="keyword">new</span> FragmentPagerAdapter(getSupportFragmentManager()) &#123;</div><div class="line"></div><div class="line">            <span class="comment">//指示器的标题</span></div><div class="line">            <span class="keyword">private</span> String[] titles = &#123;<span class="string">"微信"</span>,<span class="string">"朋友"</span>,<span class="string">"通讯录"</span>,<span class="string">"设置"</span>&#125;;</div><div class="line">            </div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function">Fragment <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                <span class="function"><span class="keyword">return</span> mFragments.<span class="title">get</span><span class="params">(position)</span></span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="function"><span class="keyword">return</span> mFragments.<span class="title">size</span><span class="params">()</span></span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="keyword">public</span> <span class="function">CharSequence <span class="title">getPageTitle</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> titles[position];</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        mFragmentViewPager.setAdapter(mFragmentPagerAdapter);</div><div class="line">        mTabPageIndicator.setViewPager(mFragmentViewPager,<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="自定义跟随型ViewPager指示器————ViewPagerIndicator"><a href="#自定义跟随型ViewPager指示器————ViewPagerIndicator" class="headerlink" title="自定义跟随型ViewPager指示器————ViewPagerIndicator"></a>自定义跟随型ViewPager指示器————ViewPagerIndicator</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/14/14-Android下拉刷新/" rel="next" title="Android下拉刷新">
+                <i class="fa fa-chevron-left"></i> Android下拉刷新
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/24/how-to-use-ajax/" rel="prev" title="ajax全接触">
+                ajax全接触 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/21/15-Android切换Tab的实现/"
+           data-title="Android切换Tab的实现" data-url="https://aiolos123.github.io/2016/11/21/15-Android切换Tab的实现/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPager实现Tab"><span class="nav-number">1.</span> <span class="nav-text">ViewPager实现Tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment实现Tab"><span class="nav-number">2.</span> <span class="nav-text">Fragment实现Tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FragmentPagerAdapter-ViewPager实现Tab"><span class="nav-number">3.</span> <span class="nav-text">FragmentPagerAdapter+ViewPager实现Tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPagerIndicator-ViewPager实现Tab"><span class="nav-number">4.</span> <span class="nav-text">ViewPagerIndicator+ViewPager实现Tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义跟随型ViewPager指示器————ViewPagerIndicator"><span class="nav-number">5.</span> <span class="nav-text">自定义跟随型ViewPager指示器————ViewPagerIndicator</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
