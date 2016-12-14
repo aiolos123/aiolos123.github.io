@@ -92,7 +92,7 @@
 <meta property="og:description" content="如何在Java中进行文件的读写，Java IO流是必备的知识。本门课程主要为您带来Java中的输入输出流的内容，包括文件编码、使用File类对文件和目录进行管理、字节流和字符流的基本操作，以及对象的序列化和反序列化的内容。视频来源：http://www.imooc.com/learn/123">
 <meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg">
 <meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:updated_time" content="2016-12-14T04:55:59.283Z">
+<meta property="og:updated_time" content="2016-12-14T05:09:03.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA IO流">
 <meta name="twitter:description" content="如何在Java中进行文件的读写，Java IO流是必备的知识。本门课程主要为您带来Java中的输入输出流的内容，包括文件编码、使用File类对文件和目录进行管理、字节流和字符流的基本操作，以及对象的序列化和反序列化的内容。视频来源：http://www.imooc.com/learn/123">
@@ -359,14 +359,14 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">根据流的位置来分</td>
-<td style="text-align:center">高端流</td>
-<td style="text-align:center">低端流</td>
-</tr>
-<tr>
 <td style="text-align:center">根据数据的流向来分</td>
 <td style="text-align:center">输出流</td>
 <td style="text-align:center">输入流</td>
+</tr>
+<tr>
+<td style="text-align:center">根据流的位置来分</td>
+<td style="text-align:center">高端流</td>
+<td style="text-align:center">低端流</td>
 </tr>
 <tr>
 <td style="text-align:center">根据流数据的格式来分</td>
@@ -391,7 +391,7 @@
 </tbody>
 </table>
 <p><img src="http://ocej2soxx.bkt.clouddn.com/java%20io%E6%B5%81%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.jpg" alt="java io流继承关系"></p>
-<p>1、根据流的位置来分<br>    高端流：所有的内存中的流都是高端流，如InputStreamReader<br>    低端流：所有的外界设备中的流都是低端流，如InputStream、OutputStream<br>    如何区分：所有的流对象的后缀中包含Reader或者Writer的都是高端流，反之，则基本上为低端流，不过也有例外，比如PrintStream就是高端流<br>2、根据数据的流向来分：<br>    输出流：是用来写数据的，是由程序（内存）—&gt;外界设备<br>    输入流：是用来读数据的，是由外界设备—&gt;程序（内存）<br>    如何区分：一般来说输入流带有Input，输出流带有Output<br>3、根据流数据的格式来分：<br>    字节流：处理声音或者图片等二进制的数据的流，比如InputStream<br>    字符流：处理文本数据（如txt文件）的流，比如InputStreamReader<br>    如何区分：可用高低端流来区分，所有的低端流都是字节流，所有的高端流都是字符流<br>4、根据流数据的包装过程来分：<br>    原始流：在实例化流的对象的过程中，不需要传入另外一个流作为自己构造方法的参数的流，称之为原始流。<br>    包装流：在实例化流的对象的过程中，需要传入另外一个流作为自己构造方法发参数的流，称之为包装流。<br>    如何区分：所以的低端流都是原始流，所以的高端流都是包装流</p>
+<p>1、根据数据的流向来分：<br>    输出流：是用来写数据的，是由程序（内存）—&gt;外界设备<br>    输入流：是用来读数据的，是由外界设备—&gt;程序（内存）<br>    如何区分：一般来说输入流带有Input，输出流带有Output<br>2、根据流的位置来分<br>    高端流：所有的内存中的流都是高端流，如InputStreamReader<br>    低端流：所有的外界设备中的流都是低端流，如InputStream、OutputStream<br>    如何区分：所有的流对象的后缀中包含Reader或者Writer的都是高端流，反之，则基本上为低端流，不过也有例外，比如PrintStream就是高端流<br>3、根据流数据的格式来分：<br>    字节流：处理声音或者图片等二进制的数据的流，比如InputStream<br>    字符流：处理文本数据（如txt文件）的流，比如InputStreamReader<br>    如何区分：可用高低端流来区分，所有的低端流都是字节流，所有的高端流都是字符流<br>4、根据流数据的包装过程来分：<br>    原始流：在实例化流的对象的过程中，不需要传入另外一个流作为自己构造方法的参数的流，称之为原始流。<br>    包装流：在实例化流的对象的过程中，需要传入另外一个流作为自己构造方法发参数的流，称之为包装流。<br>    如何区分：所以的低端流都是原始流，所以的高端流都是包装流</p>
 <h2 id="IO总结————字节序列是IO的根本"><a href="#IO总结————字节序列是IO的根本" class="headerlink" title="IO总结————字节序列是IO的根本"></a>IO总结————字节序列是IO的根本</h2><pre><code>java中文件是byte byte byte...的字节序列，可以是任意编码的字节序列；
 
 从文件中读取数据到内存中成为读read,也就是对应输入input流;
