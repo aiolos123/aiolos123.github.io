@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SSM," />
+  <meta name="keywords" content="JavaWeb," />
 
 
 
@@ -84,31 +84,32 @@
 
 
 
-<meta name="description" content="本文以图文形式介绍如何使用IntelliJ IDEA创建基于Maven构建的Web项目的过程">
+<meta name="description" content="Java Web的第一门课程，首先掌握HTTP的相关知识本文为《图解HTTP》一书前6章的读书笔记与总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目">
-<meta property="og:url" content="https://aiolos123.github.io/2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/index.html">
+<meta property="og:title" content="图解HTTP读书总结">
+<meta property="og:url" content="https://aiolos123.github.io/2017/03/07/图解HTTP读书总结/index.html">
 <meta property="og:site_name" content="Aiolos Home">
-<meta property="og:description" content="本文以图文形式介绍如何使用IntelliJ IDEA创建基于Maven构建的Web项目的过程">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-1.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-2.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-3.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-4.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-5.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-6.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-7.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-8.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-9.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-10.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-11.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-12.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-13.jpg">
-<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-14.jpg">
-<meta property="og:updated_time" content="2017-03-03T02:03:13.419Z">
+<meta property="og:description" content="Java Web的第一门课程，首先掌握HTTP的相关知识本文为《图解HTTP》一书前6章的读书笔记与总结">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-01-TCPIP%E5%88%86%E5%B1%82.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-03-TCPIP%E5%B0%81%E8%A3%85.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-02-TCPIP%E4%BC%A0%E8%BE%93%E6%B5%81.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-04-TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-05-HTTP%E4%B8%8E%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-00-WEB%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-07-HTTP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-08-HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-09-HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-14-%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%88%86%E7%B1%BB.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-10-%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-11-%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-12-%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-13-%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg">
+<meta property="og:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-06-%E4%BD%BF%E7%94%A8Cookie%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.jpg">
+<meta property="og:updated_time" content="2017-03-10T08:10:25.687Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目">
-<meta name="twitter:description" content="本文以图文形式介绍如何使用IntelliJ IDEA创建基于Maven构建的Web项目的过程">
-<meta name="twitter:image" content="http://ocej2soxx.bkt.clouddn.com/SSM-01-1.jpg">
+<meta name="twitter:title" content="图解HTTP读书总结">
+<meta name="twitter:description" content="Java Web的第一门课程，首先掌握HTTP的相关知识本文为《图解HTTP》一书前6章的读书笔记与总结">
+<meta name="twitter:image" content="http://ocej2soxx.bkt.clouddn.com/HTTP-01-TCPIP%E5%88%86%E5%B1%82.jpg">
 
 
 
@@ -129,9 +130,9 @@
 
 
 
-  <link rel="canonical" href="https://aiolos123.github.io/2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/"/>
+  <link rel="canonical" href="https://aiolos123.github.io/2017/03/07/图解HTTP读书总结/"/>
 
-  <title> SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目 | Aiolos Home </title>
+  <title> 图解HTTP读书总结 | Aiolos Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +304,7 @@
             
             
               
-                SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目
+                图解HTTP读书总结
               
             
           </h1>
@@ -315,8 +316,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-02T13:02:00+08:00" content="2017-03-02">
-              2017-03-02
+            <time itemprop="dateCreated" datetime="2017-03-07T14:58:18+08:00" content="2017-03-07">
+              2017-03-07
             </time>
           </span>
 
@@ -326,8 +327,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/" itemprop="commentsCount"></span>
+                <a href="/2017/03/07/图解HTTP读书总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/图解HTTP读书总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -337,7 +338,7 @@
 
           
           
-             <span id="/2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/" class="leancloud_visitors" data-flag-title="SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目">
+             <span id="/2017/03/07/图解HTTP读书总结/" class="leancloud_visitors" data-flag-title="图解HTTP读书总结">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -359,14 +360,69 @@
       
 
       
-        <p>本文以图文形式介绍如何使用IntelliJ IDEA创建基于Maven构建的Web项目的过程<br><a id="more"></a></p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><pre><code>IntelliJ IDEA: 2016.3.4 Ultimate
-JDK: 1.8.0_20
-Maven: 3.3.9
-</code></pre><p>开发环境的下载及配置请自行百度</p>
-<h2 id="基于Maven构建的Web项目的步骤"><a href="#基于Maven构建的Web项目的步骤" class="headerlink" title="基于Maven构建的Web项目的步骤"></a>基于Maven构建的Web项目的步骤</h2><p>1、如果是第一次打开软件直接点击 Create New Project ，如果之前已经打开过项目了，需要点击菜单中 File → New Project … 如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-1.jpg" alt=""><br>2、选择Maven，配置jdk、选中Create from archetype,从列表中选择web app骨架，如下图，再点击 Next：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-2.jpg" alt=""><br>3、编辑 GroupId、ArtifactId即包名、模块名 ，点击Next 如下：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-3.jpg" alt=""><br>4、选择本地安装的Maven即其配置，确认信息正确后点击Next 如下：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-4.jpg" alt=""><br>注：为了加快maven的构建，可添加本地的archetypeCatalog=local<br>5、输入项目名称和路径，点击 Finish 按钮即可生成项目，如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-5.jpg" alt=""><br>6、待maven下载导入成功后，生成的项目结构如下图<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-6.jpg" alt=""><br>至此，项目已经创建完成，下面开始配置 Tomcat服务</p>
-<h2 id="配置Tomcat服务"><a href="#配置Tomcat服务" class="headerlink" title="配置Tomcat服务"></a>配置Tomcat服务</h2><p>7、点击工具栏中的向下箭头的图标（如下图 红框标注）或者点击菜单栏中的 Run → Edit Configurations…  如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-7.jpg" alt=""><br>8、在Edit Configurations界面，点击左上角红色标注的 + 按钮，选择 Tomcat Server → Local  如下图:<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-8.jpg" alt=""><br>9、在该配置页面，输入名称（随便取比如 tomcat8）、配置tomcat 本地环境以及相应端口后，如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-9.jpg" alt=""><br>10、再点击 页签 Deployment，点击 + 选择 Artifact …，选择需要发布的应用，点击 OK 按钮，如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-10.jpg" alt=""><br>11、编辑 Application Context 的名称(一般建议与项目名相同)，点击OK按钮即完成Tomcat 配置。<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-11.jpg" alt=""></p>
-<h2 id="项目发布"><a href="#项目发布" class="headerlink" title="项目发布"></a>项目发布</h2><p>12、双击打开 index.jsp 并编辑，点击下图中标注的绿色启动按钮，即可发布相关应用：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-12.jpg" alt=""><br>13、启动正常应该看到如下信息：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-13.jpg" alt=""><br>14、启动后会自动跳转到浏览器,看到如下内容：<br><img src="http://ocej2soxx.bkt.clouddn.com/SSM-01-14.jpg" alt=""><br>到此已经完成了项目创建、Tomcat配置、项目发布等过程。</p>
+        <p>Java Web的第一门课程，首先掌握HTTP的相关知识<br>本文为《图解HTTP》一书前6章的读书笔记与总结<br><a id="more"></a></p>
+<h2 id="网络基础"><a href="#网络基础" class="headerlink" title="网络基础"></a>网络基础</h2><h3 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h3><blockquote>
+<p>协议(protocol): 计算机与网络设备要相互通信,双方必须约定基于一套相互能识别的规则,这套规则就叫协议————如不同语言之间的翻译规则</p>
+<p>TCP/IP: 与互联网相关联的协议集合总称为TCP/IP</p>
+</blockquote>
+<p>TCP/IP协议族中重要的一点就是分层,如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-01-TCPIP%E5%88%86%E5%B1%82.jpg" alt=""></p>
+<p>利用TCP/IP协议族通信时，通过分层会进行数据的封装与拆装，如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-03-TCPIP%E5%B0%81%E8%A3%85.jpg" alt=""><br>完整的TCP/IP传输流如下图：<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-02-TCPIP%E4%BC%A0%E8%BE%93%E6%B5%81.jpg" alt=""></p>
+<h3 id="与HTTP密切的3个协议"><a href="#与HTTP密切的3个协议" class="headerlink" title="与HTTP密切的3个协议"></a>与HTTP密切的3个协议</h3><blockquote>
+<p>IP协议：作用是把各种数据包传送给对方。为实现这个目的，其中有两个重要条件：IP地址和MAC地址，IP地址指明节点被分配到的地址，MAC地址指网卡所属的固定地址，IP地址可变，MAC地址基本不变，IP地址与MAC地址配对————通过APR协议查询。</p>
+</blockquote>
+<pre><code>IP间通信依赖于MAC地址，在进行中转时，利用下一个中转设备的MAC地址搜索下一个中转目标，使用ARP协议可实现凭借MAC地址进行通信。
+</code></pre><blockquote>
+<p>ARP协议：可根据通信方IP反查出对应的MAC地址的中转协议。</p>
+<p>TCP协议：为了更容易传输大块数据(即HTTP请求报文)，而将其分割成报文段Segment再进行传输，并能准确可靠地将数据送达到对方。</p>
+</blockquote>
+<p>TCP协议为了准确无误的将数据传送给对方，采用三次握手策略<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-04-TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg" alt=""></p>
+<p>如握手过程中途出现莫名中断，则重新开始发送</p>
+<blockquote>
+<p>DNS协议：提供域名到IP地址之间的解析服务</p>
+</blockquote>
+<p>HTTP与上述3个协议的关系可用下图表示<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-05-HTTP%E4%B8%8E%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE%E5%85%B3%E7%B3%BB.jpg" alt=""></p>
+<h3 id="URL与URI"><a href="#URL与URI" class="headerlink" title="URL与URI"></a>URL与URI</h3><p>URL(统一资源定位符)：即访问Web页面时输入的网页地址<br>URI(统一资源标识符)：由某个协议方案表示的资源的定位标识符。</p>
+<pre><code>两者关系：URI用字符串表示某一互联网资源，而URL表示资源的地址(在互联网上所处的位置)，所以URL是URI的子集。
+</code></pre><h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>HTTP协议：用于客户端与服务器端之间通信的协议。</p>
+<blockquote>
+<p>HTTP协议是一种无状态协议(做过就忘)，即不保存之前一切请求或响应信息；<br>为了实现保持状态(如保存用户登录信息)，特引入Cookie技术以管理状态；</p>
+<p>HTTP是基于传输层的TCP协议，HTTP协议使用TCP协议而不是UDP协议的原因在于一个网页必须传送很多数据，而且保证其完整性。</p>
+<p>一次HTTP操作称为一个事务，其工作过程可分为四步：<br>1、客户端与服务器需要建立连接。（比如某个超级链接，HTTP就开始了。）<br>2、建立连接后，发送请求。<br>3、服务器接到请求后，响应其响应信息。<br>4、客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上。</p>
+</blockquote>
+<p>建立连接，其实建立在TCP连接基础之上。核心过程（即省去TCP连接过程）是一个简单的请求/响应序列，即浏览器发出请求和服务器做出响应并回复,如下图:<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-00-WEB%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F.jpg" alt=""></p>
+<p>HTTP协议使用URI定位互联网上的资源</p>
+<h2 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h2><blockquote>
+<p>HTTP报文： 用于HTTP协议交互的信息，是由多行数据和CR+LF换行符构成的字符串文本<br>HTTP报文分为报文首部和报文主体(可省略)，以CR+LF换行符分隔</p>
+</blockquote>
+<p><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-07-HTTP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84.jpg" alt=""></p>
+<p>请求报文实例如下<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-08-HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.jpg" alt=""><br>响应报文实例如下<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-09-HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.jpg" alt=""></p>
+<h3 id="HTTP首部字段分类"><a href="#HTTP首部字段分类" class="headerlink" title="HTTP首部字段分类"></a>HTTP首部字段分类</h3><p><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-14-%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5%E5%88%86%E7%B1%BB.jpg" alt=""></p>
+<h3 id="HTTP-1-1首部字段"><a href="#HTTP-1-1首部字段" class="headerlink" title="HTTP/1.1首部字段"></a>HTTP/1.1首部字段</h3><blockquote>
+<p>HTTP首部各字段的具体含义及其取值请见《图解HTTP》一书的6.3到6.8节</p>
+</blockquote>
+<p>通用首部字段是指请求报文和响应报文都会使用的首部，包括如下字段：<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-10-%E9%80%9A%E7%94%A8%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg" alt=""></p>
+<p><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-11-%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg" alt=""></p>
+<p><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-12-%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg" alt=""><br>实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部字段，包括如下字段：<br><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-13-%E5%AE%9E%E4%BD%93%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.jpg" alt=""></p>
+<p>非HTTP/1.1首部字段常用的有cookie、set-cookie等</p>
+<h2 id="HTTP协议知识补充"><a href="#HTTP协议知识补充" class="headerlink" title="HTTP协议知识补充"></a>HTTP协议知识补充</h2><h3 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h3><p>GET            请求获取被Request-URI所标识的资源<br>POST           向服务器传输请求的主体内容，而不是获取响应的主体内容<br>HEAD           请求获取由Request-URI所标识的资源的响应消息报头,不返回主体内容<br>PUT            向服务器传输文件，并保存到Request-URI指定的位置<br>DELETE         请求服务器删除Request-URI所标识的资源<br>TRACE          请求服务器返回请求通信路径信息<br>CONNECT        要求使用隧道协议与代理服务器通信<br>OPTIONS        查询针对Request-URI所标识的资源所支持的方法</p>
+<h3 id="持久连接"><a href="#持久连接" class="headerlink" title="持久连接"></a>持久连接</h3><p>HTTP/1.1 所有的连接默认都是持久连接，即：keep-alive:只要任意一端没有明确提出断开连接，则保持TCP连接状态</p>
+<p>持久连接目的是建立1次TCP连接后可进行多次HTTP请求和响应的交互，减少TCP重复连接和断开造成的开销和服务器负载，提供响应和页面显示速度</p>
+<h3 id="管线化"><a href="#管线化" class="headerlink" title="管线化"></a>管线化</h3><p>借助持久连接，管线化方式实现了同时并行发送多个请求，而不需要一个个地等待响应后再发送请求。</p>
+<h3 id="Cookie技术"><a href="#Cookie技术" class="headerlink" title="Cookie技术"></a>Cookie技术</h3><p>通过在请求和响应报文中写入Cookie信息来控制客户端的状态，如下图</p>
+<p><img src="http://ocej2soxx.bkt.clouddn.com/HTTP-06-%E4%BD%BF%E7%94%A8Cookie%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86.jpg" alt=""></p>
+<h3 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h3><p>状态码的职责是告知客户端，服务器端响应一个请求的结果————服务器端是正常处理了请求还是出现错误</p>
+<p>1xx：指示信息–表示请求已接收，正在处理<br>2xx：成功–表示请求被正常处理完毕<br>3xx：重定向–需要进行附加操作以完成请求<br>4xx：客户端发生错误–请求有语法错误或请求无法实现<br>5xx：服务器端发生错误–服务器处理请求出错</p>
+<h3 id="通信数据转发程序"><a href="#通信数据转发程序" class="headerlink" title="通信数据转发程序"></a>通信数据转发程序</h3><p>代理、网关、隧道这些程序可以将请求转发给通信线路上的下一站服务器，并能接收从那台服务器发送的响应再转发给客户端，启动中转转发的作用。</p>
+<p>代理：不改变请求URI；使用缓存技术减少网络带宽流量<br>    缓存代理：代理转发响应时，将资源的副本缓存在代理服务器上，当代理再次收到相同资源的请求时，直接将缓存资源作为响应返回<br>网关：能使通信线路上的服务器提供非HTTP协议服务；<br>    利用网关可由HTTP请求转化为其他协议通信，如连接数据库、和信用卡结算系统联动<br>隧道：可按要求建立起与服务器的通信线路，确保客户端与服务器进行安全的通信；</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存是代理服务器或客户端本地磁盘内保持的资源副本。<br>利用缓存可减少对原服务器的访问，节省通信流量和时间<br>缓存存在有效期限</p>
+<h3 id="提升传输速率"><a href="#提升传输速率" class="headerlink" title="提升传输速率"></a>提升传输速率</h3><p>报文：是HTTP通信中的基本单位，通过HTTP传输<br>实体：作为请求或响应的有效载荷数据被传输，其内容由实体首部和实体主体组成</p>
+<p>HTTP报文的主体用于传输 请求或响应的实体主体</p>
+<p>通常，报文主体等于实体主体，只有当传输中进行编码操作时，实体主体的内容发生变化才导致它和报文主体产生差异。</p>
+<blockquote>
+<p>内容编码：压缩实体内容使其变小后再发送。<br>常用的内容编码有：gzip、compress、deflate</p>
+<p>分块传输编码：把实体主体分割变小再发送，以让浏览器逐步显示页面</p>
+</blockquote>
+<h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><p>BYSocket 图解HTTP协议 <a href="http://blog.jobbole.com/108188/" target="_blank" rel="external">http://blog.jobbole.com/108188/</a></p>
 
       
     </div>
@@ -389,7 +445,7 @@ Maven: 3.3.9
       
         <div class="post-tags">
           
-            <a href="/tags/SSM/" rel="tag">#SSM</a>
+            <a href="/tags/JavaWeb/" rel="tag">#JavaWeb</a>
           
         </div>
       
@@ -398,17 +454,13 @@ Maven: 3.3.9
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/07/2017个人成长计划/" rel="next" title="2017个人成长计划">
-                <i class="fa fa-chevron-left"></i> 2017个人成长计划
+              <a href="/2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/" rel="next" title="SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目">
+                <i class="fa fa-chevron-left"></i> SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/07/图解HTTP读书总结/" rel="prev" title="图解HTTP读书总结">
-                图解HTTP读书总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -434,8 +486,8 @@ Maven: 3.3.9
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/"
-           data-title="SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目" data-url="https://aiolos123.github.io/2017/03/02/SSM-01-在IntelliJIDEA中创建基于Maven构建的Web项目/">
+      <div class="ds-thread" data-thread-key="2017/03/07/图解HTTP读书总结/"
+           data-title="图解HTTP读书总结" data-url="https://aiolos123.github.io/2017/03/07/图解HTTP读书总结/">
       </div>
     
   </div>
@@ -519,7 +571,7 @@ Maven: 3.3.9
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">1.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于Maven构建的Web项目的步骤"><span class="nav-number">2.</span> <span class="nav-text">基于Maven构建的Web项目的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Tomcat服务"><span class="nav-number">3.</span> <span class="nav-text">配置Tomcat服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目发布"><span class="nav-number">4.</span> <span class="nav-text">项目发布</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础"><span class="nav-number">1.</span> <span class="nav-text">网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">1.1.</span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与HTTP密切的3个协议"><span class="nav-number">1.2.</span> <span class="nav-text">与HTTP密切的3个协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL与URI"><span class="nav-number">1.3.</span> <span class="nav-text">URL与URI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP协议"><span class="nav-number">2.</span> <span class="nav-text">HTTP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP报文"><span class="nav-number">3.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP首部字段分类"><span class="nav-number">3.1.</span> <span class="nav-text">HTTP首部字段分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-1-1首部字段"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP/1.1首部字段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP协议知识补充"><span class="nav-number">4.</span> <span class="nav-text">HTTP协议知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方法"><span class="nav-number">4.1.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久连接"><span class="nav-number">4.2.</span> <span class="nav-text">持久连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管线化"><span class="nav-number">4.3.</span> <span class="nav-text">管线化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie技术"><span class="nav-number">4.4.</span> <span class="nav-text">Cookie技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应状态码"><span class="nav-number">4.5.</span> <span class="nav-text">响应状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信数据转发程序"><span class="nav-number">4.6.</span> <span class="nav-text">通信数据转发程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">4.7.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提升传输速率"><span class="nav-number">4.8.</span> <span class="nav-text">提升传输速率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考博客"><span class="nav-number">5.</span> <span class="nav-text">参考博客</span></a></li></ol></div>
             
           </div>
         </section>
