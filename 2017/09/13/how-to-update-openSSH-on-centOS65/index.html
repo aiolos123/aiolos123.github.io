@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://aiolos123.github.io/images/openSSH_18.jpg">
 <meta property="og:image" content="https://aiolos123.github.io/images/openSSH_17.jpg">
 <meta property="og:image" content="https://aiolos123.github.io/images/openSSH_19.jpg">
-<meta property="og:updated_time" content="2017-09-13T05:33:32.284Z">
+<meta property="og:updated_time" content="2017-09-13T07:52:15.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在CentOS65中升级OpenSSH7.5P1的完整过程">
 <meta name="twitter:description" content="由于OpenSSH7.5之前的版本存在众多漏洞，本文讲解如何在CentOS65中升级OpenSSH到最新版本7.5p1
@@ -370,14 +370,11 @@
         <p>由于OpenSSH7.5之前的版本存在众多漏洞，本文讲解如何在CentOS65中升级OpenSSH到最新版本7.5p1</p>
 <p>本文部分内容参考自博客：<a href="http://blog.csdn.net/lqy461929569/article/details/76148598" target="_blank" rel="external">http://blog.csdn.net/lqy461929569/article/details/76148598</a><br><a id="more"></a></p>
 <h1 id="升级OpenSSH的注意事项"><a href="#升级OpenSSH的注意事项" class="headerlink" title="升级OpenSSH的注意事项"></a>升级OpenSSH的注意事项</h1><blockquote>
-<p>列出7.4及以下openssh版本存在的部分漏洞：</p>
-<pre><code>+ OpenSSH 远程权限提升漏洞(CVE-2016-10010)  
-+ OpenSSH J-PAKE授权问题漏洞(CVE-2010-4478)  
-+ Openssh MaxAuthTries限制绕过漏洞(CVE-2015-5600)
-</code></pre></blockquote>
+<p>首先列出7.4及以下openssh版本存在的部分漏洞：<br>     OpenSSH 远程权限提升漏洞(CVE-2016-10010)<br>     OpenSSH J-PAKE授权问题漏洞(CVE-2010-4478)<br>     Openssh MaxAuthTries限制绕过漏洞(CVE-2015-5600)</p>
+</blockquote>
 <ol>
 <li>openssl不可以选用1.1.X 版本，否则openssh编译时会报错</li>
-<li>升级之前最好先把telnet开起来，防止意外导致ssh无法连接，需要下载 telent、telent-server、xinetd</li>
+<li>升级之前最好先把telnet开起来，防止意外导致ssh无法连接，需要下载telent、telent-server、xinetd</li>
 <li>为了保险起见，建议安装lrzsz-0.12.20-27.1.el6.x86_64.rpm，下载地址：<br> <a href="https://centos.pkgs.org/6/centos-x86_64/lrzsz-0.12.20-27.1.el6.x86_64.rpm.html" target="_blank" rel="external">https://centos.pkgs.org/6/centos-x86_64/lrzsz-0.12.20-27.1.el6.x86_64.rpm.html</a></li>
 <li>升级OpenSSH7.5p1需要的依赖包及其最低版本见下表：</li>
 </ol>
@@ -428,7 +425,10 @@
 </li>
 </ol>
 <p><img src="/images/openSSH_1.jpg" alt="查看升级前的ssh版本"></p>
-<p>6、查看是否安装了软件及其版本的命令<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># rpm -qa | grep xxx</span></div></pre></td></tr></table></figure></p>
+<ol>
+<li>查看是否安装了软件及其版本的命令 <figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># rpm -qa | grep xxx</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
 <h1 id="升级OpenSSH前的准备工作"><a href="#升级OpenSSH前的准备工作" class="headerlink" title="升级OpenSSH前的准备工作"></a>升级OpenSSH前的准备工作</h1><h2 id="安装telent"><a href="#安装telent" class="headerlink" title="安装telent"></a>安装telent</h2><p><strong>升级OpenSSH前首先必须安装telnet</strong>，再进行后续升级操作<br>原因：避免升级过程中服务器意外重启后无法远程登录系统<br>具体操作：需要下载telent、telent-server、xinetd, 并配置telnet服务开机自启动</p>
 <h3 id="安装xinted与telnet"><a href="#安装xinted与telnet" class="headerlink" title="安装xinted与telnet"></a>安装xinted与telnet</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装tenlet的必备依赖包</span></div><div class="line"># rpm -ivh xinetd<span class="number">-2.3</span><span class="number">.14</span><span class="number">-39.</span>el6_4.x86_64.rpm</div><div class="line"><span class="comment">//安装telnet</span></div><div class="line"># rpm -ivh telnet-server<span class="number">-0.17</span><span class="number">-47.</span>el6_3<span class="number">.1</span>.x86_64.rpm  telnet<span class="number">-0.17</span><span class="number">-47.</span>el6_3<span class="number">.1</span>.x86_64.rpm</div></pre></td></tr></table></figure>
 <p>上述两个命令的截图如下：<br><img src="/images/openSSH_2.jpg" alt="安装xinted与telnet"></p>
