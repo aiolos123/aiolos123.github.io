@@ -1,0 +1,922 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Nginx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文讲解如何在CentOS65 X64中安装与配置Nginx开机自启动本文Nginx的安装目录：/usr/local/nginx  安装版本是nginx-1.12.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在centOS65中安装配置Nginx">
+<meta property="og:url" content="https://aiolos123.github.io/2017/09/13/how-to-install-and-config-nginx-on-centOS65/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="本文讲解如何在CentOS65 X64中安装与配置Nginx开机自启动本文Nginx的安装目录：/usr/local/nginx  安装版本是nginx-1.12.1">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_1.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_2.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_3.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_4.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_5.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_6.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_7.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_8.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/Nginx_10.jpg">
+<meta property="og:updated_time" content="2017-09-13T07:42:10.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在centOS65中安装配置Nginx">
+<meta name="twitter:description" content="本文讲解如何在CentOS65 X64中安装与配置Nginx开机自启动本文Nginx的安装目录：/usr/local/nginx  安装版本是nginx-1.12.1">
+<meta name="twitter:image" content="https://aiolos123.github.io/images/Nginx_1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2017/09/13/how-to-install-and-config-nginx-on-centOS65/"/>
+
+  <title> 如何在centOS65中安装配置Nginx | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何在centOS65中安装配置Nginx
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T13:34:31+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/13/how-to-install-and-config-nginx-on-centOS65/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/13/how-to-install-and-config-nginx-on-centOS65/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/13/how-to-install-and-config-nginx-on-centOS65/" class="leancloud_visitors" data-flag-title="如何在centOS65中安装配置Nginx">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文讲解如何在CentOS65 X64中安装与配置Nginx开机自启动<br>本文Nginx的安装目录：/usr/local/nginx  安装版本是nginx-1.12.1<br><a id="more"></a></p>
+<h1 id="Nginx常用命令"><a href="#Nginx常用命令" class="headerlink" title="Nginx常用命令"></a>Nginx常用命令</h1><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># /usr/local/nginx/sbin/nginx                      # 启动Nginx</span></div><div class="line"><span class="meta"># /usr/local/nginx/sbin/nginx -s reload            # 重新载入配置文件</span></div><div class="line"><span class="meta"># /usr/local/nginx/sbin/nginx -s reopen            # 重启 Nginx</span></div><div class="line"><span class="meta"># /usr/local/nginx/sbin/nginx -s quit              # 停止 Nginx</span></div><div class="line"><span class="meta"># /usr/local/nginx/sbin/nginx -t                   # 检查ngnix.conf配置文件的正确性</span></div></pre></td></tr></table></figure>
+<h1 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h1><p>nginx依赖以下一些软件库，在安装之前请确保安装了这些软件库，它们包括：gcc，openssl，zlib，pcre（可通过rpm -q命令查询是否已安装），其中前三个库可通过系统盘进行安装<br><img src="/images/Nginx_1.jpg" alt="查看依赖软件库"></p>
+<h2 id="下载最新版Nginx"><a href="#下载最新版Nginx" class="headerlink" title="下载最新版Nginx"></a>下载最新版Nginx</h2><blockquote>
+<p>Nginx官网：<a href="http://nginx.org/en/download.html" target="_blank" rel="external">http://nginx.org/en/download.html</a><br>下载目前最新的稳定版 Nginx 1.12.1<br><img src="/images/Nginx_2.jpg" alt="查看依赖软件库"></p>
+</blockquote>
+<h2 id="安装Nginx过程"><a href="#安装Nginx过程" class="headerlink" title="安装Nginx过程"></a>安装Nginx过程</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># tar zxvf nginx-1.12.1.tar.gz </span></div><div class="line"><span class="meta">#cd nginx-1.12.1   </span></div><div class="line"><span class="meta">#./configure</span></div><div class="line"><span class="meta"># make  </span></div><div class="line"><span class="meta"># make install</span></div></pre></td></tr></table></figure>
+<p>安装过程的截图如下：<br><img src="/images/Nginx_3.jpg" alt="安装Nginx过程"><br><img src="/images/Nginx_4.jpg" alt="安装Nginx过程"><br>安装成功的截图如下：<br><img src="/images/Nginx_5.jpg" alt="安装Nginx过程"></p>
+<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><p>安装完成后执行以下操作验证安装是否成功：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># cd  /usr/local/nginx/sbin</span></div><div class="line"><span class="meta"># ./nginx -t</span></div></pre></td></tr></table></figure></p>
+<p>结果显示如下图，说明nginx的安装已成功完成。<br><img src="/images/Nginx_6.jpg" alt="测试是否安装成功"></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//查看版本</span></div><div class="line"><span class="meta"># ./nginx -v</span></div><div class="line"><span class="comment">//启动nginx </span></div><div class="line"><span class="meta"># cd /usr/local/nginx/sbin</span></div><div class="line"><span class="meta"># ./nginx</span></div></pre></td></tr></table></figure>
+<p>在浏览器中输入：<a href="http://localhost" target="_blank" rel="external">http://localhost</a> 来验证nginx是否成功启动<br><img src="/images/Nginx_7.jpg" alt="启动成功"></p>
+<h1 id="配置Nginx开机自启动"><a href="#配置Nginx开机自启动" class="headerlink" title="配置Nginx开机自启动"></a>配置Nginx开机自启动</h1><p>本节内容引用自博客：<a href="http://blog.csdn.net/u013870094/article/details/52463026" target="_blank" rel="external">http://blog.csdn.net/u013870094/article/details/52463026</a></p>
+<p>首先，在linux系统的/etc/init.d/目录下创建nginx文件，使用如下命令：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># vi /etc/init.d/nginx</span></div></pre></td></tr></table></figure></p>
+<p>在脚本中添加如下命令,注意nginxd与nginx_config两项修改为nginx真实的安装路径<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># nginx Startup script for the Nginx HTTP Server</span></div><div class="line"><span class="comment"># it is v.0.0.2 version.</span></div><div class="line"><span class="comment"># chkconfig: - 85 15</span></div><div class="line"><span class="comment"># description: Nginx is a high-performance web and proxy server.</span></div><div class="line"><span class="comment">#              It has a lot of features, but it's not for everyone.</span></div><div class="line"><span class="comment"># processname: nginx</span></div><div class="line"><span class="comment"># pidfile: /var/run/nginx.pid</span></div><div class="line"><span class="comment"># config: /usr/local/nginx/conf/nginx.conf</span></div><div class="line">nginxd=/usr/<span class="built_in">local</span>/nginx/sbin/nginx</div><div class="line">nginx_config=/usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</div><div class="line">nginx_pid=/var/run/nginx.pid</div><div class="line">RETVAL=0</div><div class="line">prog=<span class="string">"nginx"</span></div><div class="line"><span class="comment"># Source function library.</span></div><div class="line">. /etc/rc.d/init.d/<span class="built_in">functions</span></div><div class="line"><span class="comment"># Source networking configuration.</span></div><div class="line">. /etc/sysconfig/network</div><div class="line"><span class="comment"># Check that networking is up.</span></div><div class="line">[ <span class="variable">$&#123;NETWORKING&#125;</span> = <span class="string">"no"</span> ] &amp;&amp; <span class="built_in">exit</span> 0</div><div class="line">[ -x <span class="variable">$nginxd</span> ] || <span class="built_in">exit</span> 0</div><div class="line"><span class="comment"># Start nginx daemons functions.</span></div><div class="line"><span class="function"><span class="title">start</span></span>() &#123;</div><div class="line"><span class="keyword">if</span> [ <span class="_">-e</span> <span class="variable">$nginx_pid</span> ];<span class="keyword">then</span></div><div class="line">   <span class="built_in">echo</span> <span class="string">"nginx already running...."</span></div><div class="line">   <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line">   <span class="built_in">echo</span> -n $<span class="string">"Starting <span class="variable">$prog</span>: "</span></div><div class="line">   daemon <span class="variable">$nginxd</span> -c <span class="variable">$&#123;nginx_config&#125;</span></div><div class="line">   RETVAL=$?</div><div class="line">   <span class="built_in">echo</span></div><div class="line">   [ <span class="variable">$RETVAL</span> = 0 ] &amp;&amp; touch /var/lock/subsys/nginx</div><div class="line">   <span class="built_in">return</span> <span class="variable">$RETVAL</span></div><div class="line">&#125;</div><div class="line"><span class="comment"># Stop nginx daemons functions.</span></div><div class="line"><span class="function"><span class="title">stop</span></span>() &#123;</div><div class="line">        <span class="built_in">echo</span> -n $<span class="string">"Stopping <span class="variable">$prog</span>: "</span></div><div class="line">        killproc <span class="variable">$nginxd</span></div><div class="line">        RETVAL=$?</div><div class="line">        <span class="built_in">echo</span></div><div class="line">        [ <span class="variable">$RETVAL</span> = 0 ] &amp;&amp; rm <span class="_">-f</span> /var/lock/subsys/nginx /var/run/nginx.pid</div><div class="line">&#125;</div><div class="line"><span class="comment"># reload nginx service functions.</span></div><div class="line"><span class="function"><span class="title">reload</span></span>() &#123;</div><div class="line">    <span class="built_in">echo</span> -n $<span class="string">"Reloading <span class="variable">$prog</span>: "</span></div><div class="line">    <span class="comment">#kill -HUP `cat $&#123;nginx_pid&#125;`</span></div><div class="line">    killproc <span class="variable">$nginxd</span> -HUP</div><div class="line">    RETVAL=$?</div><div class="line">    <span class="built_in">echo</span></div><div class="line">&#125;</div><div class="line"><span class="comment"># See how we were called.</span></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">        start</div><div class="line">        ;;</div><div class="line">stop)</div><div class="line">        stop</div><div class="line">        ;;</div><div class="line">reload)</div><div class="line">        reload</div><div class="line">        ;;</div><div class="line">restart)</div><div class="line">        stop</div><div class="line">        start</div><div class="line">        ;;</div><div class="line">status)</div><div class="line">        status <span class="variable">$prog</span></div><div class="line">        RETVAL=$?</div><div class="line">        ;;</div><div class="line">*)</div><div class="line">        <span class="built_in">echo</span> $<span class="string">"Usage: <span class="variable">$prog</span> &#123;start|stop|restart|reload|status|help&#125;"</span></div><div class="line">        <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> <span class="variable">$RETVAL</span></div></pre></td></tr></table></figure></p>
+<p>保存脚本文件后设置文件的执行权限：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod a+x <span class="regexp">/etc/i</span>nit.d<span class="regexp">/nginx</span></div></pre></td></tr></table></figure></p>
+<p>然后，就可以通过该脚本对nginx服务进行管理了：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/nginx <span class="literal">start</span></div><div class="line">/etc/init.d/nginx <span class="literal">stop</span></div></pre></td></tr></table></figure></p>
+<p>使用chkconfig进行管理<br>上面的方法完成了用脚本管理nginx服务的功能，但是还是不太方便，比如要设置nginx开机启动等。这时可以使用chkconfig来设置。</p>
+<p>先将nginx服务加入chkconfig管理列表：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chkconfig <span class="comment">--add /etc/init.d/nginx</span></div></pre></td></tr></table></figure></p>
+<p>加完这个之后，就可以使用service对nginx进行启动，重启等操作了。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service nginx <span class="literal">start</span></div><div class="line">service nginx <span class="literal">stop</span></div></pre></td></tr></table></figure></p>
+<p>设置终端模式开机启动：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chkconfig nginx <span class="keyword">on</span></div></pre></td></tr></table></figure></p>
+<p>上述配置过程如下图：<br><img src="/images/Nginx_8.jpg" alt="配置过程"></p>
+<h1 id="安装Nginx过程中的问题的解决办法"><a href="#安装Nginx过程中的问题的解决办法" class="headerlink" title="安装Nginx过程中的问题的解决办法"></a>安装Nginx过程中的问题的解决办法</h1><h2 id="error-while-loading-shared-libraries-libpcre-so-1-cannot-open-shared-object-file-No-such-file-or-directory的解决办法"><a href="#error-while-loading-shared-libraries-libpcre-so-1-cannot-open-shared-object-file-No-such-file-or-directory的解决办法" class="headerlink" title="error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory的解决办法"></a>error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory的解决办法</h2><blockquote>
+<p>错误描述<br>测试是否安装成功时，报出如下图错误，从下图错误提示信息可以得知是因为缺少lib文件导致，进一步查看具体内容，可从结果显示得知 ： <strong>libpcre.so.1 =&gt; not found </strong>，同时注意lib库的路径，有/lib/<em> 和 /lib64/</em> 之分。比如上图的是 /lib64/*,这个和下面解决问题时创建的软连接有关系</p>
+<p>解决办法：<br>1、首先确认已经安装好pcre 软件（nginx 依赖该软件）<br>2、创建软连接，分64位系统和32位系统两种处理方式</p>
+</blockquote>
+<p>对于/lib64/* 64位系统来说,创建软连接的方式如下：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span>查看lib库</div><div class="line"><span class="comment"># ls /lib64/ |grep pcre</span></div><div class="line"><span class="regexp">//</span>添加软连接</div><div class="line"><span class="comment"># ln -s /lib64/libpcre.so.0.0.1 /lib64/libpcre.so.1</span></div><div class="line"><span class="regexp">//</span>ps: 也有可能 pcre lib文件在目录：<span class="regexp">/usr/</span>local<span class="regexp">/lib64/</span>，具体请看错误具体内容中的显示路径</div></pre></td></tr></table></figure></p>
+<p>报错信息及解决办法如下图<br><img src="/images/Nginx_10.jpg" alt="报错信息"></p>
+<p>对于/lib/* 32位系统来说,创建软连接的方式如下：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//查看lib库</span></div><div class="line">#  ls /lib/ |grep pcre</div><div class="line">    libpcre.so<span class="number">.0</span></div><div class="line">    libpcre.so<span class="number">.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line"><span class="comment">//添加软连接</span></div><div class="line"># ln -s /lib/libpcre.so<span class="number">.0</span><span class="number">.0</span><span class="number">.1</span> /lib/libpcre.so<span class="number">.1</span></div><div class="line"><span class="comment">//ps: 也有可能 pcre lib文件在目录：/usr/local/lib/</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag">#Nginx</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/how-to-update-openSSH-on-centOS65/" rel="next" title="如何在CentOS65中升级OpenSSH7.5P1的完整过程">
+                <i class="fa fa-chevron-left"></i> 如何在CentOS65中升级OpenSSH7.5P1的完整过程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/13/how-to-install-and-config-nginx-on-centOS65/"
+           data-title="如何在centOS65中安装配置Nginx" data-url="https://aiolos123.github.io/2017/09/13/how-to-install-and-config-nginx-on-centOS65/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx常用命令"><span class="nav-number">1.</span> <span class="nav-text">Nginx常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Nginx"><span class="nav-number">2.</span> <span class="nav-text">安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载最新版Nginx"><span class="nav-number">2.1.</span> <span class="nav-text">下载最新版Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Nginx过程"><span class="nav-number">2.2.</span> <span class="nav-text">安装Nginx过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否安装成功"><span class="nav-number">2.3.</span> <span class="nav-text">测试是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Nginx开机自启动"><span class="nav-number">3.</span> <span class="nav-text">配置Nginx开机自启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Nginx过程中的问题的解决办法"><span class="nav-number">4.</span> <span class="nav-text">安装Nginx过程中的问题的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#error-while-loading-shared-libraries-libpcre-so-1-cannot-open-shared-object-file-No-such-file-or-directory的解决办法"><span class="nav-number">4.1.</span> <span class="nav-text">error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory的解决办法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

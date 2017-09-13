@@ -1,0 +1,1012 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CentOS65," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="由于OpenSSH7.5之前的版本存在众多漏洞，本文讲解如何在CentOS65中升级OpenSSH到最新版本7.5p1
+本文部分内容参考自博客：http://blog.csdn.net/lqy461929569/article/details/76148598">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在CentOS65中升级OpenSSH7.5P1的完整过程">
+<meta property="og:url" content="https://aiolos123.github.io/2017/09/13/how-to-update-openSSH-on-centOS65/index.html">
+<meta property="og:site_name" content="Aiolos Home">
+<meta property="og:description" content="由于OpenSSH7.5之前的版本存在众多漏洞，本文讲解如何在CentOS65中升级OpenSSH到最新版本7.5p1
+本文部分内容参考自博客：http://blog.csdn.net/lqy461929569/article/details/76148598">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_1.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_2.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_3.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_4.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_5.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_6.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_7.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_8.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_9.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_10.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_11.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_12.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_13.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_14.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_15.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_16.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_18.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_17.jpg">
+<meta property="og:image" content="https://aiolos123.github.io/images/openSSH_19.jpg">
+<meta property="og:updated_time" content="2017-09-13T05:33:32.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在CentOS65中升级OpenSSH7.5P1的完整过程">
+<meta name="twitter:description" content="由于OpenSSH7.5之前的版本存在众多漏洞，本文讲解如何在CentOS65中升级OpenSSH到最新版本7.5p1
+本文部分内容参考自博客：http://blog.csdn.net/lqy461929569/article/details/76148598">
+<meta name="twitter:image" content="https://aiolos123.github.io/images/openSSH_1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://aiolos123.github.io/2017/09/13/how-to-update-openSSH-on-centOS65/"/>
+
+  <title> 如何在CentOS65中升级OpenSSH7.5P1的完整过程 | Aiolos Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=58061634";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Aiolos Home</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">记录aiolos的学习成长</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何在CentOS65中升级OpenSSH7.5P1的完整过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T10:40:19+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/13/how-to-update-openSSH-on-centOS65/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/13/how-to-update-openSSH-on-centOS65/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/13/how-to-update-openSSH-on-centOS65/" class="leancloud_visitors" data-flag-title="如何在CentOS65中升级OpenSSH7.5P1的完整过程">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于OpenSSH7.5之前的版本存在众多漏洞，本文讲解如何在CentOS65中升级OpenSSH到最新版本7.5p1</p>
+<p>本文部分内容参考自博客：<a href="http://blog.csdn.net/lqy461929569/article/details/76148598" target="_blank" rel="external">http://blog.csdn.net/lqy461929569/article/details/76148598</a><br><a id="more"></a></p>
+<h1 id="升级OpenSSH的注意事项"><a href="#升级OpenSSH的注意事项" class="headerlink" title="升级OpenSSH的注意事项"></a>升级OpenSSH的注意事项</h1><blockquote>
+<p>列出7.4及以下openssh版本存在的部分漏洞：</p>
+<pre><code>+ OpenSSH 远程权限提升漏洞(CVE-2016-10010)  
++ OpenSSH J-PAKE授权问题漏洞(CVE-2010-4478)  
++ Openssh MaxAuthTries限制绕过漏洞(CVE-2015-5600)
+</code></pre></blockquote>
+<ol>
+<li>openssl不可以选用1.1.X 版本，否则openssh编译时会报错</li>
+<li>升级之前最好先把telnet开起来，防止意外导致ssh无法连接，需要下载 telent、telent-server、xinetd</li>
+<li>为了保险起见，建议安装lrzsz-0.12.20-27.1.el6.x86_64.rpm，下载地址：<br> <a href="https://centos.pkgs.org/6/centos-x86_64/lrzsz-0.12.20-27.1.el6.x86_64.rpm.html" target="_blank" rel="external">https://centos.pkgs.org/6/centos-x86_64/lrzsz-0.12.20-27.1.el6.x86_64.rpm.html</a></li>
+<li>升级OpenSSH7.5p1需要的依赖包及其最低版本见下表：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">安装顺序</th>
+<th>依赖包</th>
+<th>需要版本</th>
+<th>下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>zlib</td>
+<td>&gt;=1.2.8，建议安装zlib-1.2.11</td>
+<td><a href="http://zlib.net/" target="_blank" rel="external">http://zlib.net/</a></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>pam</td>
+<td>&gt;=1.1.1-13，CentOS65默认即是1.1.1-17</td>
+<td><a href="http://www.linuxfromscratch.org/blfs/view/svn/postlfs/linux-pam.html" target="_blank" rel="external">http://www.linuxfromscratch.org/blfs/view/svn/postlfs/linux-pam.html</a></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>pam-devel</td>
+<td>&gt;=1.1.1-13，CentOS65默认即是1.1.1-17</td>
+<td><a href="http://www.linuxfromscratch.org/blfs/view/svn/postlfs/linux-pam.html" target="_blank" rel="external">http://www.linuxfromscratch.org/blfs/view/svn/postlfs/linux-pam.html</a></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>openssl</td>
+<td>&gt;=1.0.1e，建议安装 openssl-1.0.2l,但不可安装1.1.X 版本</td>
+<td><a href="https://www.openssl.org/source/" target="_blank" rel="external">https://www.openssl.org/source/</a></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>openssh</td>
+<td>7.5p1</td>
+<td><a href="https://openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-7.5p1.tar.gz" target="_blank" rel="external">https://openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-7.5p1.tar.gz</a></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>查看升级前的ssh版本的命令<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#ssh</span> -v</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/images/openSSH_1.jpg" alt="查看升级前的ssh版本"></p>
+<p>6、查看是否安装了软件及其版本的命令<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># rpm -qa | grep xxx</span></div></pre></td></tr></table></figure></p>
+<h1 id="升级OpenSSH前的准备工作"><a href="#升级OpenSSH前的准备工作" class="headerlink" title="升级OpenSSH前的准备工作"></a>升级OpenSSH前的准备工作</h1><h2 id="安装telent"><a href="#安装telent" class="headerlink" title="安装telent"></a>安装telent</h2><p><strong>升级OpenSSH前首先必须安装telnet</strong>，再进行后续升级操作<br>原因：避免升级过程中服务器意外重启后无法远程登录系统<br>具体操作：需要下载telent、telent-server、xinetd, 并配置telnet服务开机自启动</p>
+<h3 id="安装xinted与telnet"><a href="#安装xinted与telnet" class="headerlink" title="安装xinted与telnet"></a>安装xinted与telnet</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装tenlet的必备依赖包</span></div><div class="line"># rpm -ivh xinetd<span class="number">-2.3</span><span class="number">.14</span><span class="number">-39.</span>el6_4.x86_64.rpm</div><div class="line"><span class="comment">//安装telnet</span></div><div class="line"># rpm -ivh telnet-server<span class="number">-0.17</span><span class="number">-47.</span>el6_3<span class="number">.1</span>.x86_64.rpm  telnet<span class="number">-0.17</span><span class="number">-47.</span>el6_3<span class="number">.1</span>.x86_64.rpm</div></pre></td></tr></table></figure>
+<p>上述两个命令的截图如下：<br><img src="/images/openSSH_2.jpg" alt="安装xinted与telnet"></p>
+<h3 id="启动telnet服务"><a href="#启动telnet服务" class="headerlink" title="启动telnet服务"></a>启动telnet服务</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># vi /etc/xinetd.d/telnet  </span></div><div class="line"><span class="comment">// 将其中disable字段的yes改为no以允许root用户通过telnet登录</span></div><div class="line"></div><div class="line">mv <span class="meta-keyword">/etc/</span>securetty <span class="meta-keyword">/etc/</span>securetty.old <span class="comment">// 备份文件</span></div><div class="line"></div><div class="line"><span class="meta"># service xinetd start <span class="comment">//启动telnet服务</span></span></div><div class="line"></div><div class="line"><span class="meta"># chkconfig xinetd on </span></div><div class="line"><span class="comment">// 使telnet服务开机启动，避免升级过程中服务器意外重启后无法远程登录系统</span></div></pre></td></tr></table></figure>
+<p>上述四个命令的截图如下：<br><img src="/images/openSSH_3.jpg" alt="启动telnet服务"></p>
+<h3 id="测试telnet能否正常登入系统"><a href="#测试telnet能否正常登入系统" class="headerlink" title="测试telnet能否正常登入系统"></a>测试telnet能否正常登入系统</h3><p>在本机的cmd中输入如下命令<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; telnet 虚拟机的<span class="built_in">IP</span>地址</div></pre></td></tr></table></figure></p>
+<p>如果出现下图中的login的提示符，输入用户名和密码后能够登陆到服务器，说明telent安装、启动成功</p>
+<p><img src="/images/openSSH_4.jpg" alt="测试telnet能否正常登入系统"></p>
+<h2 id="安装lrzsz"><a href="#安装lrzsz" class="headerlink" title="安装lrzsz"></a>安装lrzsz</h2><p>为保证后续安装过程中能够上传文件，最好安装lrzsz，安装命令如下：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装lrzsz</span></div><div class="line"><span class="meta"># rpm -ivh lrzsz-0.12.20-27.1.el6.x86_64.rpm</span></div><div class="line"><span class="comment">//测试是否安装成功，输入如下命令，</span></div><div class="line"><span class="comment">//查看是否弹出如下图的本地上传文件界面，以及上传文件是否成功。</span></div><div class="line"><span class="meta"># rz</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/openSSH_5.jpg" alt="测试安装lrzsz是否成功"></p>
+<h1 id="升级OpenSSH的依赖包"><a href="#升级OpenSSH的依赖包" class="headerlink" title="升级OpenSSH的依赖包"></a>升级OpenSSH的依赖包</h1><h2 id="升级zlib"><a href="#升级zlib" class="headerlink" title="升级zlib"></a>升级zlib</h2><p>OpenSSH7.5P1不支持zlib&lt;=1.2.8以下的版本，因此需要升级zlib到1.2.11版本，升级步骤如下：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># tar zxvf zlib-1.2.11.tar.gz</span></div><div class="line"><span class="meta"># cd zlib-1.2.11</span></div><div class="line"><span class="meta"># ./configure</span></div><div class="line"><span class="meta"># make &amp;&amp; make install</span></div></pre></td></tr></table></figure></p>
+<p>升级过程的截图如下：<br><img src="/images/openSSH_6.jpg" alt="升级zlib过程"><br>安装成功完成截图如下：<br><img src="/images/openSSH_7.jpg" alt="升级zlib成功完成"></p>
+<h2 id="安装pam和pam-devel"><a href="#安装pam和pam-devel" class="headerlink" title="安装pam和pam-devel"></a>安装pam和pam-devel</h2><p>安装OpenSSH7.5P1需要pam和pam-devel包的支持，版本号&gt;=1.1.1-13即可。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 查看安装的pam包及其版本</span></div><div class="line"><span class="meta"># rpm -qa | grep pam</span></div><div class="line"><span class="comment">//如果未发现pam，或者发现只有pam-1.1.1-X.el6.x86_64，</span></div><div class="line"><span class="comment">//则需要安装pam-devel-1.1.1-X.el6.x86_64.rpm（其中X&gt;=1.1.1-13）</span></div><div class="line"><span class="comment">//如果未安装，则在编译OpenSSH时会出现如下错误：</span></div><div class="line"><span class="comment">//configure: error: PAM headers not found</span></div><div class="line"></div><div class="line"><span class="comment">//安装pam-devel包的命令如下:</span></div><div class="line"><span class="meta"># rpm -ivh pam-devel-XXX</span></div></pre></td></tr></table></figure></p>
+<p>安装过程的截图如下：<br><img src="/images/openSSH_8.jpg" alt="安装pam和pam-devel完成"></p>
+<h1 id="升级OpenSSH的过程"><a href="#升级OpenSSH的过程" class="headerlink" title="升级OpenSSH的过程"></a>升级OpenSSH的过程</h1><h2 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h2><p>OpenSSH7.5P1不支持openssl&lt;=1.0.1e以下的版本，因此需要升级openssl，升级步骤如下：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//查看旧版本的ssh</span></div><div class="line"><span class="meta"># ssh -V</span></div><div class="line"><span class="comment">// 查找当前openssl文件并备份</span></div><div class="line"><span class="meta"># find / -name openssl</span></div><div class="line"><span class="meta"># mv /usr/lib64/openssl /usr/lib64/openssl.old</span></div><div class="line"><span class="meta"># mv /usr/bin/openssl /usr/bin/openssl.old</span></div><div class="line"><span class="meta"># cp  /usr/lib64/libcrypto.so.10  /usr/lib64/libcrypto.so.10.old</span></div><div class="line"><span class="meta"># cp  /usr/lib64/libssl.so.10  /usr/lib64/libssl.so.10.old</span></div><div class="line"><span class="comment">//卸载旧版本openssl</span></div><div class="line"><span class="meta"># rpm -e --nodeps `rpm -qa|grep openssl` </span></div><div class="line"><span class="comment">// 查看是否卸载成功   </span></div><div class="line"><span class="meta"># rpm -qa|grep openssl</span></div></pre></td></tr></table></figure></p>
+<p>上述命令的截图如下：<br><img src="/images/openSSH_9.jpg" alt="卸载旧版本openssl"></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编译安装新版本openssl</span></div><div class="line"><span class="meta"># tar zxvf openssl-1.0.2l.tar.gz</span></div><div class="line"><span class="meta"># cd openssl-1.0.2l</span></div><div class="line"><span class="meta"># ./config --prefix=/usr --shared &amp;&amp; make &amp;&amp; make install </span></div><div class="line"></div><div class="line"><span class="comment">//安装完成后，验证版本信息</span></div><div class="line"><span class="meta"># openssl version -a</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：编译文件时可能报如下错<br>make[1]: gcc: Command not found—-gcc未找到<br>解决办法：上传并安装如下gcc等相关依赖包</p>
+</blockquote>
+<p>安装openssl过程及成功的截图如下：<br><img src="/images/openSSH_10.jpg" alt="安装openssl过程及成功"></p>
+<p>如果出现最新版本信息说明升级openssl成功。</p>
+<h2 id="安装OpenSSH"><a href="#安装OpenSSH" class="headerlink" title="安装OpenSSH"></a>安装OpenSSH</h2><p>停止当前ssh服务，并备份<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># service sshd stop  <span class="comment">//停止服务</span></div><div class="line"># mv <span class="regexp">/etc/</span>ssh<span class="regexp">/ /</span>home<span class="regexp">/ssh-bak  /</span><span class="regexp">/备份旧ssh配置文件 /</span>etc<span class="regexp">/ssh</span></div></pre></td></tr></table></figure></p>
+<p>卸载现有版本<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># rpm -e --nodeps `rpm -qa | grep openssh`</span></div><div class="line"><span class="meta"># rpm -qa | grep openssh</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/openSSH_11.jpg" alt="卸载旧版本openssh"></p>
+<p>安装新版本的OpenSSH<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># tar xzvf openssh-7.5p1.tar.gz</span></div><div class="line"><span class="meta"># cd openssh-7.5p1</span></div><div class="line"><span class="comment">//编译（同时兼容ssh1协议）</span></div><div class="line"><span class="meta"># ./configure --prefix=/usr  --sysconfdir=/etc/ssh  --with-md5-passwords  --with-pam  --with-ssh1  --with-zlib --with-openssl-includes=/usr --with-privsep-path=/var/lib/sshd</span></div><div class="line"><span class="meta"># make</span></div><div class="line"><span class="meta"># make install</span></div><div class="line"></div><div class="line"><span class="comment">//安装完成后，验证版本信息</span></div><div class="line"><span class="meta"># ssh -v</span></div></pre></td></tr></table></figure></p>
+<p>编译的截图如下：<br><img src="/images/openSSH_12.jpg" alt="编译"><br>make的截图如下：<br><img src="/images/openSSH_13.jpg" alt="make"><br>安装成功的截图如下：<br><img src="/images/openSSH_14.jpg" alt="安装成功"></p>
+<p>如果出现最新版本信息说明升级openssh成功。</p>
+<h1 id="升级OpenSSH成功后的配置"><a href="#升级OpenSSH成功后的配置" class="headerlink" title="升级OpenSSH成功后的配置"></a>升级OpenSSH成功后的配置</h1><h2 id="升级OpenSSH成功后的配置-1"><a href="#升级OpenSSH成功后的配置-1" class="headerlink" title="升级OpenSSH成功后的配置"></a>升级OpenSSH成功后的配置</h2><p>升级OpenSSH成功后，还需要进行一些环境配置<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//复制启动脚本：</span></div><div class="line"><span class="meta"># cp contrib/redhat/sshd.init /etc/init.d/sshd</span></div><div class="line"><span class="meta"># chmod +x /etc/init.d/sshd</span></div><div class="line"><span class="comment">//设置开机启动：</span></div><div class="line"><span class="meta"># chkconfig --add sshd</span></div><div class="line"><span class="meta"># chkconfig sshd on</span></div><div class="line"><span class="comment">//编辑ssh配置文件，添加PermitRootLogin yes、PasswordAuthentication yes到文件末尾</span></div><div class="line"><span class="meta"># vi /etc/ssh/sshd_config</span></div><div class="line">    PasswordAuthentication yes</div><div class="line">    PermitRootLogin yes</div><div class="line"></div><div class="line"><span class="comment">//启动ssh服务</span></div><div class="line"><span class="meta"># service sshd start</span></div><div class="line"></div><div class="line"><span class="comment">//验证版本信息：</span></div><div class="line"><span class="meta"># ssh -V</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/openSSH_15.jpg" alt="环境配置成功"></p>
+<h2 id="测试openssh"><a href="#测试openssh" class="headerlink" title="测试openssh"></a>测试openssh</h2><p>使用Xshell重新登录服务器，出现如下图所示界面，说明版本已经升级成功<br><img src="/images/openSSH_16.jpg" alt="测试openssh"></p>
+<h2 id="重启系统验证没问题后关闭telnet服务"><a href="#重启系统验证没问题后关闭telnet服务" class="headerlink" title="重启系统验证没问题后关闭telnet服务"></a>重启系统验证没问题后关闭telnet服务</h2><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># mv /etc/securetty.old /etc/securetty</span></div><div class="line"><span class="meta"># chkconfig  xinetd off</span></div><div class="line"><span class="meta"># service xinetd stop</span></div></pre></td></tr></table></figure>
+<p><img src="/images/openSSH_18.jpg" alt="重启系统验证没问题"></p>
+<h1 id="升级SSH过程中遇到的问题及其解决办法"><a href="#升级SSH过程中遇到的问题及其解决办法" class="headerlink" title="升级SSH过程中遇到的问题及其解决办法"></a>升级SSH过程中遇到的问题及其解决办法</h1><h2 id="OpenSSH升级后xshell无法远程登入的解决办法"><a href="#OpenSSH升级后xshell无法远程登入的解决办法" class="headerlink" title="OpenSSH升级后xshell无法远程登入的解决办法"></a>OpenSSH升级后xshell无法远程登入的解决办法</h2><p>升级完成OpenSSH后，使用Xshell无法登陆服务器，导致此问题的原因是ssh升级后，为了安全，默认不在采用原来一些不太安全的加密算法，我们手工添加进去即可；</p>
+<blockquote>
+<p>解决办法：修改ssh的配置文件 /etc/ssh/sshd_config，在配置文件中如下代码</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Ciphers</span> <span class="selector-tag">aes128-cbc</span>,<span class="selector-tag">aes192-cbc</span>,<span class="selector-tag">aes256-cbc</span>,<span class="selector-tag">aes128-ctr</span>,<span class="selector-tag">aes192-ctr</span>,<span class="selector-tag">aes256-ctr</span>,3<span class="selector-tag">des-cbc</span>,<span class="selector-tag">arcfour128</span>,<span class="selector-tag">arcfour256</span>,<span class="selector-tag">arcfour</span>,<span class="selector-tag">blowfish-cbc</span>,<span class="selector-tag">cast128-cbc</span></div><div class="line"><span class="selector-tag">MACs</span> <span class="selector-tag">hmac-md5</span>,<span class="selector-tag">hmac-sha1</span>,<span class="selector-tag">umac-64</span>@<span class="keyword">openssh</span>.<span class="keyword">com</span>,<span class="keyword">hmac</span>-<span class="keyword">ripemd160</span>,<span class="keyword">hmac</span>-<span class="keyword">sha1</span>-<span class="keyword">96</span>,<span class="keyword">hmac</span>-<span class="keyword">md5</span>-<span class="keyword">96</span></div><div class="line">KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group-exchange-sha256</div></pre></td></tr></table></figure>
+<p>添加位置如下图：<br><img src="/images/openSSH_17.jpg" alt="无法远程登入"><br>添加后，重启sshd服务后，即可正常连接。</p>
+<h2 id="使用xshell登录到linux主机上时会出现“The-remote-SSH-server-rejected-X11-forwarding-request-”警告的解决办法"><a href="#使用xshell登录到linux主机上时会出现“The-remote-SSH-server-rejected-X11-forwarding-request-”警告的解决办法" class="headerlink" title="使用xshell登录到linux主机上时会出现“The  remote SSH server rejected X11 forwarding request.”警告的解决办法"></a>使用xshell登录到linux主机上时会出现“The  remote SSH server rejected X11 forwarding request.”警告的解决办法</h2><p>问题描述及解决办法如下图：<br><img src="/images/openSSH_19.jpg" alt="警告"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CentOS65/" rel="tag">#CentOS65</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/how-to-deploy-github-blog-with-hexo/" rel="next" title="如何使用hexo搭建github博客">
+                <i class="fa fa-chevron-left"></i> 如何使用hexo搭建github博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/13/how-to-install-and-config-nginx-on-centOS65/" rel="prev" title="如何在centOS65中安装配置Nginx">
+                如何在centOS65中安装配置Nginx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/13/how-to-update-openSSH-on-centOS65/"
+           data-title="如何在CentOS65中升级OpenSSH7.5P1的完整过程" data-url="https://aiolos123.github.io/2017/09/13/how-to-update-openSSH-on-centOS65/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="aiolos" />
+          <p class="site-author-name" itemprop="name">aiolos</p>
+          <p class="site-description motion-element" itemprop="description">记录aiolos的学习成长</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#升级OpenSSH的注意事项"><span class="nav-number">1.</span> <span class="nav-text">升级OpenSSH的注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级OpenSSH前的准备工作"><span class="nav-number">2.</span> <span class="nav-text">升级OpenSSH前的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装telent"><span class="nav-number">2.1.</span> <span class="nav-text">安装telent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装xinted与telnet"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装xinted与telnet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动telnet服务"><span class="nav-number">2.1.2.</span> <span class="nav-text">启动telnet服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试telnet能否正常登入系统"><span class="nav-number">2.1.3.</span> <span class="nav-text">测试telnet能否正常登入系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装lrzsz"><span class="nav-number">2.2.</span> <span class="nav-text">安装lrzsz</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级OpenSSH的依赖包"><span class="nav-number">3.</span> <span class="nav-text">升级OpenSSH的依赖包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级zlib"><span class="nav-number">3.1.</span> <span class="nav-text">升级zlib</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装pam和pam-devel"><span class="nav-number">3.2.</span> <span class="nav-text">安装pam和pam-devel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级OpenSSH的过程"><span class="nav-number">4.</span> <span class="nav-text">升级OpenSSH的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级openssl"><span class="nav-number">4.1.</span> <span class="nav-text">升级openssl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装OpenSSH"><span class="nav-number">4.2.</span> <span class="nav-text">安装OpenSSH</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级OpenSSH成功后的配置"><span class="nav-number">5.</span> <span class="nav-text">升级OpenSSH成功后的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级OpenSSH成功后的配置-1"><span class="nav-number">5.1.</span> <span class="nav-text">升级OpenSSH成功后的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试openssh"><span class="nav-number">5.2.</span> <span class="nav-text">测试openssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启系统验证没问题后关闭telnet服务"><span class="nav-number">5.3.</span> <span class="nav-text">重启系统验证没问题后关闭telnet服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级SSH过程中遇到的问题及其解决办法"><span class="nav-number">6.</span> <span class="nav-text">升级SSH过程中遇到的问题及其解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenSSH升级后xshell无法远程登入的解决办法"><span class="nav-number">6.1.</span> <span class="nav-text">OpenSSH升级后xshell无法远程登入的解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用xshell登录到linux主机上时会出现“The-remote-SSH-server-rejected-X11-forwarding-request-”警告的解决办法"><span class="nav-number">6.2.</span> <span class="nav-text">使用xshell登录到linux主机上时会出现“The  remote SSH server rejected X11 forwarding request.”警告的解决办法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">aiolos</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aiolos123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5QTIOWC4jLjGHKUXBCRidUXY-gzGzoHsz", "LnJSjRjTBkyB7VThVKxbqlTk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
